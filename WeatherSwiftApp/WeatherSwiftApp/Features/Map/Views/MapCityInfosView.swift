@@ -6,7 +6,7 @@ import UIKit
 import Reusable
 
 // MARK: - Protocols
-protocol MapCityInfosViewDelegate: class {
+protocol MapCityInfosViewDelegate: AnyObject {
     /// User touches details button.
     ///
     /// - Parameters:

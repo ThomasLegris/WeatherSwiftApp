@@ -3,7 +3,6 @@
 //
 
 import SwiftyUserDefaults
-import Reachability
 import RxSwift
 import WeatherSwiftSDK
 

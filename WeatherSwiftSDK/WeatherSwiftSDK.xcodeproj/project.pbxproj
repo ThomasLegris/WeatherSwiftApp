@@ -21,6 +21,7 @@
 		027EBB8028DDF8DF00D5980D /* WeatherSwiftSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027EBB7528DDF8DE00D5980D /* WeatherSwiftSDK.framework */; };
 		027EBB8528DDF8DF00D5980D /* WeatherSwiftSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027EBB8428DDF8DF00D5980D /* WeatherSwiftSDKTests.swift */; };
 		027EBB8628DDF8DF00D5980D /* WeatherSwiftSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 027EBB7828DDF8DE00D5980D /* WeatherSwiftSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02F348ED28E1942A00D6E020 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F348EC28E1942A00D6E020 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		027EBB7928DDF8DE00D5980D /* WeatherSwiftSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = WeatherSwiftSDK.docc; sourceTree = "<group>"; };
 		027EBB7F28DDF8DF00D5980D /* WeatherSwiftSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherSwiftSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		027EBB8428DDF8DF00D5980D /* WeatherSwiftSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSwiftSDKTests.swift; sourceTree = "<group>"; };
+		02F348EC28E1942A00D6E020 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,13 +72,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0231777428DE0F63006C39CD /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		0231777A28DE1226006C39CD /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +139,7 @@
 		027EBB7728DDF8DE00D5980D /* WeatherSwiftSDK */ = {
 			isa = PBXGroup;
 			children = (
-				0231777428DE0F63006C39CD /* Utils */,
+				02F348EB28E1941E00D6E020 /* Network */,
 				0240730D28DDFDFB003650A5 /* API */,
 				0240730C28DDFDF4003650A5 /* Persistance */,
 				027EBB7828DDF8DE00D5980D /* WeatherSwiftSDK.h */,
@@ -159,6 +154,14 @@
 				027EBB8428DDF8DF00D5980D /* WeatherSwiftSDKTests.swift */,
 			);
 			path = WeatherSwiftSDKTests;
+			sourceTree = "<group>";
+		};
+		02F348EB28E1941E00D6E020 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				02F348EC28E1942A00D6E020 /* Reachability.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +288,7 @@
 				0240732328DE0044003650A5 /* RealmModels.swift in Sources */,
 				0231778028DEE3E0006C39CD /* WeatherApiError.swift in Sources */,
 				0240732128DE002A003650A5 /* CityDataBaseManager.swift in Sources */,
+				02F348ED28E1942A00D6E020 /* Reachability.swift in Sources */,
 				0240731D28DDFFE8003650A5 /* WeatherApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -3,7 +3,6 @@
 //
 
 import SwiftyUserDefaults
-import Reachability
 import MapKit
 import RxSwift
 import WeatherSwiftSDK
@@ -98,9 +97,7 @@ extension CurrentWeatherViewModel {
 private extension CurrentWeatherViewModel {
     /// Returns true if connected to internet, false otherwise.
     var isNetworkReachable: Bool {
-        let reachability = try? Reachability()
-        
-        return reachability?.connection == .wifi ||  reachability?.connection == .cellular
+        return Reachability.isConnectedToNetwork()
     }
     
     /// Update weather last updated time in hour.
