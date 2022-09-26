@@ -51,7 +51,6 @@
 		0231773F28DE0B26006C39CD /* WeeklyDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0231773928DE0B26006C39CD /* WeeklyDetailsCollectionViewCell.xib */; };
 		0231774328DE0B35006C39CD /* DailyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231774128DE0B35006C39CD /* DailyDetailsViewModel.swift */; };
 		0231774828DE0B5C006C39CD /* WeatherDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231774628DE0B5C006C39CD /* WeatherDetailsModel.swift */; };
-		0231774C28DE0BC6006C39CD /* SwiftyUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 0231774B28DE0BC6006C39CD /* SwiftyUserDefaults */; };
 		0231775228DE0CA3006C39CD /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0231775128DE0CA3006C39CD /* RxSwift */; };
 		0231775528DE0D04006C39CD /* Reusable in Frameworks */ = {isa = PBXBuildFile; productRef = 0231775428DE0D04006C39CD /* Reusable */; };
 		0231775828DE0EA0006C39CD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0231775728DE0EA0006C39CD /* Realm */; };
@@ -176,7 +175,6 @@
 				027EBBCD28DDFAA500D5980D /* WeatherSwiftSDK.framework in Frameworks */,
 				0231775A28DE0EA0006C39CD /* RealmSwift in Frameworks */,
 				0231775228DE0CA3006C39CD /* RxSwift in Frameworks */,
-				0231774C28DE0BC6006C39CD /* SwiftyUserDefaults in Frameworks */,
 				0231775528DE0D04006C39CD /* Reusable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,7 +457,6 @@
 			);
 			name = WeatherSwiftApp;
 			packageProductDependencies = (
-				0231774B28DE0BC6006C39CD /* SwiftyUserDefaults */,
 				0231775128DE0CA3006C39CD /* RxSwift */,
 				0231775428DE0D04006C39CD /* Reusable */,
 				0231775728DE0EA0006C39CD /* Realm */,
@@ -538,7 +535,6 @@
 			);
 			mainGroup = 027EBB8F28DDF8F400D5980D;
 			packageReferences = (
-				0231774A28DE0BC6006C39CD /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
 				0231775028DE0CA3006C39CD /* XCRemoteSwiftPackageReference "RxSwift" */,
 				0231775328DE0D04006C39CD /* XCRemoteSwiftPackageReference "Reusable" */,
 				0231775628DE0EA0006C39CD /* XCRemoteSwiftPackageReference "realm-swift" */,
@@ -962,14 +958,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0231774A28DE0BC6006C39CD /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		0231775028DE0CA3006C39CD /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -997,11 +985,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0231774B28DE0BC6006C39CD /* SwiftyUserDefaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0231774A28DE0BC6006C39CD /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */;
-			productName = SwiftyUserDefaults;
-		};
 		0231775128DE0CA3006C39CD /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0231775028DE0CA3006C39CD /* XCRemoteSwiftPackageReference "RxSwift" */;

@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import SwiftyUserDefaults
 import WeatherSwiftSDK
 
 /// Screen which display details about a city weather.

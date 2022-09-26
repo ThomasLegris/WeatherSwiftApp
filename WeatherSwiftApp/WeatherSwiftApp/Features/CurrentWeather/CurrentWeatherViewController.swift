@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import SwiftyUserDefaults
 import RxSwift
 
 /// Screen which shows location weather for a targetted city.
@@ -158,7 +157,7 @@ private extension CurrentWeatherViewController {
 
     /// Call view model to perfom request.
     func requestWeather() {
-        let city = cityTextField.text?.isEmpty == true ? Defaults.lastSearchedCity : cityTextField.text
+        let city = cityTextField.text?.isEmpty == true ? UserDefaults.standard.string(forKey: UserDefaultKeys.lastSearchedCity.rawValue) : cityTextField.text
         guard city?.isEmpty == false else { return }
 
         viewModel.requestWeather(with: city)

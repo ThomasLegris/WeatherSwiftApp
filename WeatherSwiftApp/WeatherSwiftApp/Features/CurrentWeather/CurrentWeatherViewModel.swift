@@ -2,7 +2,6 @@
 //  Copyright (C) 2020 Thomas LEGRIS.
 //
 
-import SwiftyUserDefaults
 import MapKit
 import RxSwift
 import WeatherSwiftSDK
@@ -51,7 +50,7 @@ extension CurrentWeatherViewModel {
                         self?.weatherError.onNext(.unknownCity)
                         return
                     }
-                    Defaults.lastSearchedCity = model.cityName
+                    UserDefaults.standard.set(model.cityName, forKey: UserDefaultKeys.lastSearchedCity.rawValue)
                     
                     self?.weatherModel.onNext(model)
                     self?.updateDate()
@@ -108,6 +107,9 @@ private extension CurrentWeatherViewModel {
         formatter.dateStyle = .none
         
         updatedDate.onNext(formatter.string(from: currentDateTime))
-        Defaults.lastUpdatedDate = try? updatedDate.value()
+        if let date = try? updatedDate.value() {
+            UserDefaults.standard.set(date, forKey: UserDefaultKeys.lastUpdatedDate.rawValue)
+
+        }
     }
 }
