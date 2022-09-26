@@ -9,7 +9,7 @@ import Foundation
 /// View model which provides list of registered favorite cities.
 final class FavoriteCitiesListViewModel {
     // MARK: - Internal Properties
-    var favoriteCitiesObs: Observable<[FavoriteCity]> = Observable(value: [])
+    var favoriteCitiesObs: Observable<[City]> = Observable(value: [])
 
     // MARK: - Private Properties
     private let notificationCenter = NotificationCenter.default

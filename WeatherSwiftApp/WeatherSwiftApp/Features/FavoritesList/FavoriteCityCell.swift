@@ -5,6 +5,7 @@
 import UIKit
 import Reusable
 import WeatherSwiftSDK
+import CoreData
 
 /// Displays a city weather cell in the favorite cities table view.
 final class FavoriteCityCell: UITableViewCell, NibReusable {
@@ -16,7 +17,7 @@ final class FavoriteCityCell: UITableViewCell, NibReusable {
     @IBOutlet private weak var bgView: UIView!
 
     // MARK: - Private Properties
-    private var city: FavoriteCity?
+    private var city: City?
     private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel()
 
     // MARK: - Private Enums
@@ -37,7 +38,7 @@ final class FavoriteCityCell: UITableViewCell, NibReusable {
     ///
     /// - Parameters:
     ///     - city: current city registered in favorite
-    func configureCell(city: FavoriteCity) {
+    func configureCell(city: City) {
         self.city = city
         setupViewModel()
     }
@@ -56,7 +57,7 @@ private extension FavoriteCityCell {
 
     /// Sets up the view model.
     func setupViewModel() {
-        viewModel.requestWeather(with: city?.cityName)
+        viewModel.requestWeather(with: city?.name)
         viewModel.weatherModelObs.bind { [weak self] _ in
             self?.updateView()
         }
@@ -75,7 +76,7 @@ private extension FavoriteCityCell {
     func updateView() {
         let model = viewModel.weatherModelObs.value
         guard let temp = model.temperature,
-              let name = city?.cityName,
+              let name = city?.name,
               let description = model.description else {
             return
         }
