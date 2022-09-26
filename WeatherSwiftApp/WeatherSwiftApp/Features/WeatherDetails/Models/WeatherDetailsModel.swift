@@ -13,15 +13,13 @@ struct DailyDetailsModel {
     var sunrise: String?
 }
 
-
-// MARK: - Internal Properties
 extension DailyDetailsResponse {
-    
     // MARK: - Private Enums
     private enum Constants {
         static let format: String = "HH:mm a"
     }
-    
+
+    // MARK: - Internal Properties
     /// Returns a model for daily details weather built with self.
     var dailyDetailsModel: DailyDetailsModel? {
         let sunsetTimeInterval = TimeInterval(self.sys.sunset)
@@ -41,7 +39,7 @@ struct WeeklyDetailsModel {
     var list: [DailyWeather]
 }
 
-// MARK: - Public Properties
+// MARK: - Internal Properties
 extension WeeklyDetailsResponse {
     /// Returns a model about weekly weather.
     var weeklyDetailsModel: WeeklyDetailsModel? {

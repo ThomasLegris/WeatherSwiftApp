@@ -13,6 +13,6 @@ import Foundation
 public class FavoriteCity: Object {
     /// Name of the city to add in favorite table.
     @objc dynamic public var cityName: String = ""
-    
+
     public override init() { }
 }

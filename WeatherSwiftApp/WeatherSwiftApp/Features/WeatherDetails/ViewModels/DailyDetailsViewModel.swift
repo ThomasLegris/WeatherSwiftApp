@@ -24,7 +24,7 @@ extension DailyDetailsViewModel {
         WeatherApiManager.shared.cityDetailsWeather(cityName: city) { [weak self] res, error in
             DispatchQueue.main.async {
                 guard error == nil, let model = res?.dailyDetailsModel else { return }
-                
+
                 self?.dailyDetailsModel.onNext(model)
             }
         }

@@ -15,7 +15,7 @@ final class CurrentWeatherViewModel {
                                                                                      cityName: L10n.dash))
     var weatherError = BehaviorSubject<WeatherError>(value: .none)
     var updatedDate = BehaviorSubject<String>(value: "")
-    
+
     // MARK: - Private Properties
     private let disposeBag = DisposeBag()
 }
@@ -31,13 +31,13 @@ extension CurrentWeatherViewModel {
             weatherError.onNext(.noInternet)
             return
         }
-        
+
         guard let cityName = city,
               city?.isEmpty == false else {
             weatherError.onNext(.unknownCity)
             return
         }
-        
+
         WeatherApiManager
             .shared
             .cityWeather(cityName: cityName, completion: { [weak self] res, error in
@@ -51,13 +51,13 @@ extension CurrentWeatherViewModel {
                         return
                     }
                     UserDefaults.standard.set(model.cityName, forKey: UserDefaultKeys.lastSearchedCity.rawValue)
-                    
+
                     self?.weatherModel.onNext(model)
                     self?.updateDate()
                 }
             })
     }
-    
+
     /// Call the manager in order to get weather information from coordinate.
     ///
     /// - Parameters:
@@ -67,12 +67,12 @@ extension CurrentWeatherViewModel {
             weatherError.onNext(.noInternet)
             return
         }
-        
+
         guard let coordinate = coordinate else {
             weatherError.onNext(.noInfo)
             return
         }
-        
+
         WeatherApiManager
             .shared
             .locationWeather(latitude: coordinate.latitude, longitude: coordinate.longitude) { [weak self] res, error in
@@ -81,7 +81,7 @@ extension CurrentWeatherViewModel {
                         self?.weatherError.onNext(.noInfo)
                         return
                     }
-                    
+
                     guard let model = res?.commonWeatherModel else {
                         self.weatherError.onNext(.unknownCity)
                         return
@@ -98,14 +98,14 @@ private extension CurrentWeatherViewModel {
     var isNetworkReachable: Bool {
         return Reachability.isConnectedToNetwork()
     }
-    
+
     /// Update weather last updated time in hour.
     func updateDate() {
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         formatter.dateStyle = .none
-        
+
         updatedDate.onNext(formatter.string(from: currentDateTime))
         if let date = try? updatedDate.value() {
             UserDefaults.standard.set(date, forKey: UserDefaultKeys.lastUpdatedDate.rawValue)

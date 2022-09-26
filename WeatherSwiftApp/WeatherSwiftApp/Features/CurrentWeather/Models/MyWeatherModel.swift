@@ -39,7 +39,7 @@ extension LocalWeatherResponse {
             return .clouds
         }
     }
-    
+
     // MARK: - Internal Properties
     /// Returns a Common weather model built with self.
     var commonWeatherModel: CommonWeatherModel? {
@@ -49,14 +49,15 @@ extension LocalWeatherResponse {
                                                                          cityName: "") }
 
         let weatherModel: CommonWeatherModel = CommonWeatherModel(temperature: main.temp,
-                                                                  icon: self.groupFromId(identifier: weather.identifier).icon,
+                                                                  icon: self.groupFromId(identifier: weather.identifier)
+            .icon,
                                                                   description: weather.main,
                                                                   cityName: name)
         return weatherModel
     }
 }
 
-// MARK: - Public Enums
+// MARK: - Internal Enums
 /// Provides different weather description.
 enum WeatherGroup {
     case thunder
@@ -73,7 +74,7 @@ enum WeatherGroup {
         case .thunder:
             return Asset.icThunder.image
         case .rain,
-             .drizzle:
+                .drizzle:
             return Asset.icRain.image
         case .snow:
             return Asset.icSnow.image

@@ -24,7 +24,8 @@ extension WeatherService {
     private enum Constants {
         static let baseUrl: String = "https://api.openweathermap.org/data/2.5/"
     }
-    
+
+    // MARK: - Internal Properties
     var url: String {
         var path: String = ""
         switch self {
@@ -36,7 +37,7 @@ extension WeatherService {
         }
         return Constants.baseUrl + path
     }
-    
+
     var httpMethod: String {
         return "GET"
     }

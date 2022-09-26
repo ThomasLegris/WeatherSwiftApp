@@ -76,7 +76,8 @@ private extension WeatherMapViewController {
         mapView.delegate = self
         mapView?.showsUserLocation = true
 
-        let singleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onMapTouchedUpInside(recognizer:)))
+        let singleTapRecognizer = UITapGestureRecognizer(target: self,
+                                                         action: #selector(onMapTouchedUpInside(recognizer:)))
         mapView.addGestureRecognizer(singleTapRecognizer)
     }
 
@@ -113,8 +114,8 @@ private extension WeatherMapViewController {
                        delay: 0.0,
                        options: .curveEaseOut,
                        animations: {
-                        self.detailsCityContainerView.alpha = 1.0
-                       })
+            self.detailsCityContainerView.alpha = 1.0
+        })
     }
 }
 

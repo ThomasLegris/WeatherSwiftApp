@@ -99,8 +99,10 @@ extension WeeklyDetailsView: UICollectionViewDataSource {
         return itemNumber
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeeklyDetailsCollectionViewCell.reuseIdentifier, for: indexPath)
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeeklyDetailsCollectionViewCell.reuseIdentifier,
+                                                      for: indexPath)
 
         if let weeklyCell = cell as? WeeklyDetailsCollectionViewCell {
             let weatherDay = filteredList[indexPath.row]
@@ -116,7 +118,9 @@ extension WeeklyDetailsView: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension WeeklyDetailsView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.frame.width / (CGFloat(itemNumber) + 1.0)
         let height: CGFloat = Constants.cellHeight
 

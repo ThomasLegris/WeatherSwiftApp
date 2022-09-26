@@ -21,7 +21,7 @@ extension WeeklyDetailsViewModel {
         WeatherApiManager.shared.cityWeeklyWeather(cityName: city) { [weak self] res, error in
             DispatchQueue.main.async {
                 guard error == nil, let model = res?.weeklyDetailsModel else { return }
-                
+
                 self?.dailyDetailsModel.onNext(model)
             }
         }

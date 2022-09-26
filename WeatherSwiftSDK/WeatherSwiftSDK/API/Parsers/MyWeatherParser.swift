@@ -11,7 +11,7 @@ public struct LocalWeatherResponse: Codable {
     public var weather: [WeatherField]?
     public var main: MainField
     public var name: String
-    
+
     // MARK: - Coding Keys
     enum CodingKeys: String, CodingKey {
         case weather
@@ -25,7 +25,7 @@ public struct WeatherField: Codable {
     public var identifier: Int
     public var main: String
     public var icon: String
-    
+
     // MARK: - Coding Keys
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
@@ -41,7 +41,7 @@ public struct MainField: Codable {
     public var humidity: Float
     public var tempMin: Float
     public var tempMax: Float
-    
+
     // MARK: - Coding Keys
     enum CodingKeys: String, CodingKey {
         case temp
