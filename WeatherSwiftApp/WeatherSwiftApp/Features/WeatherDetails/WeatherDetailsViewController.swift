@@ -55,8 +55,9 @@ private extension WeatherDetailsViewController {
     }
 
     @IBAction func favoriteButtonTouchedUpInside(_ sender: Any) {
-        CityDataBaseManager.shared.updateCity(cityName: cityName)
-        updateFavoriteButton()
+        PersistanceManager.shared.updateCity(cityName: cityName) { isSuccess in
+            self.updateFavoriteButton()
+        }
     }
 }
 
@@ -73,7 +74,7 @@ private extension WeatherDetailsViewController {
 
     /// Updates favorite button.
     func updateFavoriteButton() {
-        if CityDataBaseManager.shared.isCityRegistered(cityName: cityName) {
+        if PersistanceManager.shared.isCityRegistered(cityName: cityName) {
             favoriteButton.setImage(Asset.icFavoriteOn.image,
                                     for: .normal)
         } else {

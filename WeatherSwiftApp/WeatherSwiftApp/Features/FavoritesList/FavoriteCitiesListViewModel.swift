@@ -2,8 +2,9 @@
 //  Copyright (C) 2021 Thomas LEGRIS.
 //
 
-import RealmSwift
+import CoreData
 import WeatherSwiftSDK
+import Foundation
 
 /// View model which provides list of registered favorite cities.
 final class FavoriteCitiesListViewModel {
@@ -11,17 +12,16 @@ final class FavoriteCitiesListViewModel {
     var favoriteCitiesObs: Observable<[FavoriteCity]> = Observable(value: [])
 
     // MARK: - Private Properties
-    private var dataBase = CityDataBaseManager.shared
-    private var notificationToken: NotificationToken?
+    private let notificationCenter = NotificationCenter.default
 
     // MARK: - Init
     init() {
         observeCities()
     }
 
-    // MARK: - Deinit
     deinit {
-        notificationToken = nil
+        // For safety, remove observers which has been init here.
+        notificationCenter.removeObserver(self)
     }
 }
 
@@ -29,14 +29,15 @@ final class FavoriteCitiesListViewModel {
 private extension FavoriteCitiesListViewModel {
     /// Add observer on cities database.
     func observeCities() {
-        notificationToken = dataBase.cities?.observe { [weak self] _ in
-            self?.updateDatas()
-        }
+        notificationCenter.addObserver(self,
+                                       selector: #selector(updateDatas),
+                                       name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                       object: PersistanceManager.shared.context)
         updateDatas()
     }
 
     /// Update data source.
-    func updateDatas() {
-        favoriteCitiesObs.value = dataBase.cities?.elements ?? []
+    @objc func updateDatas() {
+        favoriteCitiesObs.value = PersistanceManager.shared.cities
     }
 }
