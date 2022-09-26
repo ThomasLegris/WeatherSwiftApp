@@ -3,11 +3,11 @@
 //
 
 import UIKit
-import Reusable
 
 /// Displays a daily weather details.
-final class DailyDetailsView: UIView, NibOwnerLoadable {
+final class DailyDetailsView: UIView {
     // MARK: - Outlets
+    @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var windTitleLabel: UILabel!
     @IBOutlet private weak var windValueLabel: UILabel!
     @IBOutlet private weak var humidityTitleLabel: UILabel!
@@ -31,6 +31,11 @@ final class DailyDetailsView: UIView, NibOwnerLoadable {
     // MARK: - Private Properties
     private let viewModel: DailyDetailsViewModel = DailyDetailsViewModel()
 
+    // MARK: - Private Enums
+    private enum Constants {
+        static let nibName: String = "DailyDetailsView"
+    }
+
     // MARK: - Override Funcs
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -47,7 +52,10 @@ final class DailyDetailsView: UIView, NibOwnerLoadable {
 private extension DailyDetailsView {
     /// Common init.
     func commonInitDailyDetailsView() {
-        self.loadNibContent()
+        Bundle.main.loadNibNamed(Constants.nibName, owner: self)
+        addSubview(contentView)
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
 
         dailyTitleLabel.text = L10n.dailyDetails
         dailyTitleView.cornerRadiusedWith(backgroundColor: .white20, radius: 9.0)

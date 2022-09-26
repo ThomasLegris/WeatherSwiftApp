@@ -3,10 +3,9 @@
 //
 
 import UIKit
-import Reusable
 
 /// Displays a cell which give weather of a selected day.
-final class WeeklyDetailsCollectionViewCell: UICollectionViewCell, NibReusable {
+final class WeeklyDetailsCollectionViewCell: UICollectionViewCell {
     // MARK: - Outlets
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var weatherImageView: UIImageView!
@@ -15,11 +14,6 @@ final class WeeklyDetailsCollectionViewCell: UICollectionViewCell, NibReusable {
     // MARK: - Private Enums
     private enum Constants {
         static let format: String = "E d"
-    }
-
-    // MARK: - Override Funcs
-    override func awakeFromNib() {
-        super.awakeFromNib()
     }
 
     override func prepareForReuse() {

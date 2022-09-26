@@ -3,12 +3,11 @@
 //
 
 import UIKit
-import Reusable
 import WeatherSwiftSDK
 import CoreData
 
 /// Displays a city weather cell in the favorite cities table view.
-final class FavoriteCityCell: UITableViewCell, NibReusable {
+final class FavoriteCityCell: UITableViewCell {
     // MARK: - Outlets
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var cityLabel: UILabel!

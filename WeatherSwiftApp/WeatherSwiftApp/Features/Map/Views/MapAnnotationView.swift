@@ -4,7 +4,6 @@
 
 import UIKit
 import MapKit
-import Reusable
 
 // MARK: - Protocols
 protocol MapAnnotationDelegate: AnyObject {
@@ -32,8 +31,9 @@ class MapAnnotation: NSObject, MKAnnotation {
 }
 
 /// Shows a custom annotation view.
-final class MapAnnotationView: MKAnnotationView, NibOwnerLoadable {
+final class MapAnnotationView: MKAnnotationView {
     // MARK: - Outlets
+    @IBOutlet private var contentView: MKAnnotationView!
     @IBOutlet private weak var mainView: UIView!
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var tempLabel: UILabel!
@@ -43,6 +43,11 @@ final class MapAnnotationView: MKAnnotationView, NibOwnerLoadable {
 
     // MARK: - Private Properties
     private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel()
+
+    // MARK: - Private Enums
+    private enum Constants {
+        static let nibName: String = "MapAnnotationView"
+    }
 
     // MARK: - Override Funcs
     required init?(coder aDecoder: NSCoder) {
@@ -62,7 +67,10 @@ final class MapAnnotationView: MKAnnotationView, NibOwnerLoadable {
 private extension MapAnnotationView {
     /// Common init.
     func commonInit() {
-        loadNibContent()
+        Bundle.main.loadNibNamed(Constants.nibName, owner: self)
+        addSubview(contentView)
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         viewModel.requestWeather(with: annotation?.coordinate)
         viewModel.weatherModelObs.bind { [weak self] model in
             self?.updateView(with: model)

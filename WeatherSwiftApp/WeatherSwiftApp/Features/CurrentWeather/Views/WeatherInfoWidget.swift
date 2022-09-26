@@ -3,11 +3,11 @@
 //
 
 import UIKit
-import Reusable
 
 /// View which displays a resume of the weather.e
-final class WeatherInfoWidget: UIView, NibOwnerLoadable {
+final class WeatherInfoWidget: UIView {
     // MARK: - Outlets
+    @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var weatherImageView: UIImageView!
@@ -25,6 +25,7 @@ final class WeatherInfoWidget: UIView, NibOwnerLoadable {
     // MARK: - Private Enums
     private enum Constants {
         static let format: String = "dd.MM.yyyy"
+        static let nibName: String = "WeatherInfoWidget"
     }
 
     // MARK: - Init
@@ -43,7 +44,10 @@ final class WeatherInfoWidget: UIView, NibOwnerLoadable {
 private extension WeatherInfoWidget {
     /// Common init.
     func commonInitWeatherInfoWidget() {
-        self.loadNibContent()
+        Bundle.main.loadNibNamed(Constants.nibName, owner: self)
+        addSubview(contentView)
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
 
         temperatureLabel.textColor = ColorName.black60.color
         descriptionLabel.textColor = ColorName.black60.color

@@ -3,12 +3,12 @@
 //
 
 import UIKit
-import Reusable
 import WeatherSwiftSDK
 
 /// Displays a weekly weather details.
-final class WeeklyDetailsView: UIView, NibOwnerLoadable {
+final class WeeklyDetailsView: UIView {
     // MARK: - Outlets
+    @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var weeklyTitleView: UIView!
     @IBOutlet private weak var weeklyTitleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -53,6 +53,7 @@ final class WeeklyDetailsView: UIView, NibOwnerLoadable {
         static let titleRadius: CGFloat = 9.0
         static let format: String = "HH"
         static let afternoonTab: [Int] = [13, 14, 15]
+        static let nibName: String = "WeeklyDetailsView"
     }
 
     // MARK: - Override Funcs
@@ -71,12 +72,18 @@ final class WeeklyDetailsView: UIView, NibOwnerLoadable {
 private extension WeeklyDetailsView {
     /// Common init.
     func commonInitWeeklyDetailsView() {
-        self.loadNibContent()
+        Bundle.main.loadNibNamed(Constants.nibName, owner: self)
+        addSubview(contentView)
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         setupViewModel()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
-        collectionView.register(cellType: WeeklyDetailsCollectionViewCell.self)
+
+        let nib = UINib(nibName: "WeeklyDetailsCollectionViewCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "WeeklyDetailsCollectionViewCell")
+
         weeklyTitleLabel.text = L10n.weeklyDetails
         weeklyTitleView.cornerRadiusedWith(backgroundColor: .white20,
                                            radius: Constants.titleRadius)
@@ -98,7 +105,7 @@ extension WeeklyDetailsView: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeeklyDetailsCollectionViewCell.reuseIdentifier,
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeeklyDetailsCollectionViewCell",
                                                       for: indexPath)
 
         if let weeklyCell = cell as? WeeklyDetailsCollectionViewCell {

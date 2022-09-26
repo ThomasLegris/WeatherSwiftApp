@@ -51,7 +51,6 @@
 		0231773F28DE0B26006C39CD /* WeeklyDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0231773928DE0B26006C39CD /* WeeklyDetailsCollectionViewCell.xib */; };
 		0231774328DE0B35006C39CD /* DailyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231774128DE0B35006C39CD /* DailyDetailsViewModel.swift */; };
 		0231774828DE0B5C006C39CD /* WeatherDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231774628DE0B5C006C39CD /* WeatherDetailsModel.swift */; };
-		0231775528DE0D04006C39CD /* Reusable in Frameworks */ = {isa = PBXBuildFile; productRef = 0231775428DE0D04006C39CD /* Reusable */; };
 		0231776E28DE0F26006C39CD /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231776828DE0F25006C39CD /* UIView+Animations.swift */; };
 		0231776F28DE0F26006C39CD /* DefaultKeys+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231776928DE0F25006C39CD /* DefaultKeys+Utils.swift */; };
 		0231777028DE0F26006C39CD /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231776A28DE0F25006C39CD /* UIViewController+Utils.swift */; };
@@ -167,7 +166,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				027EBBCD28DDFAA500D5980D /* WeatherSwiftSDK.framework in Frameworks */,
-				0231775528DE0D04006C39CD /* Reusable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +447,6 @@
 			);
 			name = WeatherSwiftApp;
 			packageProductDependencies = (
-				0231775428DE0D04006C39CD /* Reusable */,
 			);
 			productName = WeatherSwiftApp;
 			productReference = 027EBB9828DDF8F500D5980D /* WeatherSwiftApp.app */;
@@ -524,7 +521,6 @@
 			);
 			mainGroup = 027EBB8F28DDF8F400D5980D;
 			packageReferences = (
-				0231775328DE0D04006C39CD /* XCRemoteSwiftPackageReference "Reusable" */,
 			);
 			productRefGroup = 027EBB9928DDF8F500D5980D /* Products */;
 			projectDirPath = "";
@@ -962,25 +958,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		0231775328DE0D04006C39CD /* XCRemoteSwiftPackageReference "Reusable" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AliSoftware/Reusable.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0231775428DE0D04006C39CD /* Reusable */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0231775328DE0D04006C39CD /* XCRemoteSwiftPackageReference "Reusable" */;
-			productName = Reusable;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 027EBB9028DDF8F400D5980D /* Project object */;
 }

@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import Reusable
 
 // MARK: - Protocols
 protocol MapCityInfosViewDelegate: AnyObject {
@@ -22,8 +21,9 @@ struct MapCityInfos {
 }
 
 /// Displays informations about a city.
-final class MapCityInfosView: UIView, NibOwnerLoadable {
+final class MapCityInfosView: UIView {
     // MARK: - Outlets
+    @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var weatherImageView: UIImageView!
     @IBOutlet private weak var tempLabel: UILabel!
     @IBOutlet private weak var cityLabel: UILabel!
@@ -40,6 +40,7 @@ final class MapCityInfosView: UIView, NibOwnerLoadable {
     private enum Constants {
         static let radius: CGFloat = 6.0
         static let borderWidth: CGFloat = 2.0
+        static let nibName: String = "MapCityInfosView"
     }
 
     // MARK: - Override Funcs
@@ -65,8 +66,10 @@ private extension MapCityInfosView {
 private extension MapCityInfosView {
     /// Common init.
     func commonInitMapCityInfosView() {
-        self.loadNibContent()
-
+        Bundle.main.loadNibNamed(Constants.nibName, owner: self)
+        addSubview(contentView)
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.cornerRadiusedWith(backgroundColor: .white50,
                                 borderColor: .white,
                                 radius: Constants.radius,

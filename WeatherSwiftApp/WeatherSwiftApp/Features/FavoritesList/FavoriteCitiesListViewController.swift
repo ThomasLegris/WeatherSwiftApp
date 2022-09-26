@@ -53,7 +53,8 @@ private extension FavoriteCitiesListViewController {
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(cellType: FavoriteCityCell.self)
+        let nib = UINib(nibName: "FavoriteCityCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: "FavoriteCityCell")
     }
 
     /// Setups the view model.
@@ -77,12 +78,15 @@ extension FavoriteCitiesListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as FavoriteCityCell
-        cell.configureCell(city: dataSource[indexPath.item])
-        cell.backgroundColor = .clear
-        cell.selectionStyle = .none
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCityCell") as? FavoriteCityCell {
+            cell.configureCell(city: dataSource[indexPath.item])
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
 
-        return cell
+            return cell
+        }
+
+        return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
