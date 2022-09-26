@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeeklyDetailsView" customModule="MyWeatherApp" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="1bI-6K-qgF" id="NYe-0V-Wzs"/>
+                <outlet property="weeklyTitleLabel" destination="aXd-IP-n3a" id="X4m-Cs-vZR"/>
+                <outlet property="weeklyTitleView" destination="C13-Eq-83I" id="T1L-qL-fNi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hpN-ne-grN">
+            <rect key="frame" x="0.0" y="0.0" width="976" height="445"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C13-Eq-83I" userLabel="TopView">
+                    <rect key="frame" x="428" y="24" width="120" height="38"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXd-IP-n3a">
+                            <rect key="frame" x="0.0" y="0.0" width="120" height="38"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="aXd-IP-n3a" secondAttribute="bottom" id="2rG-Gb-bUY"/>
+                        <constraint firstAttribute="width" constant="120" id="E1m-95-J0s"/>
+                        <constraint firstItem="aXd-IP-n3a" firstAttribute="top" secondItem="C13-Eq-83I" secondAttribute="top" id="J1x-C0-ZIX"/>
+                        <constraint firstAttribute="height" constant="38" id="WbB-MW-COi"/>
+                        <constraint firstItem="aXd-IP-n3a" firstAttribute="leading" secondItem="C13-Eq-83I" secondAttribute="leading" id="e5Y-Qc-XnF"/>
+                        <constraint firstAttribute="trailing" secondItem="aXd-IP-n3a" secondAttribute="trailing" id="i0n-ZX-9UQ"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1bI-6K-qgF">
+                    <rect key="frame" x="12" y="86" width="952" height="347"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bSF-sw-fXo">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="hpN-ne-grN" id="OL5-f4-5Gy"/>
+                        <outlet property="delegate" destination="hpN-ne-grN" id="sKP-uf-Rnj"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="C13-Eq-83I" firstAttribute="centerX" secondItem="hpN-ne-grN" secondAttribute="centerX" id="JAc-Jn-dZb"/>
+                <constraint firstAttribute="trailing" secondItem="1bI-6K-qgF" secondAttribute="trailing" constant="12" id="Ll3-L3-D5R"/>
+                <constraint firstAttribute="bottom" secondItem="1bI-6K-qgF" secondAttribute="bottom" constant="12" id="Wc0-LG-qkO"/>
+                <constraint firstItem="1bI-6K-qgF" firstAttribute="top" secondItem="C13-Eq-83I" secondAttribute="bottom" constant="24" id="dYS-1F-weY"/>
+                <constraint firstItem="1bI-6K-qgF" firstAttribute="leading" secondItem="hpN-ne-grN" secondAttribute="leading" constant="12" id="jtR-hS-0yE"/>
+                <constraint firstItem="C13-Eq-83I" firstAttribute="top" secondItem="hpN-ne-grN" secondAttribute="top" constant="24" id="pta-oQ-pbS"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-390.39999999999998" y="-71.514242878560722"/>
+        </view>
+    </objects>
+</document>

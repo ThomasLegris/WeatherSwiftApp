@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="om2-Bk-pxl">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorite Cities List View Controller-->
+        <scene sceneID="gAF-Wg-Bhz">
+            <objects>
+                <viewController storyboardIdentifier="FavoritesListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="om2-Bk-pxl" customClass="FavoriteCitiesListViewController" customModule="MyWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wf3-fd-o0X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgList" translatesAutoresizingMaskIntoConstraints="NO" id="Pgb-vd-pWF">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2OV-p4-bbB">
+                                <rect key="frame" x="12" y="56" width="390" height="60"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Qx3-8D-bX7">
+                                        <rect key="frame" x="162.33333333333334" y="0.0" width="65.333333333333343" height="20.333333333333332"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFavItemOn" translatesAutoresizingMaskIntoConstraints="NO" id="06Z-ek-Yab">
+                                                <rect key="frame" x="0.0" y="1.3333333333333357" width="18" height="18"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2q-sb-IZs">
+                                                <rect key="frame" x="24.000000000000004" y="0.0" width="41.333333333333343" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Qx3-8D-bX7" firstAttribute="centerX" secondItem="2OV-p4-bbB" secondAttribute="centerX" id="4dq-vv-RGz"/>
+                                    <constraint firstItem="Qx3-8D-bX7" firstAttribute="top" secondItem="2OV-p4-bbB" secondAttribute="top" id="Vyg-gQ-igx"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qx3-8D-bX7" secondAttribute="trailing" id="ZWw-6d-Mc5"/>
+                                    <constraint firstAttribute="height" constant="60" id="bN6-kW-Bx8"/>
+                                    <constraint firstItem="Qx3-8D-bX7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2OV-p4-bbB" secondAttribute="leading" id="gV0-7S-ua8"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Qx3-8D-bX7" secondAttribute="bottom" id="kLM-Hb-hO2"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kA4-FJ-rcR">
+                                <rect key="frame" x="24" y="148" width="366" height="714"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="s8a-Xx-wEM"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2OV-p4-bbB" firstAttribute="leading" secondItem="s8a-Xx-wEM" secondAttribute="leading" constant="12" id="7kf-Lz-Sg4"/>
+                            <constraint firstItem="Pgb-vd-pWF" firstAttribute="leading" secondItem="Wf3-fd-o0X" secondAttribute="leading" id="Cb4-bh-878"/>
+                            <constraint firstItem="s8a-Xx-wEM" firstAttribute="trailing" secondItem="2OV-p4-bbB" secondAttribute="trailing" constant="12" id="LVR-Sz-gc9"/>
+                            <constraint firstItem="Pgb-vd-pWF" firstAttribute="top" secondItem="Wf3-fd-o0X" secondAttribute="top" id="W9c-lZ-BJR"/>
+                            <constraint firstItem="s8a-Xx-wEM" firstAttribute="bottom" secondItem="kA4-FJ-rcR" secondAttribute="bottom" priority="750" id="ZFI-QL-kuV"/>
+                            <constraint firstAttribute="bottom" secondItem="Pgb-vd-pWF" secondAttribute="bottom" id="boC-CQ-AwI"/>
+                            <constraint firstItem="2OV-p4-bbB" firstAttribute="top" secondItem="s8a-Xx-wEM" secondAttribute="top" constant="12" id="e1i-E1-yqw"/>
+                            <constraint firstAttribute="trailing" secondItem="Pgb-vd-pWF" secondAttribute="trailing" id="hmb-nv-duD"/>
+                            <constraint firstItem="kA4-FJ-rcR" firstAttribute="top" secondItem="2OV-p4-bbB" secondAttribute="bottom" constant="32" id="pG6-nm-GME"/>
+                            <constraint firstItem="kA4-FJ-rcR" firstAttribute="leading" secondItem="s8a-Xx-wEM" secondAttribute="leading" constant="24" id="uhR-Av-YsV"/>
+                            <constraint firstItem="s8a-Xx-wEM" firstAttribute="trailing" secondItem="kA4-FJ-rcR" secondAttribute="trailing" constant="24" id="wAe-5Z-Xaq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="kA4-FJ-rcR" id="gqN-eW-PtE"/>
+                        <outlet property="titleLabel" destination="a2q-sb-IZs" id="8U8-L6-hMd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ji5-JS-vrB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-718" y="215"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bgList" width="500" height="889.33331298828125"/>
+        <image name="icFavItemOn" width="18" height="18"/>
+    </resources>
+</document>

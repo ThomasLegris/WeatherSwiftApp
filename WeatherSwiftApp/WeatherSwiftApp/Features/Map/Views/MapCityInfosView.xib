@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapCityInfosView" customModule="MyWeatherApp" customModuleProvider="target">
+            <connections>
+                <outlet property="cityLabel" destination="Mls-gV-MrH" id="tmB-la-ukF"/>
+                <outlet property="tempLabel" destination="okU-8f-hs3" id="1mt-re-I2d"/>
+                <outlet property="weatherImageView" destination="Fks-ts-kcd" id="18g-dz-mqH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="61"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSun" translatesAutoresizingMaskIntoConstraints="NO" id="Fks-ts-kcd">
+                    <rect key="frame" x="8" y="12" width="37" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Fks-ts-kcd" secondAttribute="height" multiplier="1:1" id="woe-nj-Ukt"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okU-8f-hs3">
+                    <rect key="frame" x="45" y="12" width="37" height="37"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="Mls-gV-MrH">
+                    <rect key="frame" x="165" y="0.0" width="270" height="61"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLm-AA-xr1">
+                    <rect key="frame" x="561" y="15" width="31" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="eLm-AA-xr1" secondAttribute="height" multiplier="1:1" id="Ax7-rb-RBV"/>
+                    </constraints>
+                    <state key="normal" image="icMapDetails"/>
+                    <connections>
+                        <action selector="detailsButtonTouchedUpInside:" destination="-1" eventType="touchUpInside" id="qgH-DE-Ga6"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="eLm-AA-xr1" secondAttribute="trailing" constant="8" id="1dX-SU-ot2"/>
+                <constraint firstItem="Fks-ts-kcd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="1zN-6n-uGc"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eLm-AA-xr1" secondAttribute="bottom" constant="15" id="AMP-Je-eEv"/>
+                <constraint firstItem="eLm-AA-xr1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="E2h-B1-eKk"/>
+                <constraint firstItem="okU-8f-hs3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="RAn-1s-OEm"/>
+                <constraint firstItem="okU-8f-hs3" firstAttribute="leading" secondItem="Fks-ts-kcd" secondAttribute="trailing" id="VhJ-np-QvJ"/>
+                <constraint firstItem="Mls-gV-MrH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WGf-Mg-ReV"/>
+                <constraint firstItem="Mls-gV-MrH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Wmh-Xs-Nv8"/>
+                <constraint firstItem="Fks-ts-kcd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="bEm-kJ-iNI"/>
+                <constraint firstItem="Fks-ts-kcd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cLN-QG-7F4"/>
+                <constraint firstAttribute="bottom" secondItem="Mls-gV-MrH" secondAttribute="bottom" id="cOh-NA-5Bl"/>
+                <constraint firstAttribute="bottom" secondItem="okU-8f-hs3" secondAttribute="bottom" constant="12" id="hZ9-Ge-dlG"/>
+                <constraint firstItem="eLm-AA-xr1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="hcK-un-3tu"/>
+                <constraint firstItem="Mls-gV-MrH" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.45" id="sGY-og-GAz"/>
+                <constraint firstAttribute="bottom" secondItem="Fks-ts-kcd" secondAttribute="bottom" constant="12" id="z8P-fi-oXj"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="72" y="-88.605697151424295"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icMapDetails" width="32" height="32"/>
+        <image name="icSun" width="64" height="64"/>
+    </resources>
+</document>
