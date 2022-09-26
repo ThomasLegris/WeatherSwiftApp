@@ -4,7 +4,6 @@
 
 import UIKit
 import Reusable
-import RxSwift
 import WeatherSwiftSDK
 
 /// Displays a weekly weather details.
@@ -25,20 +24,18 @@ final class WeeklyDetailsView: UIView, NibOwnerLoadable {
 
     // MARK: - Private Properties
     private let viewModel: WeeklyDetailsViewModel = WeeklyDetailsViewModel()
-    private let disposeBag = DisposeBag()
 
     /// Returns filtered list with only daily value (hourly value are skipped).
     private var filteredList: [DailyWeather] {
         var filteredTab: [DailyWeather] = []
-        if let list = try? viewModel.dailyDetailsModel.value().list {
-            list.forEach { element in
-                let formatter = DateFormatter()
-                formatter.dateFormat = Constants.format
-                guard let dateHour = Int(formatter.string(from: Date(timeIntervalSince1970: TimeInterval(element.date)))) else { return }
+        let list = viewModel.weeklyDetailsModelObs.value.list
+        list.forEach { element in
+            let formatter = DateFormatter()
+            formatter.dateFormat = Constants.format
+            guard let dateHour = Int(formatter.string(from: Date(timeIntervalSince1970: TimeInterval(element.date)))) else { return }
 
-                if Constants.afternoonTab.contains(dateHour) {
-                    filteredTab.append(element)
-                }
+            if Constants.afternoonTab.contains(dateHour) {
+                filteredTab.append(element)
             }
         }
 
@@ -87,9 +84,9 @@ private extension WeeklyDetailsView {
 
     /// Sets up observer for weekly view model.
     func setupViewModel() {
-        viewModel.dailyDetailsModel.subscribe { [weak self] _ in
+        viewModel.weeklyDetailsModelObs.bind { [weak self] _ in
             self?.collectionView.reloadData()
-        }.disposed(by: disposeBag)
+        }
     }
 }
 

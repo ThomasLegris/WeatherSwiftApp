@@ -2,16 +2,15 @@
 //  Copyright (C) 2020 Thomas LEGRIS.
 //
 
-import RxSwift
 import WeatherSwiftSDK
 
 /// View Model which handles business logic of the daily weather view.
 final class DailyDetailsViewModel {
     // MARK: - Internal Properties
-    var dailyDetailsModel = BehaviorSubject<DailyDetailsModel>(value: DailyDetailsModel(humidity: "",
-                                                                                        wind: "",
-                                                                                        sunset: "",
-                                                                                        sunrise: ""))
+    var dailyDetailsModelObs:  Observable<DailyDetailsModel> = Observable(value: DailyDetailsModel(humidity: "",
+                                                                                                wind: "",
+                                                                                                sunset: "",
+                                                                                                sunrise: ""))
 }
 
 // MARK: - Internal Funcs
@@ -25,7 +24,7 @@ extension DailyDetailsViewModel {
             DispatchQueue.main.async {
                 guard error == nil, let model = res?.dailyDetailsModel else { return }
 
-                self?.dailyDetailsModel.onNext(model)
+                self?.dailyDetailsModelObs.value = model
             }
         }
     }

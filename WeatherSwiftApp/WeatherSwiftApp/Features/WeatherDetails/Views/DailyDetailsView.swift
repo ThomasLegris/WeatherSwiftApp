@@ -4,7 +4,6 @@
 
 import UIKit
 import Reusable
-import RxSwift
 
 /// Displays a daily weather details.
 final class DailyDetailsView: UIView, NibOwnerLoadable {
@@ -31,7 +30,6 @@ final class DailyDetailsView: UIView, NibOwnerLoadable {
 
     // MARK: - Private Properties
     private let viewModel: DailyDetailsViewModel = DailyDetailsViewModel()
-    private let disposeBag = DisposeBag()
 
     // MARK: - Override Funcs
     required init?(coder aDecoder: NSCoder) {
@@ -63,11 +61,11 @@ private extension DailyDetailsView {
 
     /// Sets up view model.
     func setupViewModel() {
-        viewModel.dailyDetailsModel.subscribe { [weak self] model in
+        viewModel.dailyDetailsModelObs.bind { [weak self] model in
             DispatchQueue.main.async {
                 self?.updateView(with: model)
             }
-        }.disposed(by: disposeBag)
+        }
     }
 
     /// Updates view with view model value response.

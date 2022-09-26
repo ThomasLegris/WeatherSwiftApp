@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import RxSwift
 
 /// Screen which shows location weather for a targetted city.
 final class CurrentWeatherViewController: UIViewController {
@@ -27,7 +26,6 @@ final class CurrentWeatherViewController: UIViewController {
     }
     private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel()
     private weak var coordinator: CurrentWeatherCoordinator?
-    private let disposeBag = DisposeBag()
 
     // MARK: - Private Enums
     private enum Constants {
@@ -99,21 +97,22 @@ private extension CurrentWeatherViewController {
     /// Inits the view model.
     func initViewModel() {
         // Observes weather request error.
-        viewModel.weatherError.subscribe {[weak self] error in
-            guard let strongError = error.element,
-                  strongError != .none else { return }
+        viewModel.weatherErrorObs.bind { [weak self] error in
+            guard error != .none else { return }
 
-            self?.updateError(with: strongError)
-        }.disposed(by: disposeBag)
+            self?.updateError(with: error)
+        }
+
         // Observes weather response.
-        viewModel.weatherModel.subscribe {[weak self] weatherModel in
-            self?.updateWidgetModel(with: weatherModel.element)
-            self?.updateCityName(with: weatherModel.element?.cityName)
-        }.disposed(by: disposeBag)
+        viewModel.weatherModelObs.bind { [weak self] model in
+            self?.updateWidgetModel(with: model)
+            self?.updateCityName(with: model.cityName)
+        }
+
         // Observes last updated date in hours.
-        viewModel.updatedDate.subscribe {[weak self] date in
+        viewModel.updatedDateObs.bind { [weak self] date in
             self?.updateDate(with: date)
-        }.disposed(by: disposeBag)
+        }
     }
 
     /// Update weather last updated date.

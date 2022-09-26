@@ -5,7 +5,6 @@
 import UIKit
 import MapKit
 import Reusable
-import RxSwift
 
 // MARK: - Protocols
 protocol MapAnnotationDelegate: AnyObject {
@@ -44,7 +43,6 @@ final class MapAnnotationView: MKAnnotationView, NibOwnerLoadable {
 
     // MARK: - Private Properties
     private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel()
-    private let disposeBag = DisposeBag()
 
     // MARK: - Override Funcs
     required init?(coder aDecoder: NSCoder) {
@@ -66,10 +64,9 @@ private extension MapAnnotationView {
     func commonInit() {
         loadNibContent()
         viewModel.requestWeather(with: annotation?.coordinate)
-
-        viewModel.weatherModel.subscribe { [weak self] model in
+        viewModel.weatherModelObs.bind { [weak self] model in
             self?.updateView(with: model)
-        }.disposed(by: disposeBag)
+        }
     }
 
     /// Updates the view.

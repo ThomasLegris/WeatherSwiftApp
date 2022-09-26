@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import RxSwift
 import WeatherSwiftSDK
 
 /// List all favorite cities.
@@ -22,7 +21,6 @@ final class FavoriteCitiesListViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    private let disposeBag = DisposeBag()
 
     // MARK: - Private Enums
     private enum Constants {
@@ -59,17 +57,15 @@ private extension FavoriteCitiesListViewController {
 
     /// Setups the view model.
     func setupViewModel() {
-        viewModel.favoriteCities.subscribe { [weak self] _ in
+        viewModel.favoriteCitiesObs.bind { [weak self] _ in
             self?.updateView()
-        }.disposed(by: disposeBag)
+        }
         updateView()
     }
 
     /// Updates the view.
     func updateView() {
-        guard let cities = try? viewModel.favoriteCities.value() else { return }
-
-        dataSource = cities
+        dataSource = viewModel.favoriteCitiesObs.value
     }
 }
 

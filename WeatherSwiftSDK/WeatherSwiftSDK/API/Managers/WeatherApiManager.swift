@@ -6,7 +6,6 @@
 //
 //
 
-import RxSwift
 import Foundation
 
 /// Weather Api manager which uses Moya framework.

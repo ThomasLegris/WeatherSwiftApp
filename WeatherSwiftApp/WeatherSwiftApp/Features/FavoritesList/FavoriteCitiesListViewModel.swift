@@ -3,13 +3,12 @@
 //
 
 import RealmSwift
-import RxSwift
 import WeatherSwiftSDK
 
 /// View model which provides list of registered favorite cities.
 final class FavoriteCitiesListViewModel {
     // MARK: - Internal Properties
-    var favoriteCities = BehaviorSubject<[FavoriteCity]>(value: [])
+    var favoriteCitiesObs: Observable<[FavoriteCity]> = Observable(value: [])
 
     // MARK: - Private Properties
     private var dataBase = CityDataBaseManager.shared
@@ -38,6 +37,6 @@ private extension FavoriteCitiesListViewModel {
 
     /// Update data source.
     func updateDatas() {
-        favoriteCities.onNext(dataBase.cities?.elements ?? [])
+        favoriteCitiesObs.value = dataBase.cities?.elements ?? []
     }
 }

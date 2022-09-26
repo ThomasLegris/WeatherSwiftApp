@@ -3,21 +3,17 @@
 //
 
 import MapKit
-import RxSwift
 import WeatherSwiftSDK
 
 /// View Model which handle business logic of the current weather screen.
 final class CurrentWeatherViewModel {
     // MARK: - Internal Properties
-    var weatherModel = BehaviorSubject<CommonWeatherModel>(value: CommonWeatherModel(temperature: nil,
-                                                                                     icon: nil,
-                                                                                     description: L10n.dash,
-                                                                                     cityName: L10n.dash))
-    var weatherError = BehaviorSubject<WeatherError>(value: .none)
-    var updatedDate = BehaviorSubject<String>(value: "")
-
-    // MARK: - Private Properties
-    private let disposeBag = DisposeBag()
+    var weatherModelObs: Observable<CommonWeatherModel> = Observable(value: CommonWeatherModel(temperature: nil,
+                                                                                               icon: nil,
+                                                                                               description: L10n.dash,
+                                                                                               cityName: L10n.dash))
+    var weatherErrorObs: Observable<WeatherError> = Observable(value: .none)
+    var updatedDateObs: Observable<String> = Observable(value: "")
 }
 
 // MARK: - Internal Funcs
@@ -28,32 +24,33 @@ extension CurrentWeatherViewModel {
     ///     - city: city name requested by user
     func requestWeather(with city: String?) {
         guard isNetworkReachable else {
-            weatherError.onNext(.noInternet)
+            self.weatherErrorObs.value = .noInternet
             return
         }
 
         guard let cityName = city,
               city?.isEmpty == false else {
-            weatherError.onNext(.unknownCity)
+            self.weatherErrorObs.value = .unknownCity
             return
         }
 
         WeatherApiManager
             .shared
             .cityWeather(cityName: cityName, completion: { [weak self] res, error in
+                guard let self = self else { return }
                 DispatchQueue.main.async {
                     guard error == nil else {
-                        self?.weatherError.onNext(.noInfo)
+                        self.weatherErrorObs.value = .noInfo
                         return
                     }
                     guard let model = res?.commonWeatherModel else {
-                        self?.weatherError.onNext(.unknownCity)
+                        self.weatherErrorObs.value = .unknownCity
                         return
                     }
                     UserDefaults.standard.set(model.cityName, forKey: UserDefaultKeys.lastSearchedCity.rawValue)
-
-                    self?.weatherModel.onNext(model)
-                    self?.updateDate()
+                    self.weatherErrorObs.value = .none
+                    self.weatherModelObs.value = model
+                    self.updateDate()
                 }
             })
     }
@@ -64,29 +61,31 @@ extension CurrentWeatherViewModel {
     ///     - coordinate: map pointer location
     func requestWeather(with coordinate: CLLocationCoordinate2D?) {
         guard isNetworkReachable else {
-            weatherError.onNext(.noInternet)
+            self.weatherErrorObs.value = .noInternet
             return
         }
 
         guard let coordinate = coordinate else {
-            weatherError.onNext(.noInfo)
+            self.weatherErrorObs.value = .noInfo
             return
         }
 
         WeatherApiManager
             .shared
             .locationWeather(latitude: coordinate.latitude, longitude: coordinate.longitude) { [weak self] res, error in
+                guard let self = self else { return }
                 DispatchQueue.main.async {
-                    guard error == nil, let self = self else {
-                        self?.weatherError.onNext(.noInfo)
+                    guard error == nil else {
+                        self.weatherErrorObs.value = .noInfo
                         return
                     }
 
                     guard let model = res?.commonWeatherModel else {
-                        self.weatherError.onNext(.unknownCity)
+                        self.weatherErrorObs.value = .unknownCity
                         return
                     }
-                    self.weatherModel.onNext(model)
+                    self.weatherErrorObs.value = .none
+                    self.weatherModelObs.value = model
                 }
             }
     }
@@ -106,10 +105,7 @@ private extension CurrentWeatherViewModel {
         formatter.timeStyle = .short
         formatter.dateStyle = .none
 
-        updatedDate.onNext(formatter.string(from: currentDateTime))
-        if let date = try? updatedDate.value() {
-            UserDefaults.standard.set(date, forKey: UserDefaultKeys.lastUpdatedDate.rawValue)
-
-        }
+        updatedDateObs.value = formatter.string(from: currentDateTime)
+        UserDefaults.standard.set(updatedDateObs.value, forKey: UserDefaultKeys.lastUpdatedDate.rawValue)
     }
 }

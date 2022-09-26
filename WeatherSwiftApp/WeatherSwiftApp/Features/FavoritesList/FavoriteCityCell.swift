@@ -4,7 +4,6 @@
 
 import UIKit
 import Reusable
-import RxSwift
 import WeatherSwiftSDK
 
 /// Displays a city weather cell in the favorite cities table view.
@@ -19,7 +18,6 @@ final class FavoriteCityCell: UITableViewCell, NibReusable {
     // MARK: - Private Properties
     private var city: FavoriteCity?
     private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel()
-    private let disposeBag = DisposeBag()
 
     // MARK: - Private Enums
     private enum Constants {
@@ -59,10 +57,9 @@ private extension FavoriteCityCell {
     /// Sets up the view model.
     func setupViewModel() {
         viewModel.requestWeather(with: city?.cityName)
-        viewModel.weatherModel.subscribe {[weak self] _ in
+        viewModel.weatherModelObs.bind { [weak self] _ in
             self?.updateView()
-        }.disposed(by: disposeBag)
-
+        }
         updateView()
     }
 
@@ -76,9 +73,8 @@ private extension FavoriteCityCell {
 
     /// Update view according to weather request answer.
     func updateView() {
-
-        guard let model = try? viewModel.weatherModel.value(),
-              let temp = model.temperature,
+        let model = viewModel.weatherModelObs.value
+        guard let temp = model.temperature,
               let name = city?.cityName,
               let description = model.description else {
             return
