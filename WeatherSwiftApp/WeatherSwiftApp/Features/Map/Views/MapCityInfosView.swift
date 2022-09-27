@@ -9,15 +9,8 @@ protocol MapCityInfosViewDelegate: AnyObject {
     /// User touches details button.
     ///
     /// - Parameters:
-    ///     - cityName: name of the city
-    func didTouchOnDetails(cityName: String)
-}
-
-// MARK: - Structs
-struct MapCityInfos {
-    var cityName: String = L10n.dash
-    var weatherIcon: UIImage = Asset.icSun.image
-    var temperature: String = "0°"
+    ///     - weatherModel: the model for weather city displayed
+    func didTouchOnDetails(weatherModel: CommonWeatherModel)
 }
 
 /// Displays informations about a city.
@@ -29,7 +22,7 @@ final class MapCityInfosView: UIView {
     @IBOutlet private weak var cityLabel: UILabel!
 
     // MARK: - Internal Properties
-    var model: MapCityInfos = MapCityInfos() {
+    var model: CommonWeatherModel = CommonWeatherModel() {
         didSet {
             fill(with: model)
         }
@@ -58,7 +51,7 @@ final class MapCityInfosView: UIView {
 // MARK: - Actions
 private extension MapCityInfosView {
     @IBAction func detailsButtonTouchedUpInside(_ sender: Any) {
-        delegate?.didTouchOnDetails(cityName: model.cityName)
+        delegate?.didTouchOnDetails(weatherModel: model)
     }
 }
 
@@ -80,9 +73,11 @@ private extension MapCityInfosView {
     ///
     /// - Parameters:
     ///     - model: city informations model
-    func fill(with model: MapCityInfos) {
-        weatherImageView.image = model.weatherIcon
-        tempLabel.text = model.temperature
+    func fill(with model: CommonWeatherModel) {
+        if let imageName = model.icon {
+            weatherImageView.image = UIImage(named: imageName)
+        }
+        tempLabel.text = "\(Int(model.temperature ?? 0.0))°"
         cityLabel.text = model.cityName
     }
 }

@@ -23,14 +23,14 @@ final class WeatherDetailsViewController: UIViewController {
     }
 
     // MARK: - Private Properties
-    private var cityName: String?
+    private var currentWeatherModel: CommonWeatherModel?
     private let viewModel = WeatherDetailsViewModel(persistanceManager: PersistanceManager.shared)
 
     // MARK: - Setup
     static func instantiate(coordinator: Coordinator?,
-                            cityName: String?) -> WeatherDetailsViewController {
+                            weatherModel: CommonWeatherModel?) -> WeatherDetailsViewController {
         let viewController = StoryboardScene.WeatherDetails.initialScene.instantiate()
-        viewController.cityName = cityName
+        viewController.currentWeatherModel = weatherModel
         viewController.coordinator = coordinator
         viewController.modalPresentationStyle = .overFullScreen
 
@@ -56,8 +56,9 @@ private extension WeatherDetailsViewController {
     }
 
     @IBAction func favoriteButtonTouchedUpInside(_ sender: Any) {
-        PersistanceManager.shared.updateCity(cityName: cityName) { _ in
-            self.updateFavoriteButton()
+        guard let model = currentWeatherModel else { return }
+        viewModel.addOrRemoveCity(with: model) {
+                self.updateFavoriteButton()
         }
     }
 }
@@ -67,15 +68,15 @@ private extension WeatherDetailsViewController {
     /// Inits the view.
     func initView() {
         detailsView.layer.cornerRadius = Constants.cornerRadius
-        titleLabel.text =  L10n.weatherDetails
-        dailyDetailsView.cityName = cityName
-        weeklyDetailsView.cityName = cityName
+        titleLabel.text = L10n.weatherDetails
+        dailyDetailsView.cityName = currentWeatherModel?.cityName
+        weeklyDetailsView.cityName = currentWeatherModel?.cityName
         updateFavoriteButton()
     }
 
     /// Updates favorite button.
     func updateFavoriteButton() {
-        if PersistanceManager.shared.isCityRegistered(cityName: cityName) {
+        if PersistanceManager.shared.isCityRegistered(cityName: currentWeatherModel?.cityName) {
             favoriteButton.setImage(Asset.icFavoriteOn.image,
                                     for: .normal)
         } else {

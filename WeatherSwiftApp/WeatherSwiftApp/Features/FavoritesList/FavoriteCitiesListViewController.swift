@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import CoreData
 import WeatherSwiftSDK
 
 /// List all favorite cities.
@@ -17,7 +16,7 @@ final class FavoriteCitiesListViewController: UIViewController {
 
     // MARK: - Private Properties
     private let viewModel = FavoriteCitiesListViewModel(persistanceManager: PersistanceManager.shared)
-    private var dataSource: [City] = [] {
+    private var dataSource: [CityModel] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -79,7 +78,7 @@ extension FavoriteCitiesListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCityCell") as? FavoriteCityCell {
-            cell.configureCell(city: dataSource[indexPath.item])
+            cell.configureCell(cityModel: dataSource[indexPath.item])
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
 
@@ -97,6 +96,6 @@ extension FavoriteCitiesListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension FavoriteCitiesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.displayDetails(with: dataSource[indexPath.item].name)
+        coordinator?.displayDetails(with: dataSource[indexPath.item].commonWeatherModel)
     }
 }

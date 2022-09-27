@@ -68,7 +68,9 @@ private extension WeatherInfoWidget {
         let temp = Int(model.temperature ?? 0.0)
         temperatureLabel.text = "\(temp)°"
         descriptionLabel.text = model.description
-        weatherImageView.image = model.icon
+        if let imageName = model.icon {
+            weatherImageView.image = UIImage(named: imageName)
+        }
     }
 
     /// Resets the view.

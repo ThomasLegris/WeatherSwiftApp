@@ -66,7 +66,7 @@ private extension CurrentWeatherViewController {
 
     @IBAction func seeMoreButtonTouchedUpInside(_ sender: Any) {
         seeMoreImageView.startRotate(repeatCount: 1.0)
-        coordinator?.displayDetails(with: cityName)
+        coordinator?.displayDetails(with: viewModel.weatherModelObs.value)
     }
 }
 

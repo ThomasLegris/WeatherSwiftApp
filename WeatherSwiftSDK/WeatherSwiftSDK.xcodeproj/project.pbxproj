@@ -25,6 +25,7 @@
 		02A4E6E928E1EBE400597504 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A4E6E828E1EBE400597504 /* CoreDataStack.swift */; };
 		02A4E6EC28E1EBFA00597504 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A4E6EB28E1EBFA00597504 /* PersistanceManager.swift */; };
 		02A4E6EF28E1EFA800597504 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A4E6EE28E1EFA800597504 /* City.swift */; };
+		02D0063528E31F9E00EF89DE /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D0063428E31F9E00EF89DE /* CityModel.swift */; };
 		02F348ED28E1942A00D6E020 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F348EC28E1942A00D6E020 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		02A4E6E828E1EBE400597504 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		02A4E6EB28E1EBFA00597504 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		02A4E6EE28E1EFA800597504 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		02D0063428E31F9E00EF89DE /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		02F348EC28E1942A00D6E020 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				02A4E6EE28E1EFA800597504 /* City.swift */,
+				02D0063428E31F9E00EF89DE /* CityModel.swift */,
 				02A4E6E528E1EBCB00597504 /* CoreDataModel.xcdatamodeld */,
 			);
 			path = Models;
@@ -357,6 +360,7 @@
 				02A4E6E928E1EBE400597504 /* CoreDataStack.swift in Sources */,
 				02A4E6EC28E1EBFA00597504 /* PersistanceManager.swift in Sources */,
 				0231777C28DE123C006C39CD /* MyWeatherParser.swift in Sources */,
+				02D0063528E31F9E00EF89DE /* CityModel.swift in Sources */,
 				0240731F28DDFFF5003650A5 /* WeatherService.swift in Sources */,
 				02A4E6E728E1EBCB00597504 /* CoreDataModel.xcdatamodeld in Sources */,
 				027EBB7A28DDF8DE00D5980D /* WeatherSwiftSDK.docc in Sources */,

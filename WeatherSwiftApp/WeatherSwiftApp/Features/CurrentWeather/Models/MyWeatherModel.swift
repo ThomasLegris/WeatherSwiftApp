@@ -10,9 +10,20 @@ import WeatherSwiftSDK
 struct CommonWeatherModel: Equatable {
     // MARK: - Internal Properties
     var temperature: Float?
-    var icon: UIImage?
+    var icon: String?
     var description: String?
     var cityName: String?
+}
+
+// MARK: - Internal Properties
+extension CityModel {
+    /// Returns a common weather model to update UI from a SDK city object (the core data wrapper).
+    var commonWeatherModel: CommonWeatherModel {
+        return CommonWeatherModel(temperature: self.temperature,
+                                  icon: self.imageName,
+                                  description: self.weatherDescription,
+                                  cityName: self.name)
+    }
 }
 
 extension LocalWeatherResponse {
@@ -44,13 +55,12 @@ extension LocalWeatherResponse {
     /// Returns a Common weather model built with self.
     var commonWeatherModel: CommonWeatherModel? {
         guard let weather = weather?[0] else { return CommonWeatherModel(temperature: 0.0,
-                                                                         icon: Asset.icSun.image,
+                                                                         icon: Asset.icSun.name,
                                                                          description: "",
                                                                          cityName: "") }
 
         let weatherModel: CommonWeatherModel = CommonWeatherModel(temperature: main.temp,
-                                                                  icon: self.groupFromId(identifier: weather.identifier)
-            .icon,
+                                                                  icon: self.groupFromId(identifier: weather.identifier).imageName,
                                                                   description: weather.main,
                                                                   cityName: name)
         return weatherModel
@@ -69,21 +79,21 @@ enum WeatherGroup {
     case clouds
 
     /// Icon corresponding to the current weather description.
-    var icon: UIImage {
+    var imageName: String {
         switch self {
         case .thunder:
-            return Asset.icThunder.image
+            return Asset.icThunder.name
         case .rain,
                 .drizzle:
-            return Asset.icRain.image
+            return Asset.icRain.name
         case .snow:
-            return Asset.icSnow.image
+            return Asset.icSnow.name
         case .atmosphere:
-            return Asset.icFog.image
+            return Asset.icFog.name
         case .clear:
-            return Asset.icSun.image
+            return Asset.icSun.name
         case .clouds:
-            return Asset.icSunCloudy.image
+            return Asset.icSunCloudy.name
         }
     }
 }

@@ -16,8 +16,8 @@ protocol MapAnnotationDelegate: AnyObject {
     ///     - weatherIcon: icon which describes weather
     ///     - temperature: current temperature value
     func shouldShowWeatherCityInfos(cityName: String,
-                                    weatherIcon: UIImage,
-                                    temperature: String)
+                                    weatherIconName: String,
+                                    temperature: Float)
 }
 
 /// Custom annotation object for map.
@@ -84,15 +84,14 @@ private extension MapAnnotationView {
     ///     - model: common weather model
     func updateView(with model: CommonWeatherModel) {
         guard let temp = model.temperature,
-              let icon = model.icon,
+              let imageName = model.icon,
               let name = model.cityName else {
             return
         }
-
-        iconImageView.image = icon
+        iconImageView.image = UIImage(named: imageName)
         tempLabel.text = "\(Int(temp))°"
         delegate?.shouldShowWeatherCityInfos(cityName: name,
-                                             weatherIcon: icon,
-                                             temperature: "\(Int(temp))°")
+                                             weatherIconName: imageName,
+                                             temperature: temp)
     }
 }

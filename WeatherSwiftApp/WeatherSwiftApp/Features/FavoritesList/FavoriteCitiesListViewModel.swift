@@ -2,14 +2,13 @@
 //  Copyright (C) 2021 Thomas LEGRIS.
 //
 
-import CoreData
 import WeatherSwiftSDK
 import Foundation
 
 /// View model which provides list of registered favorite cities.
 final class FavoriteCitiesListViewModel {
     // MARK: - Internal Properties
-    var favoriteCitiesObs: Observable<[City]> = Observable(value: [])
+    var favoriteCitiesObs: Observable<[CityModel]> = Observable(value: [])
 
     // MARK: - Private Properties
     private let notificationCenter: NotificationCenter = NotificationCenter.default
@@ -40,6 +39,6 @@ private extension FavoriteCitiesListViewModel {
 
     /// Update data source.
     @objc func updateDatas() {
-        favoriteCitiesObs.value = PersistanceManager.shared.cities
+        favoriteCitiesObs.value = persistanceManager.favoriteCityModels
     }
 }

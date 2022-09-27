@@ -13,6 +13,17 @@ public class PersistanceManager {
     // MARK: - Public Properties
     public static let shared: PersistanceManager = PersistanceManager()
 
+    // MARK: - Private Properties
+    private var cities: [City] {
+        let request: NSFetchRequest<City> = City.fetchRequest()
+        guard let objectContext = contextView,
+              let cities = try? objectContext.fetch(request) else {
+            return []
+        }
+        return cities
+
+    }
+    
     // MARK: - Init
     private init() {}
 }
@@ -23,24 +34,32 @@ extension PersistanceManager: PersistanceManagerProtocol {
         return CoreDataStack.shared.viewContext
     }
 
-    public var cities: [City] {
-        let request: NSFetchRequest<City> = City.fetchRequest()
-        guard let objectContext = contextView,
-              let cities = try? objectContext.fetch(request) else {
-            return []
-        }
-        return cities
+    public var favoriteCityModels: [CityModel] {
+        /// Returns non-nil models of core data city object.
+        let cityModels = cities.compactMap { $0.model }
+        return cityModels
     }
 
-    public func updateCity(cityName: String?, completion: (Bool) -> Void) {
-        guard let cityName = cityName, !cityName.isEmpty else {
+    public func updateCity(city: CityModel?, completion: (Bool) -> Void) {
+        guard let cityName = city?.name,
+              !cityName.isEmpty,
+              self.isCityRegistered(cityName: cityName) else {
             completion(false)
             return
         }
-        if isCityRegistered(cityName: cityName) {
-            self.removeCity(cityName: cityName, completion: completion)
+
+        // TODO: update selected city object
+    }
+
+    public func addOrRemoveCity(city: CityModel?, completion: (Bool) -> Void) {
+        guard let strongCity = city, !strongCity.name.isEmpty else {
+            completion(false)
+            return
+        }
+        if isCityRegistered(cityName: strongCity.name) {
+            self.removeCity(cityName: strongCity.name, completion: completion)
         } else {
-            self.addCity(cityName: cityName, completion: completion)
+            self.addCity(cityModel: strongCity, completion: completion)
         }
     }
 
@@ -48,7 +67,7 @@ extension PersistanceManager: PersistanceManagerProtocol {
         guard let cityName = cityName, !cityName.isEmpty else {
             return false
         }
-        return cities.first(where: { $0.name == cityName }) != nil
+        return favoriteCityModels.first(where: { $0.name == cityName }) != nil
     }
 }
 
@@ -60,14 +79,17 @@ private extension PersistanceManager {
 
     // MARK: - Private Funcs
     /// Add a city in coredata database.
-    func addCity(cityName: String, completion: (Bool) -> Void) {
+    func addCity(cityModel: CityModel, completion: (Bool) -> Void) {
         guard let objectContext = contextView else {
             completion(false)
             return
         }
         let city = City(context: objectContext)
-        city.name = cityName
-        
+        city.name = cityModel.name
+        city.imageName = cityModel.imageName
+        city.weatherDescription = cityModel.weatherDescription
+        city.temperature = cityModel.temperature
+
         do {
             try objectContext.save()
             completion(true)

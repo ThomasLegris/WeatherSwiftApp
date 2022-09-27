@@ -4,7 +4,6 @@
 
 import UIKit
 import WeatherSwiftSDK
-import CoreData
 
 /// Displays a city weather cell in the favorite cities table view.
 final class FavoriteCityCell: UITableViewCell {
@@ -16,7 +15,7 @@ final class FavoriteCityCell: UITableViewCell {
     @IBOutlet private weak var bgView: UIView!
 
     // MARK: - Private Properties
-    private var city: City?
+    private var cityModel: CityModel?
     private let viewModel: FavoriteCityCellViewModel = FavoriteCityCellViewModel(apiManager: WeatherApiManager.shared)
 
     // MARK: - Private Enums
@@ -37,8 +36,8 @@ final class FavoriteCityCell: UITableViewCell {
     ///
     /// - Parameters:
     ///     - city: current city registered in favorite
-    func configureCell(city: City) {
-        self.city = city
+    func configureCell(cityModel: CityModel) {
+        self.cityModel = cityModel
         setupViewModel()
     }
 }
@@ -56,7 +55,7 @@ private extension FavoriteCityCell {
 
     /// Sets up the view model.
     func setupViewModel() {
-        viewModel.requestWeather(with: city?.name)
+        viewModel.requestWeather(with: cityModel?.name)
         viewModel.weatherModelObs.bind { [weak self] _ in
             self?.updateView()
         }
@@ -75,7 +74,7 @@ private extension FavoriteCityCell {
     func updateView() {
         let model = viewModel.weatherModelObs.value
         guard let temp = model.temperature,
-              let name = city?.name,
+              let name = model.cityName,
               let description = model.description else {
             return
         }
@@ -83,6 +82,8 @@ private extension FavoriteCityCell {
         temperatureLabel.text = "\(Int(temp))°"
         cityLabel.text = name
         weatherDescriptionLabel.text = description
-        weatherDescriptionIcon.image = model.icon
+        if let imageName = model.icon {
+            weatherDescriptionIcon.image = UIImage(named: imageName)
+        }
     }
 }

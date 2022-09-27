@@ -26,9 +26,8 @@ extension FavoriteCitiesCoordinator {
     ///
     /// - Parameters:
     ///     - cityName: name of the city
-    func displayDetails(with cityName: String?) {
-        let viewController = WeatherDetailsViewController.instantiate(coordinator: self,
-                                                                      cityName: cityName)
+    func displayDetails(with weatherModel: CommonWeatherModel) {
+        let viewController = WeatherDetailsViewController.instantiate(coordinator: self, weatherModel: weatherModel)
         present(viewController)
     }
 }

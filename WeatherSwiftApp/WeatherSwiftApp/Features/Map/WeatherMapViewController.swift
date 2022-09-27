@@ -131,10 +131,11 @@ extension WeatherMapViewController: MKMapViewDelegate {
 
 // MARK: - MapAnnotationDelegate
 extension WeatherMapViewController: MapAnnotationDelegate {
-    func shouldShowWeatherCityInfos(cityName: String, weatherIcon: UIImage, temperature: String) {
-        detailsCityContainerView.model = MapCityInfos(cityName: cityName,
-                                                      weatherIcon: weatherIcon,
-                                                      temperature: temperature)
+    func shouldShowWeatherCityInfos(cityName: String, weatherIconName: String, temperature: Float) {
+        detailsCityContainerView.model = CommonWeatherModel(temperature: temperature,
+                                                            icon: weatherIconName,
+                                                            description: "",
+                                                            cityName: cityName)
         detailsCityContainerView.delegate = self
         addWithAnimation()
     }
@@ -142,7 +143,7 @@ extension WeatherMapViewController: MapAnnotationDelegate {
 
 // MARK: - MapCityInfosViewDelegate
 extension WeatherMapViewController: MapCityInfosViewDelegate {
-    func didTouchOnDetails(cityName: String) {
-        coordinator?.displayDetails(with: cityName)
+    func didTouchOnDetails(weatherModel: CommonWeatherModel) {
+        coordinator?.displayDetails(with: weatherModel)
     }
 }
