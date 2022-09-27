@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import WeatherSwiftSDK
 
 /// Coordinator which handles navigation for current weather screens.
 final class CurrentWeatherCoordinator: Coordinator {
@@ -27,7 +28,7 @@ extension CurrentWeatherCoordinator {
     ///
     /// - Parameters:
     ///     - cityName: name of the city
-    func displayDetails(with weatherModel: CommonWeatherModel) {
+    func displayDetails(with weatherModel: CityWeatherModel) {
         let viewController = WeatherDetailsViewController.instantiate(coordinator: self, weatherModel: weatherModel)
         present(viewController)
     }

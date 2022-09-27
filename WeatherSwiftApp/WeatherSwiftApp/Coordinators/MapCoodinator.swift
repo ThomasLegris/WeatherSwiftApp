@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import WeatherSwiftSDK
 
 /// Coordinator which handles navigation for map.
 final class MapCoodinator: Coordinator {
@@ -26,7 +27,7 @@ extension MapCoodinator {
     ///
     /// - Parameters:
     ///     - cityName: name of the city
-    func displayDetails(with weatherModel: CommonWeatherModel) {
+    func displayDetails(with weatherModel: CityWeatherModel) {
         let viewController = WeatherDetailsViewController.instantiate(coordinator: self, weatherModel: weatherModel)
         present(viewController)
     }

@@ -82,16 +82,11 @@ private extension MapAnnotationView {
     ///
     /// - Parameters:
     ///     - model: common weather model
-    func updateView(with model: CommonWeatherModel) {
-        guard let temp = model.temperature,
-              let imageName = model.icon,
-              let name = model.cityName else {
-            return
-        }
-        iconImageView.image = UIImage(named: imageName)
-        tempLabel.text = "\(Int(temp))°"
-        delegate?.shouldShowWeatherCityInfos(cityName: name,
-                                             weatherIconName: imageName,
-                                             temperature: temp)
+    func updateView(with model: CityWeatherModel) {
+        iconImageView.image = UIImage(named: model.imageName)
+        tempLabel.text = "\(Int(model.temperature))°"
+        delegate?.shouldShowWeatherCityInfos(cityName: model.name,
+                                             weatherIconName: model.imageName,
+                                             temperature: model.temperature)
     }
 }

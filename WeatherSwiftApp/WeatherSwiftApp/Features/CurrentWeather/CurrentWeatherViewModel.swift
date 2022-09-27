@@ -8,10 +8,10 @@ import WeatherSwiftSDK
 /// View Model which handle business logic of the current weather screen.
 final class CurrentWeatherViewModel {
     // MARK: - Internal Properties
-    var weatherModelObs: Observable<CommonWeatherModel> = Observable(value: CommonWeatherModel(temperature: nil,
-                                                                                               icon: nil,
-                                                                                               description: L10n.dash,
-                                                                                               cityName: L10n.dash))
+    var weatherModelObs: Observable<CityWeatherModel> = Observable(value: CityWeatherModel(name: L10n.dash,
+                                                                                           imageName: "",
+                                                                                           weatherDescription: L10n.dash,
+                                                                                           temperature: 0.0))
     var weatherErrorObs: Observable<WeatherError> = Observable(value: .none)
     var updatedDateObs: Observable<String> = Observable(value: "")
 
@@ -43,22 +43,23 @@ extension CurrentWeatherViewModel {
         }
 
         apiManager.cityWeather(cityName: cityName, completion: { [weak self] res, error in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    guard error == nil else {
-                        self.weatherErrorObs.value = .noInfo
-                        return
-                    }
-                    guard let model = res?.commonWeatherModel else {
-                        self.weatherErrorObs.value = .unknownCity
-                        return
-                    }
-                    UserDefaults.standard.set(model.cityName, forKey: UserDefaultKeys.lastSearchedCity.rawValue)
-                    self.weatherErrorObs.value = .none
-                    self.weatherModelObs.value = model
-                    self.updateDate()
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    self.weatherErrorObs.value = .noInfo
+                    return
                 }
-            })
+                guard let model = res?.cityWeatherModel else {
+                    self.weatherErrorObs.value = .unknownCity
+                    return
+                }
+                UserDefaults.standard.set(model.name, forKey: UserDefaultKeys.lastSearchedCity.rawValue)
+
+                self.weatherErrorObs.value = .none
+                self.weatherModelObs.value = model
+                self.updateDate()
+            }
+        })
     }
 
     /// Call the manager in order to get weather information from coordinate.
@@ -77,21 +78,22 @@ extension CurrentWeatherViewModel {
         }
 
         apiManager.locationWeather(latitude: coordinate.latitude, longitude: coordinate.longitude) { [weak self] res, error in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    guard error == nil else {
-                        self.weatherErrorObs.value = .noInfo
-                        return
-                    }
-
-                    guard let model = res?.commonWeatherModel else {
-                        self.weatherErrorObs.value = .unknownCity
-                        return
-                    }
-                    self.weatherErrorObs.value = .none
-                    self.weatherModelObs.value = model
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    self.weatherErrorObs.value = .noInfo
+                    return
                 }
+
+                guard let model = res?.cityWeatherModel else {
+                    self.weatherErrorObs.value = .unknownCity
+                    return
+                }
+
+                self.weatherErrorObs.value = .none
+                self.weatherModelObs.value = model
             }
+        }
     }
 }
 

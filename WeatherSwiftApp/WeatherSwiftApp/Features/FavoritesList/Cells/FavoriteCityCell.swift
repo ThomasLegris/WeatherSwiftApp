@@ -15,7 +15,7 @@ final class FavoriteCityCell: UITableViewCell {
     @IBOutlet private weak var bgView: UIView!
 
     // MARK: - Private Properties
-    private var cityModel: CityModel?
+    private var cityModel: CityWeatherModel?
     private let viewModel: FavoriteCityCellViewModel = FavoriteCityCellViewModel(apiManager: WeatherApiManager.shared)
 
     // MARK: - Private Enums
@@ -36,7 +36,7 @@ final class FavoriteCityCell: UITableViewCell {
     ///
     /// - Parameters:
     ///     - city: current city registered in favorite
-    func configureCell(cityModel: CityModel) {
+    func configureCell(cityModel: CityWeatherModel) {
         self.cityModel = cityModel
         setupViewModel()
     }
@@ -73,17 +73,9 @@ private extension FavoriteCityCell {
     /// Update view according to weather request answer.
     func updateView() {
         let model = viewModel.weatherModelObs.value
-        guard let temp = model.temperature,
-              let name = model.cityName,
-              let description = model.description else {
-            return
-        }
-
-        temperatureLabel.text = "\(Int(temp))°"
-        cityLabel.text = name
-        weatherDescriptionLabel.text = description
-        if let imageName = model.icon {
-            weatherDescriptionIcon.image = UIImage(named: imageName)
-        }
+        temperatureLabel.text = "\(Int(model.temperature))°"
+        cityLabel.text = model.name
+        weatherDescriptionLabel.text = model.weatherDescription
+        weatherDescriptionIcon.image = UIImage(named: model.imageName)
     }
 }

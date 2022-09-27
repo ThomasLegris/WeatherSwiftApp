@@ -5,27 +5,6 @@
 import UIKit
 import WeatherSwiftSDK
 
-// MARK: - Structs
-/// Model used for updating the custom widget view.
-struct CommonWeatherModel: Equatable {
-    // MARK: - Internal Properties
-    var temperature: Float?
-    var icon: String?
-    var description: String?
-    var cityName: String?
-}
-
-// MARK: - Internal Properties
-extension CityModel {
-    /// Returns a common weather model to update UI from a SDK city object (the core data wrapper).
-    var commonWeatherModel: CommonWeatherModel {
-        return CommonWeatherModel(temperature: self.temperature,
-                                  icon: self.imageName,
-                                  description: self.weatherDescription,
-                                  cityName: self.name)
-    }
-}
-
 extension LocalWeatherResponse {
     /// Get weather group according to id.
     ///
@@ -52,18 +31,17 @@ extension LocalWeatherResponse {
     }
 
     // MARK: - Internal Properties
-    /// Returns a Common weather model built with self.
-    var commonWeatherModel: CommonWeatherModel? {
-        guard let weather = weather?[0] else { return CommonWeatherModel(temperature: 0.0,
-                                                                         icon: Asset.icSun.name,
-                                                                         description: "",
-                                                                         cityName: "") }
+    /// Returns a city weather model with API response.
+    var cityWeatherModel: CityWeatherModel? {
+        guard let weather = weather?[0] else { return CityWeatherModel(name: L10n.dash,
+                                                                       imageName: Asset.icSun.name,
+                                                                       weatherDescription: L10n.dash,
+                                                                       temperature: 0.0) }
 
-        let weatherModel: CommonWeatherModel = CommonWeatherModel(temperature: main.temp,
-                                                                  icon: self.groupFromId(identifier: weather.identifier).imageName,
-                                                                  description: weather.main,
-                                                                  cityName: name)
-        return weatherModel
+        return CityWeatherModel(name: name,
+                                imageName: self.groupFromId(identifier: weather.identifier).imageName,
+                                weatherDescription: weather.main,
+                                temperature: main.temp)
     }
 }
 

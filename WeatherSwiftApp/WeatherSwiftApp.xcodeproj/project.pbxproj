@@ -25,7 +25,7 @@
 		0231770728DE0A50006C39CD /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231770428DE0A50006C39CD /* CurrentWeatherViewModel.swift */; };
 		0231770828DE0A50006C39CD /* CurrentWeather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0231770528DE0A50006C39CD /* CurrentWeather.storyboard */; };
 		0231770928DE0A50006C39CD /* CurrentWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231770628DE0A50006C39CD /* CurrentWeatherViewController.swift */; };
-		0231770E28DE0A73006C39CD /* MyWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231770C28DE0A73006C39CD /* MyWeatherModel.swift */; };
+		0231770E28DE0A73006C39CD /* CurrentWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231770C28DE0A73006C39CD /* CurrentWeatherModel.swift */; };
 		0231771228DE0A89006C39CD /* WeatherInfoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231771028DE0A89006C39CD /* WeatherInfoWidget.swift */; };
 		0231771328DE0A89006C39CD /* WeatherInfoWidget.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0231771128DE0A89006C39CD /* WeatherInfoWidget.xib */; };
 		0231771828DE0AC4006C39CD /* FavoritesCitiesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0231771428DE0AC3006C39CD /* FavoritesCitiesList.storyboard */; };
@@ -118,7 +118,7 @@
 		0231770428DE0A50006C39CD /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
 		0231770528DE0A50006C39CD /* CurrentWeather.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CurrentWeather.storyboard; sourceTree = "<group>"; };
 		0231770628DE0A50006C39CD /* CurrentWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewController.swift; sourceTree = "<group>"; };
-		0231770C28DE0A73006C39CD /* MyWeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWeatherModel.swift; sourceTree = "<group>"; };
+		0231770C28DE0A73006C39CD /* CurrentWeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherModel.swift; sourceTree = "<group>"; };
 		0231771028DE0A89006C39CD /* WeatherInfoWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInfoWidget.swift; sourceTree = "<group>"; };
 		0231771128DE0A89006C39CD /* WeatherInfoWidget.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherInfoWidget.xib; sourceTree = "<group>"; };
 		0231771428DE0AC3006C39CD /* FavoritesCitiesList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FavoritesCitiesList.storyboard; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 		0231770A28DE0A60006C39CD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0231770C28DE0A73006C39CD /* MyWeatherModel.swift */,
+				0231770C28DE0A73006C39CD /* CurrentWeatherModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -626,7 +626,7 @@
 				0231772128DE0AE5006C39CD /* HomeViewController.swift in Sources */,
 				0231770728DE0A50006C39CD /* CurrentWeatherViewModel.swift in Sources */,
 				0231777128DE0F26006C39CD /* UIView+Utils.swift in Sources */,
-				0231770E28DE0A73006C39CD /* MyWeatherModel.swift in Sources */,
+				0231770E28DE0A73006C39CD /* CurrentWeatherModel.swift in Sources */,
 				0231773128DE0B17006C39CD /* WeatherDetailsViewController.swift in Sources */,
 				0231773D28DE0B26006C39CD /* WeeklyDetailsView.swift in Sources */,
 				02D0063328E315E500EF89DE /* FavoriteCityCellViewModel.swift in Sources */,

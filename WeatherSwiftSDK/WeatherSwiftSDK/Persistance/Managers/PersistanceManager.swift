@@ -23,7 +23,7 @@ public class PersistanceManager {
         return cities
 
     }
-    
+
     // MARK: - Init
     private init() {}
 }
@@ -34,13 +34,13 @@ extension PersistanceManager: PersistanceManagerProtocol {
         return CoreDataStack.shared.viewContext
     }
 
-    public var favoriteCityModels: [CityModel] {
+    public var favoriteCityModels: [CityWeatherModel] {
         /// Returns non-nil models of core data city object.
         let cityModels = cities.compactMap { $0.model }
         return cityModels
     }
 
-    public func updateCity(city: CityModel?, completion: (Bool) -> Void) {
+    public func updateCity(city: CityWeatherModel?, completion: (Bool) -> Void) {
         guard let cityName = city?.name,
               !cityName.isEmpty,
               self.isCityRegistered(cityName: cityName) else {
@@ -51,7 +51,7 @@ extension PersistanceManager: PersistanceManagerProtocol {
         // TODO: update selected city object
     }
 
-    public func addOrRemoveCity(city: CityModel?, completion: (Bool) -> Void) {
+    public func addOrRemoveCity(city: CityWeatherModel?, completion: (Bool) -> Void) {
         guard let strongCity = city, !strongCity.name.isEmpty else {
             completion(false)
             return
@@ -79,7 +79,7 @@ private extension PersistanceManager {
 
     // MARK: - Private Funcs
     /// Add a city in coredata database.
-    func addCity(cityModel: CityModel, completion: (Bool) -> Void) {
+    func addCity(cityModel: CityWeatherModel, completion: (Bool) -> Void) {
         guard let objectContext = contextView else {
             completion(false)
             return

@@ -13,10 +13,10 @@ public class City: NSManagedObject {
     // MARK: - Helpers
     /// Returns an entity model
     /// Used to avoid working with CoreData object.
-    public var model: CityModel {
-        return CityModel(name: self.name ?? "",
-                         imageName: self.imageName ?? "",
-                         weatherDescription: self.weatherDescription ?? "",
-                         temperature: self.temperature)
+    public var model: CityWeatherModel {
+        return CityWeatherModel(name: self.name ?? "",
+                                imageName: self.imageName ?? "",
+                                weatherDescription: self.weatherDescription ?? "",
+                                temperature: self.temperature)
     }
 }

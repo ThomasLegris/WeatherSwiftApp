@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import WeatherSwiftSDK
 
 /// View which displays a resume of the weather.e
 final class WeatherInfoWidget: UIView {
@@ -16,7 +17,7 @@ final class WeatherInfoWidget: UIView {
 
     // MARK: - Internal Properties
     /// Returns a common model for city weather.
-    var model: CommonWeatherModel? {
+    var model: CityWeatherModel? {
         didSet {
             updateView()
         }
@@ -65,12 +66,9 @@ private extension WeatherInfoWidget {
             return
         }
 
-        let temp = Int(model.temperature ?? 0.0)
-        temperatureLabel.text = "\(temp)°"
-        descriptionLabel.text = model.description
-        if let imageName = model.icon {
-            weatherImageView.image = UIImage(named: imageName)
-        }
+        temperatureLabel.text = "\(Int(model.temperature))°" // TODO: Add helper to show a temperature string from a float.
+        descriptionLabel.text = model.weatherDescription
+        weatherImageView.image = UIImage(named: model.imageName)
     }
 
     /// Resets the view.

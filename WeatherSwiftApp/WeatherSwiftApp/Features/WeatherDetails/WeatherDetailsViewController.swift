@@ -23,12 +23,12 @@ final class WeatherDetailsViewController: UIViewController {
     }
 
     // MARK: - Private Properties
-    private var currentWeatherModel: CommonWeatherModel?
+    private var currentWeatherModel: CityWeatherModel?
     private let viewModel = WeatherDetailsViewModel(persistanceManager: PersistanceManager.shared)
 
     // MARK: - Setup
     static func instantiate(coordinator: Coordinator?,
-                            weatherModel: CommonWeatherModel?) -> WeatherDetailsViewController {
+                            weatherModel: CityWeatherModel?) -> WeatherDetailsViewController {
         let viewController = StoryboardScene.WeatherDetails.initialScene.instantiate()
         viewController.currentWeatherModel = weatherModel
         viewController.coordinator = coordinator
@@ -69,14 +69,14 @@ private extension WeatherDetailsViewController {
     func initView() {
         detailsView.layer.cornerRadius = Constants.cornerRadius
         titleLabel.text = L10n.weatherDetails
-        dailyDetailsView.cityName = currentWeatherModel?.cityName
-        weeklyDetailsView.cityName = currentWeatherModel?.cityName
+        dailyDetailsView.cityName = currentWeatherModel?.name
+        weeklyDetailsView.cityName = currentWeatherModel?.name
         updateFavoriteButton()
     }
 
     /// Updates favorite button.
     func updateFavoriteButton() {
-        if PersistanceManager.shared.isCityRegistered(cityName: currentWeatherModel?.cityName) {
+        if PersistanceManager.shared.isCityRegistered(cityName: currentWeatherModel?.name) {
             favoriteButton.setImage(Asset.icFavoriteOn.image,
                                     for: .normal)
         } else {

@@ -11,10 +11,10 @@ import WeatherSwiftSDK
 /// Handle logic for a selected favorite city (displayed in a cell).
 final class FavoriteCityCellViewModel {
     // MARK: - Internal Properties
-    var weatherModelObs: Observable<CommonWeatherModel> = Observable(value: CommonWeatherModel(temperature: nil,
-                                                                                               icon: nil,
-                                                                                               description: L10n.dash,
-                                                                                               cityName: L10n.dash))
+    var weatherModelObs: Observable<CityWeatherModel> = Observable(value: CityWeatherModel(name: L10n.dash,
+                                                                                          imageName: "",
+                                                                                          weatherDescription: L10n.dash,
+                                                                                          temperature: 0.0))
 
     // MARK: - Private Properties
     private let apiManager: ApiManagerProtocol
@@ -44,7 +44,7 @@ extension FavoriteCityCellViewModel {
 
         apiManager.cityWeather(cityName: cityName, completion: { [weak self] res, error in
                 guard let self = self,
-                        let model = res?.commonWeatherModel,
+                        let model = res?.cityWeatherModel,
                         error == nil else { return }
                 DispatchQueue.main.async {
                     self.weatherModelObs.value = model

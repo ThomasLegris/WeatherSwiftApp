@@ -22,15 +22,11 @@ final class WeatherDetailsViewModel {
 // MARK: - Internal Funcs
 extension WeatherDetailsViewModel {
     /// Update the city
-    func addOrRemoveCity(with weatherModel: CommonWeatherModel, completion: () -> Void) {
-        guard let name = weatherModel.cityName,
-              let imageName = weatherModel.icon,
-              let weatherDescription = weatherModel.description,
-              let temperature = weatherModel.temperature else { return }
-        let cityModel = CityModel(name: name,
-                                  imageName: imageName,
-                                  weatherDescription: weatherDescription,
-                                  temperature: temperature)
+    func addOrRemoveCity(with weatherModel: CityWeatherModel, completion: () -> Void) {
+        let cityModel = CityWeatherModel(name: weatherModel.name,
+                                         imageName: weatherModel.imageName,
+                                         weatherDescription: weatherModel.weatherDescription,
+                                         temperature: weatherModel.temperature)
 
         persistanceManager.addOrRemoveCity(city: cityModel) { isSuccess in
             if isSuccess {

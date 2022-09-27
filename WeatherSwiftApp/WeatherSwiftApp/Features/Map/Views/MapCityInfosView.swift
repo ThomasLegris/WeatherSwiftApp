@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import WeatherSwiftSDK
 
 // MARK: - Protocols
 protocol MapCityInfosViewDelegate: AnyObject {
@@ -10,7 +11,7 @@ protocol MapCityInfosViewDelegate: AnyObject {
     ///
     /// - Parameters:
     ///     - weatherModel: the model for weather city displayed
-    func didTouchOnDetails(weatherModel: CommonWeatherModel)
+    func didTouchOnDetails(weatherModel: CityWeatherModel)
 }
 
 /// Displays informations about a city.
@@ -22,12 +23,10 @@ final class MapCityInfosView: UIView {
     @IBOutlet private weak var cityLabel: UILabel!
 
     // MARK: - Internal Properties
-    var model: CommonWeatherModel = CommonWeatherModel() {
-        didSet {
-            fill(with: model)
-        }
-    }
     weak var delegate: MapCityInfosViewDelegate?
+
+    // MARK: - Private Properties
+    private var model: CityWeatherModel?
 
     // MARK: - Private Enums
     private enum Constants {
@@ -46,12 +45,25 @@ final class MapCityInfosView: UIView {
         super.init(frame: frame)
         self.commonInitMapCityInfosView()
     }
+
+    // MARK: - Internal Funcs
+    /// Fills the view with current city data.
+    ///
+    /// - Parameters:
+    ///     - model: city informations model
+    func fill(with model: CityWeatherModel) {
+        self.model = model
+        weatherImageView.image = UIImage(named: model.imageName)
+        tempLabel.text = "\(Int(model.temperature))°"
+        cityLabel.text = model.name
+    }
 }
 
 // MARK: - Actions
 private extension MapCityInfosView {
     @IBAction func detailsButtonTouchedUpInside(_ sender: Any) {
-        delegate?.didTouchOnDetails(weatherModel: model)
+        guard let strongModel = model else { return }
+        delegate?.didTouchOnDetails(weatherModel: strongModel)
     }
 }
 
@@ -67,17 +79,5 @@ private extension MapCityInfosView {
                                 borderColor: .white,
                                 radius: Constants.radius,
                                 borderWidth: Constants.borderWidth)
-    }
-
-    /// Fills the view with current city data.
-    ///
-    /// - Parameters:
-    ///     - model: city informations model
-    func fill(with model: CommonWeatherModel) {
-        if let imageName = model.icon {
-            weatherImageView.image = UIImage(named: imageName)
-        }
-        tempLabel.text = "\(Int(model.temperature ?? 0.0))°"
-        cityLabel.text = model.cityName
     }
 }

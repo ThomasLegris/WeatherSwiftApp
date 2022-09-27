@@ -16,7 +16,7 @@ final class FavoriteCitiesListViewController: UIViewController {
 
     // MARK: - Private Properties
     private let viewModel = FavoriteCitiesListViewModel(persistanceManager: PersistanceManager.shared)
-    private var dataSource: [CityModel] = [] {
+    private var dataSource: [CityWeatherModel] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -96,6 +96,6 @@ extension FavoriteCitiesListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension FavoriteCitiesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.displayDetails(with: dataSource[indexPath.item].commonWeatherModel)
+        coordinator?.displayDetails(with: dataSource[indexPath.item])
     }
 }

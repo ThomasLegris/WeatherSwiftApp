@@ -15,7 +15,7 @@ public protocol PersistanceManagerProtocol {
     var context: Any { get }
 
     /// Returns all citie objects.
-    var favoriteCityModels: [CityModel] { get }
+    var favoriteCityModels: [CityWeatherModel] { get }
 
     // MARK: - Public Funcs
     /// Add or remove a city in DB.
@@ -23,14 +23,14 @@ public protocol PersistanceManagerProtocol {
     /// - Parameters:
     ///     - city: the targetted coredata city object
     ///     - completion: operation result as bool
-    func addOrRemoveCity(city: CityModel?, completion: (Bool) -> Void)
+    func addOrRemoveCity(city: CityWeatherModel?, completion: (Bool) -> Void)
 
     /// Update a city which is in database.
     ///
     /// - Parameters:
     ///     - city: the targetted coredata city object
     ///     - completion: operation result as bool
-    func updateCity(city: CityModel?, completion: (Bool) -> Void)
+    func updateCity(city: CityWeatherModel?, completion: (Bool) -> Void)
 
     /// Checks if a city is registered into the DB.
     ///

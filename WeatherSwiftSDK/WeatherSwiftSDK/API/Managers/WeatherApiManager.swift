@@ -154,7 +154,7 @@ extension WeatherApiManager: ApiManagerProtocol {
             }
         }.resume()
     }
-
+    
     public func cityWeeklyWeather(cityName: String, completion: @escaping (WeeklyDetailsResponse?, Error?) -> Void) {
         let params = [Constants.cityParam: cityName,
                       Constants.unitsParam: Constants.tempUnit,

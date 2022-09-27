@@ -4,6 +4,7 @@
 
 import UIKit
 import MapKit
+import WeatherSwiftSDK
 
 /// Pick weather details on Map.
 final class WeatherMapViewController: UIViewController {
@@ -34,14 +35,14 @@ final class WeatherMapViewController: UIViewController {
     // MARK: - Override Funcs
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initView()
         requestLocationAccess()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         mapView.removeAnnotations(mapView.annotations)
         detailsCityContainerView.isHidden = true
     }
@@ -122,8 +123,8 @@ private extension WeatherMapViewController {
 // MARK: - MKMapViewDelegate
 extension WeatherMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotation =  MapAnnotationView(annotation: annotation,
-                                            reuseIdentifier: Constants.identifier)
+        let annotation = MapAnnotationView(annotation: annotation,
+                                           reuseIdentifier: Constants.identifier)
         annotation.delegate = self
         return annotation
     }
@@ -132,10 +133,10 @@ extension WeatherMapViewController: MKMapViewDelegate {
 // MARK: - MapAnnotationDelegate
 extension WeatherMapViewController: MapAnnotationDelegate {
     func shouldShowWeatherCityInfos(cityName: String, weatherIconName: String, temperature: Float) {
-        detailsCityContainerView.model = CommonWeatherModel(temperature: temperature,
-                                                            icon: weatherIconName,
-                                                            description: "",
-                                                            cityName: cityName)
+        detailsCityContainerView.fill(with: CityWeatherModel(name: cityName,
+                                                             imageName: weatherIconName,
+                                                             weatherDescription: "",
+                                                             temperature: temperature))
         detailsCityContainerView.delegate = self
         addWithAnimation()
     }
@@ -143,7 +144,7 @@ extension WeatherMapViewController: MapAnnotationDelegate {
 
 // MARK: - MapCityInfosViewDelegate
 extension WeatherMapViewController: MapCityInfosViewDelegate {
-    func didTouchOnDetails(weatherModel: CommonWeatherModel) {
+    func didTouchOnDetails(weatherModel: CityWeatherModel) {
         coordinator?.displayDetails(with: weatherModel)
     }
 }

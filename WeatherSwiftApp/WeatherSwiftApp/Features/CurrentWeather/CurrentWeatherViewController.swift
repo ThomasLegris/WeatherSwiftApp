@@ -107,7 +107,7 @@ private extension CurrentWeatherViewController {
         // Observes weather response.
         viewModel.weatherModelObs.bind { [weak self] model in
             self?.updateWidgetModel(with: model)
-            self?.updateCityName(with: model.cityName)
+            self?.updateCityName(with: model.name)
         }
 
         // Observes last updated date in hours.
@@ -142,7 +142,7 @@ private extension CurrentWeatherViewController {
     ///
     /// - Parameters:
     ///     - model: weather model
-    func updateWidgetModel(with model: CommonWeatherModel?) {
+    func updateWidgetModel(with model: CityWeatherModel?) {
         weatherInfoWidget.model = model
     }
 

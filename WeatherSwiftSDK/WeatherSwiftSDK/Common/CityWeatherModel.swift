@@ -1,5 +1,5 @@
 //
-//  CityModel.swift
+//  CityWeatherModel.swift
 //  WeatherSwiftSDK
 //
 //  Created by Thomas Legris on 27/09/2022.
@@ -8,8 +8,8 @@
 import Foundation
 
 /// Represents a city as simple swift object
-/// This will be transformed in a `City` object for database operation.
-public struct CityModel {
+/// Also a usefull wrapper of `City` object. Avoid using a CoreData object in whole app.
+public struct CityWeatherModel {
     // MARK: - Public Properties
     public var name: String
     public var imageName: String
