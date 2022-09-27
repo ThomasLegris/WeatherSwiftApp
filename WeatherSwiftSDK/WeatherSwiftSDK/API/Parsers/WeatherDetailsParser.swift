@@ -20,7 +20,6 @@ public struct DailyDetailsResponse: Codable {
         case wind
         case sys
     }
-
 }
 
 /// Model for the `wind` field in the JSON Response.

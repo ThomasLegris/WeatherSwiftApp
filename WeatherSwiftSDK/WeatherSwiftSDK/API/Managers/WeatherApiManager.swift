@@ -17,13 +17,15 @@ public final class WeatherApiManager {
     var apiKey: String {
         // Find Api plist file.
         guard let filePath = Bundle.main.path(forResource: "OWM-info", ofType: "plist") else {
-            fatalError("No API plist file")
+            print("No API plist file")
+            return ""
         }
 
         // Find the Api key.
         let plist = NSDictionary(contentsOfFile: filePath)
         guard let value = plist?.object(forKey: "api_key") as? String else {
-            fatalError("No api_key for OWMap")
+            print("No api_key for OWMap")
+            return ""
         }
         return value
     }
