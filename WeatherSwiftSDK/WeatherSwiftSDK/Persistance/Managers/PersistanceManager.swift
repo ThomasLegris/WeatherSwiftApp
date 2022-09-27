@@ -13,29 +13,25 @@ public class PersistanceManager {
     // MARK: - Public Properties
     public static let shared: PersistanceManager = PersistanceManager()
 
-    /// Managed object context to manipulate all core data entities.
-    public var context: NSManagedObjectContext {
+    // MARK: - Init
+    private init() {}
+}
+
+// MARK: - PersistanceProtocol
+extension PersistanceManager: PersistanceProtocol {
+    public var context: Any {
         return CoreDataStack.shared.viewContext
     }
 
-    /// Returns all citie objects.
     public var cities: [City] {
         let request: NSFetchRequest<City> = City.fetchRequest()
-        guard let cities = try? context.fetch(request) else {
+        guard let objectContext = contextView,
+              let cities = try? objectContext.fetch(request) else {
             return []
         }
         return cities
     }
 
-    // MARK: - Init
-    private init() {}
-
-    // MARK: - Public Funcs
-    /// Add or remove a city in DB.
-    ///
-    /// - Parameters:
-    ///     - cityName: the targetted city name
-    ///     - completion: operation result as bool
     public func updateCity(cityName: String?, completion: (Bool) -> Void) {
         guard let cityName = cityName, !cityName.isEmpty else {
             completion(false)
@@ -48,11 +44,7 @@ public class PersistanceManager {
         }
     }
 
-    /// Checks if a city is registered into the DB.
-    ///
-    /// - Parameters:
-    ///     - cityName: the targetted city name
-    /// - Returns: true if city is already in DB
+
     public func isCityRegistered(cityName: String?) -> Bool {
         guard let cityName = cityName, !cityName.isEmpty else {
             return false
@@ -61,13 +53,23 @@ public class PersistanceManager {
     }
 }
 
-// MARK: - Private Funcs
 private extension PersistanceManager {
+    // MARK: - Private Properties
+    var contextView: NSManagedObjectContext? {
+        return context as? NSManagedObjectContext
+    }
+
+    // MARK: - Private Funcs
+    /// Add a city in coredata database.
     func addCity(cityName: String, completion: (Bool) -> Void) {
-        let city = City(context: context)
+        guard let objectContext = contextView else {
+            completion(false)
+            return
+        }
+        let city = City(context: objectContext)
         city.name = cityName
         do {
-            try context.save()
+            try objectContext.save()
             completion(true)
         } catch {
             print("Unable to save city in database")
@@ -75,11 +77,16 @@ private extension PersistanceManager {
         }
     }
 
+    /// Remove selected city from coredata database.
     func removeCity(cityName: String, completion: (Bool) -> Void) {
+        guard let objectContext = contextView else {
+            completion(false)
+            return
+        }
         if let city = cities.first(where: { $0.name == cityName }) {
             do {
-                context.delete(city)
-                try context.save()
+                objectContext.delete(city)
+                try objectContext.save()
                 completion(true)
             } catch {
                 print("Unable to remove city in database")

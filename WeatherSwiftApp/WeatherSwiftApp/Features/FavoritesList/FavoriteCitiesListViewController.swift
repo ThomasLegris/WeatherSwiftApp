@@ -16,7 +16,7 @@ final class FavoriteCitiesListViewController: UIViewController {
     weak var coordinator: FavoriteCitiesCoordinator?
 
     // MARK: - Private Properties
-    private let viewModel = FavoriteCitiesListViewModel()
+    private let viewModel = FavoriteCitiesListViewModel(persistanceManager: PersistanceManager.shared)
     private var dataSource: [City] = [] {
         didSet {
             tableView.reloadData()

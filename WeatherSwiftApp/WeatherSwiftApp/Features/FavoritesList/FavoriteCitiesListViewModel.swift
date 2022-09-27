@@ -12,10 +12,12 @@ final class FavoriteCitiesListViewModel {
     var favoriteCitiesObs: Observable<[City]> = Observable(value: [])
 
     // MARK: - Private Properties
-    private let notificationCenter = NotificationCenter.default
+    private let notificationCenter: NotificationCenter = NotificationCenter.default
+    private let persistanceManager: PersistanceProtocol
 
     // MARK: - Init
-    init() {
+    init(persistanceManager: PersistanceProtocol) {
+        self.persistanceManager = persistanceManager
         observeCities()
     }
 
@@ -32,7 +34,7 @@ private extension FavoriteCitiesListViewModel {
         notificationCenter.addObserver(self,
                                        selector: #selector(updateDatas),
                                        name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                       object: PersistanceManager.shared.context)
+                                       object: persistanceManager.context)
         updateDatas()
     }
 
