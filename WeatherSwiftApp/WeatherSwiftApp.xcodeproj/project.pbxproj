@@ -65,6 +65,7 @@
 		027EBBCD28DDFAA500D5980D /* WeatherSwiftSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027EBBCC28DDFAA500D5980D /* WeatherSwiftSDK.framework */; };
 		027EBBCE28DDFAA500D5980D /* WeatherSwiftSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 027EBBCC28DDFAA500D5980D /* WeatherSwiftSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		02D0063328E315E500EF89DE /* FavoriteCityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D0063228E315E500EF89DE /* FavoriteCityCellViewModel.swift */; };
+		02D0063728E32D1900EF89DE /* OWM-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02D0063628E32D1900EF89DE /* OWM-info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		027EBBBE28DDF8F700D5980D /* WeatherSwiftAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSwiftAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		027EBBCC28DDFAA500D5980D /* WeatherSwiftSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WeatherSwiftSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D0063228E315E500EF89DE /* FavoriteCityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCityCellViewModel.swift; sourceTree = "<group>"; };
+		02D0063628E32D1900EF89DE /* OWM-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OWM-info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +421,7 @@
 		02BA8B4E28DE030D000DC4F3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				02D0063628E32D1900EF89DE /* OWM-info.plist */,
 				023176D828DE0391006C39CD /* Assets.xcassets */,
 				023176DD28DE0391006C39CD /* colors.xml */,
 				023176DB28DE0391006C39CD /* LaunchScreen.storyboard */,
@@ -565,6 +568,7 @@
 				023176E228DE0391006C39CD /* LaunchScreen.storyboard in Resources */,
 				0231771828DE0AC4006C39CD /* FavoritesCitiesList.storyboard in Resources */,
 				0231772428DE0AFA006C39CD /* WeatherMap.storyboard in Resources */,
+				02D0063728E32D1900EF89DE /* OWM-info.plist in Resources */,
 				0231773E28DE0B26006C39CD /* WeeklyDetailsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
