@@ -67,6 +67,7 @@ private extension PersistanceManager {
         }
         let city = City(context: objectContext)
         city.name = cityName
+        
         do {
             try objectContext.save()
             completion(true)

@@ -207,8 +207,8 @@
 		02A4E6ED28E1EF9F00597504 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				02A4E6E528E1EBCB00597504 /* CoreDataModel.xcdatamodeld */,
 				02A4E6EE28E1EFA800597504 /* City.swift */,
+				02A4E6E528E1EBCB00597504 /* CoreDataModel.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";

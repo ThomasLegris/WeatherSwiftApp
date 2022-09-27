@@ -17,7 +17,7 @@ final class FavoriteCityCell: UITableViewCell {
 
     // MARK: - Private Properties
     private var city: City?
-    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel(apiManager: WeatherApiManager.shared)
+    private let viewModel: FavoriteCityCellViewModel = FavoriteCityCellViewModel(apiManager: WeatherApiManager.shared)
 
     // MARK: - Private Enums
     private enum Constants {
