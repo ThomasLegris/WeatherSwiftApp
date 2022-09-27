@@ -24,6 +24,7 @@ final class WeatherDetailsViewController: UIViewController {
 
     // MARK: - Private Properties
     private var cityName: String?
+    private let viewModel = WeatherDetailsViewModel(persistanceManager: PersistanceManager.shared)
 
     // MARK: - Setup
     static func instantiate(coordinator: Coordinator?,
@@ -55,7 +56,7 @@ private extension WeatherDetailsViewController {
     }
 
     @IBAction func favoriteButtonTouchedUpInside(_ sender: Any) {
-        PersistanceManager.shared.updateCity(cityName: cityName) { isSuccess in
+        PersistanceManager.shared.updateCity(cityName: cityName) { _ in
             self.updateFavoriteButton()
         }
     }

@@ -44,7 +44,6 @@ extension PersistanceManager: PersistanceManagerProtocol {
         }
     }
 
-
     public func isCityRegistered(cityName: String?) -> Bool {
         guard let cityName = cityName, !cityName.isEmpty else {
             return false

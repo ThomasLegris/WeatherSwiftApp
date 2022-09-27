@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020CCDFB28E2EF1E004A2CE7 /* WeatherDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020CCDFA28E2EF1E004A2CE7 /* WeatherDetailsViewModel.swift */; };
 		023176DF28DE0391006C39CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023176D828DE0391006C39CD /* Assets.xcassets */; };
 		023176E128DE0391006C39CD /* OWM-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 023176DA28DE0391006C39CD /* OWM-info.plist */; };
 		023176E228DE0391006C39CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 023176DB28DE0391006C39CD /* LaunchScreen.storyboard */; };
@@ -98,6 +99,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		020CCDFA28E2EF1E004A2CE7 /* WeatherDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsViewModel.swift; sourceTree = "<group>"; };
 		023176D828DE0391006C39CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		023176DA28DE0391006C39CD /* OWM-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OWM-info.plist"; sourceTree = "<group>"; };
 		023176DB28DE0391006C39CD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			children = (
 				0231774128DE0B35006C39CD /* DailyDetailsViewModel.swift */,
 				0231774228DE0B35006C39CD /* WeeklyDetailsViewModel.swift */,
+				020CCDFA28E2EF1E004A2CE7 /* WeatherDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				0231773128DE0B17006C39CD /* WeatherDetailsViewController.swift in Sources */,
 				0231773D28DE0B26006C39CD /* WeeklyDetailsView.swift in Sources */,
 				023176F128DE06F0006C39CD /* Storyboards.swift in Sources */,
+				020CCDFB28E2EF1E004A2CE7 /* WeatherDetailsViewModel.swift in Sources */,
 				0231773B28DE0B26006C39CD /* WeeklyDetailsCollectionViewCell.swift in Sources */,
 				0231771B28DE0AC4006C39CD /* FavoriteCitiesListViewController.swift in Sources */,
 				023176F028DE06F0006C39CD /* Colors.swift in Sources */,
