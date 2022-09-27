@@ -13,10 +13,10 @@ final class FavoriteCitiesListViewModel {
 
     // MARK: - Private Properties
     private let notificationCenter: NotificationCenter = NotificationCenter.default
-    private let persistanceManager: PersistanceProtocol
+    private let persistanceManager: PersistanceManagerProtocol
 
     // MARK: - Init
-    init(persistanceManager: PersistanceProtocol) {
+    init(persistanceManager: PersistanceManagerProtocol) {
         self.persistanceManager = persistanceManager
         observeCities()
     }

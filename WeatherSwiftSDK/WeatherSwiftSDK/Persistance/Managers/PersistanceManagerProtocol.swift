@@ -9,7 +9,7 @@ import Foundation
 // MARK: - Protocols
 /// Protocol used to store persistance related method.
 /// Could be inherited from several Managers.
-public protocol PersistanceProtocol {
+public protocol PersistanceManagerProtocol {
     /// Managed object context to manipulate all core data entities.
     /// Notes: Type is Any to not access to CoreData objects outside the module.
     var context: Any { get }

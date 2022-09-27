@@ -17,8 +17,8 @@ public class PersistanceManager {
     private init() {}
 }
 
-// MARK: - PersistanceProtocol
-extension PersistanceManager: PersistanceProtocol {
+// MARK: - PersistanceManagerProtocol
+extension PersistanceManager: PersistanceManagerProtocol {
     public var context: Any {
         return CoreDataStack.shared.viewContext
     }

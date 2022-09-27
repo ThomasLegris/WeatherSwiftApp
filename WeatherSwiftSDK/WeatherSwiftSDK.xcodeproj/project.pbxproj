@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		020CCDF928E2E5B1004A2CE7 /* PersistanceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020CCDF828E2E5B1004A2CE7 /* PersistanceProtocol.swift */; };
+		020CCDF928E2E5B1004A2CE7 /* PersistanceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020CCDF828E2E5B1004A2CE7 /* PersistanceManagerProtocol.swift */; };
 		0231777C28DE123C006C39CD /* MyWeatherParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231777B28DE123C006C39CD /* MyWeatherParser.swift */; };
 		0231777E28DE1280006C39CD /* WeatherDetailsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231777D28DE1280006C39CD /* WeatherDetailsParser.swift */; };
 		0231778028DEE3E0006C39CD /* WeatherApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231777F28DEE3E0006C39CD /* WeatherApiError.swift */; };
@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		020CCDF828E2E5B1004A2CE7 /* PersistanceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceProtocol.swift; sourceTree = "<group>"; };
+		020CCDF828E2E5B1004A2CE7 /* PersistanceManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManagerProtocol.swift; sourceTree = "<group>"; };
 		0231777B28DE123C006C39CD /* MyWeatherParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWeatherParser.swift; sourceTree = "<group>"; };
 		0231777D28DE1280006C39CD /* WeatherDetailsParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDetailsParser.swift; sourceTree = "<group>"; };
 		0231777F28DEE3E0006C39CD /* WeatherApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApiError.swift; sourceTree = "<group>"; };
@@ -142,10 +142,10 @@
 		027EBB7728DDF8DE00D5980D /* WeatherSwiftSDK */ = {
 			isa = PBXGroup;
 			children = (
-				02A4E6E028E1EB7300597504 /* Persistance */,
-				02763EC728E1A57F003A6065 /* Observable */,
-				02F348EB28E1941E00D6E020 /* Network */,
 				0240730D28DDFDFB003650A5 /* API */,
+				02F348EB28E1941E00D6E020 /* Network */,
+				02763EC728E1A57F003A6065 /* Observable */,
+				02A4E6E028E1EB7300597504 /* Persistance */,
 				027EBB7828DDF8DE00D5980D /* WeatherSwiftSDK.h */,
 				027EBB7928DDF8DE00D5980D /* WeatherSwiftSDK.docc */,
 			);
@@ -174,7 +174,7 @@
 			children = (
 				02A4E6E828E1EBE400597504 /* CoreDataStack.swift */,
 				02A4E6EB28E1EBFA00597504 /* PersistanceManager.swift */,
-				020CCDF828E2E5B1004A2CE7 /* PersistanceProtocol.swift */,
+				020CCDF828E2E5B1004A2CE7 /* PersistanceManagerProtocol.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 				02F348ED28E1942A00D6E020 /* Reachability.swift in Sources */,
 				02A4E6EF28E1EFA800597504 /* City.swift in Sources */,
 				0240731D28DDFFE8003650A5 /* WeatherApi.swift in Sources */,
-				020CCDF928E2E5B1004A2CE7 /* PersistanceProtocol.swift in Sources */,
+				020CCDF928E2E5B1004A2CE7 /* PersistanceManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
