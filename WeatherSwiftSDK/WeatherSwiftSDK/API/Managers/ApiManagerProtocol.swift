@@ -1,8 +1,8 @@
 //
-//  WeatherApi.swift
+//  ApiManagerProtocol.swift
 //  WeatherSwiftSDK
 //
-//  Created by Consultant on 23/09/2022.
+//  Created by Thomas Legris on 23/09/2022.
 //
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Protocols
 /// Defines weather API methods.
-public protocol WeatherApi {
+public protocol ApiManagerProtocol {
     /// Gets global weather by city.
     ///
     /// - Parameters:

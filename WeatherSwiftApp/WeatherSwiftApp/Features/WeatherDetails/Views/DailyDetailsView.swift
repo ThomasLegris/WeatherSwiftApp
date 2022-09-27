@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import WeatherSwiftSDK
 
 /// Displays a daily weather details.
 final class DailyDetailsView: UIView {
@@ -29,7 +30,7 @@ final class DailyDetailsView: UIView {
     }
 
     // MARK: - Private Properties
-    private let viewModel: DailyDetailsViewModel = DailyDetailsViewModel()
+    private let viewModel: DailyDetailsViewModel = DailyDetailsViewModel(apiManager: WeatherApiManager.shared)
 
     // MARK: - Private Enums
     private enum Constants {

@@ -23,7 +23,7 @@ final class WeeklyDetailsView: UIView {
     }
 
     // MARK: - Private Properties
-    private let viewModel: WeeklyDetailsViewModel = WeeklyDetailsViewModel()
+    private let viewModel: WeeklyDetailsViewModel = WeeklyDetailsViewModel(apiManager: WeatherApiManager.shared)
 
     /// Returns filtered list with only daily value (hourly value are skipped).
     private var filteredList: [DailyWeather] {

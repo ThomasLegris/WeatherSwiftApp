@@ -8,6 +8,14 @@ import WeatherSwiftSDK
 final class WeeklyDetailsViewModel {
     // MARK: - Internal Properties
     var weeklyDetailsModelObs: Observable<WeeklyDetailsModel> = Observable(value: WeeklyDetailsModel(list: []))
+
+    // MARK: - Private Properties
+    private let apiManager: ApiManagerProtocol
+
+    // MARK: - Init
+    init(apiManager: ApiManagerProtocol) {
+        self.apiManager = apiManager
+    }
 }
 
 // MARK: - Internal Funcs
@@ -17,7 +25,7 @@ extension WeeklyDetailsViewModel {
     /// - Parameters:
     ///     - city: name of the city
     func requestWeather(city: String) {
-        WeatherApiManager.shared.cityWeeklyWeather(cityName: city) { [weak self] res, error in
+        apiManager.cityWeeklyWeather(cityName: city) { [weak self] res, error in
             DispatchQueue.main.async {
                 guard error == nil, let model = res?.weeklyDetailsModel else { return }
 

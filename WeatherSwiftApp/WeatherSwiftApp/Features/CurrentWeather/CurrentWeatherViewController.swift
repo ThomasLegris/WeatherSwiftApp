@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import WeatherSwiftSDK
 
 /// Screen which shows location weather for a targetted city.
 final class CurrentWeatherViewController: UIViewController {
@@ -24,7 +25,7 @@ final class CurrentWeatherViewController: UIViewController {
             nameCityLabel.text = cityName
         }
     }
-    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel()
+    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel(apiManager: WeatherApiManager.shared)
     private weak var coordinator: CurrentWeatherCoordinator?
 
     // MARK: - Private Enums

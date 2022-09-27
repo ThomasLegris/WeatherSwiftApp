@@ -43,7 +43,7 @@ public final class WeatherApiManager {
 }
 
 // MARK: - WeatherApi
-extension WeatherApiManager: WeatherApi {
+extension WeatherApiManager: ApiManagerProtocol {
     public func cityWeather(cityName: String, completion: @escaping (LocalWeatherResponse?, Error?) -> Void) {
         let params = [Constants.cityParam: cityName,
                       Constants.unitsParam: Constants.tempUnit,

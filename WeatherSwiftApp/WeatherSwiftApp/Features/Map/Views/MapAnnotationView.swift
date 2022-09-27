@@ -4,6 +4,7 @@
 
 import UIKit
 import MapKit
+import WeatherSwiftSDK
 
 // MARK: - Protocols
 protocol MapAnnotationDelegate: AnyObject {
@@ -42,7 +43,7 @@ final class MapAnnotationView: MKAnnotationView {
     weak var delegate: MapAnnotationDelegate?
 
     // MARK: - Private Properties
-    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel()
+    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel(apiManager: WeatherApiManager.shared)
 
     // MARK: - Private Enums
     private enum Constants {

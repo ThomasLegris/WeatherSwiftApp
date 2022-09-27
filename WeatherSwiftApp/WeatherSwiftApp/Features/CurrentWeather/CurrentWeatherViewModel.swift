@@ -14,6 +14,14 @@ final class CurrentWeatherViewModel {
                                                                                                cityName: L10n.dash))
     var weatherErrorObs: Observable<WeatherError> = Observable(value: .none)
     var updatedDateObs: Observable<String> = Observable(value: "")
+
+    // MARK: - Private Properties
+    private let apiManager: ApiManagerProtocol
+
+    // MARK: - Init
+    init(apiManager: ApiManagerProtocol) {
+        self.apiManager = apiManager
+    }
 }
 
 // MARK: - Internal Funcs
@@ -34,9 +42,7 @@ extension CurrentWeatherViewModel {
             return
         }
 
-        WeatherApiManager
-            .shared
-            .cityWeather(cityName: cityName, completion: { [weak self] res, error in
+        apiManager.cityWeather(cityName: cityName, completion: { [weak self] res, error in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     guard error == nil else {
@@ -70,9 +76,7 @@ extension CurrentWeatherViewModel {
             return
         }
 
-        WeatherApiManager
-            .shared
-            .locationWeather(latitude: coordinate.latitude, longitude: coordinate.longitude) { [weak self] res, error in
+        apiManager.locationWeather(latitude: coordinate.latitude, longitude: coordinate.longitude) { [weak self] res, error in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     guard error == nil else {
