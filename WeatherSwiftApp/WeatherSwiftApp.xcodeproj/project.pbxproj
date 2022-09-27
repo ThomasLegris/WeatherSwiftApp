@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		020CCDFB28E2EF1E004A2CE7 /* WeatherDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020CCDFA28E2EF1E004A2CE7 /* WeatherDetailsViewModel.swift */; };
 		023176DF28DE0391006C39CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023176D828DE0391006C39CD /* Assets.xcassets */; };
-		023176E128DE0391006C39CD /* OWM-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 023176DA28DE0391006C39CD /* OWM-info.plist */; };
 		023176E228DE0391006C39CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 023176DB28DE0391006C39CD /* LaunchScreen.storyboard */; };
 		023176E528DE0391006C39CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 023176DE28DE0391006C39CD /* Localizable.strings */; };
 		023176E928DE055C006C39CD /* colors.xml in Resources */ = {isa = PBXBuildFile; fileRef = 023176DD28DE0391006C39CD /* colors.xml */; };
@@ -101,7 +100,6 @@
 /* Begin PBXFileReference section */
 		020CCDFA28E2EF1E004A2CE7 /* WeatherDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsViewModel.swift; sourceTree = "<group>"; };
 		023176D828DE0391006C39CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		023176DA28DE0391006C39CD /* OWM-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OWM-info.plist"; sourceTree = "<group>"; };
 		023176DB28DE0391006C39CD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		023176DD28DE0391006C39CD /* colors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = colors.xml; sourceTree = "<group>"; };
 		023176DE28DE0391006C39CD /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -426,7 +424,6 @@
 				023176DE28DE0391006C39CD /* Localizable.strings */,
 				023176EA28DE05F8006C39CD /* swiftgen.yml */,
 				027EBBA928DDF8F600D5980D /* Info.plist */,
-				023176DA28DE0391006C39CD /* OWM-info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -558,7 +555,6 @@
 				0231771828DE0AC4006C39CD /* FavoritesCitiesList.storyboard in Resources */,
 				0231772428DE0AFA006C39CD /* WeatherMap.storyboard in Resources */,
 				0231773E28DE0B26006C39CD /* WeeklyDetailsView.xib in Resources */,
-				023176E128DE0391006C39CD /* OWM-info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
