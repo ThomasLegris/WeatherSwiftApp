@@ -164,9 +164,8 @@ private extension CurrentWeatherViewController {
     /// Call view model to perfom request.
     func requestWeather() {
         let city = cityTextField.text?.isEmpty == true
-        ? UserDefaults.standard.string(forKey: UserDefaultKeys.lastSearchedCity.rawValue)
+        ? viewModel.defaultCity?.name ?? ""
         : cityTextField.text
-        guard city?.isEmpty == false else { return }
 
         viewModel.requestWeather(with: city)
     }

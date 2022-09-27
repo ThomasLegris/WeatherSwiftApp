@@ -19,6 +19,26 @@ final class CurrentWeatherViewModel {
         return Reachability.isConnectedToNetwork()
     }
 
+    /// Returns last city which has been persisted in defaults.
+    var defaultCity: CityWeatherModel? {
+        // Read/Get Data from defaults.
+        if let data = UserDefaults.standard.data(forKey: UserDefaultKeys.lastSearchedCity.rawValue) {
+            do {
+                // User JSON Decoder.
+                let decoder = JSONDecoder()
+
+                // Decode the weather model.
+                let weatherModel = try decoder.decode(CityWeatherModel.self, from: data)
+                return weatherModel
+            } catch {
+                print("Unable to Decode Note (\(error))")
+                return nil
+            }
+        }
+
+        return nil
+    }
+
     // MARK: - Private Properties
     private let apiManager: ApiManagerProtocol
     private let persistanceManager: PersistanceManagerProtocol
@@ -39,12 +59,18 @@ extension CurrentWeatherViewModel {
     func requestWeather(with city: String?) {
         guard isNetworkReachable else {
             self.weatherErrorObs.value = .noInternet
+            if let defaultCity = defaultCity {
+                weatherModelObs.value = defaultCity
+            }
             return
         }
 
         guard let cityName = city,
               city?.isEmpty == false else {
             self.weatherErrorObs.value = .unknownCity
+            if let defaultCity = defaultCity {
+                weatherModelObs.value = defaultCity
+            }
             return
         }
 
@@ -59,13 +85,25 @@ extension CurrentWeatherViewModel {
                     self.weatherErrorObs.value = .unknownCity
                     return
                 }
-                UserDefaults.standard.set(model.name, forKey: UserDefaultKeys.lastSearchedCity.rawValue)
+                self.saveLastCityInDefault(with: model)
                 self.persistanceManager.updateCity(city: model)
                 self.weatherErrorObs.value = .none
                 self.weatherModelObs.value = model
                 self.updateDate()
             }
         })
+    }
+
+    func saveLastCityInDefault(with model: CityWeatherModel) {
+        let encoder = JSONEncoder()
+        do {
+            // Encode city weather model.
+            let data = try encoder.encode(model)
+            // Persist it in default.
+            UserDefaults.standard.set(data, forKey: UserDefaultKeys.lastSearchedCity.rawValue)
+        } catch {
+            print("Unable to encode data for city: \(model.name)")
+        }
     }
 
     /// Call the manager in order to get weather information from coordinate.

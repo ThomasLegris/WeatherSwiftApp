@@ -9,7 +9,7 @@ import Foundation
 
 /// Represents a city as simple swift object
 /// Also a usefull wrapper of `City` object. Avoid using a CoreData object in whole app.
-public struct CityWeatherModel {
+public struct CityWeatherModel: Codable {
     // MARK: - Public Properties
     public var name: String
     public var imageName: String
