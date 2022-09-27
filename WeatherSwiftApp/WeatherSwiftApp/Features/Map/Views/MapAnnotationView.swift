@@ -43,7 +43,8 @@ final class MapAnnotationView: MKAnnotationView {
     weak var delegate: MapAnnotationDelegate?
 
     // MARK: - Private Properties
-    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel(apiManager: WeatherApiManager.shared)
+    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel(apiManager: WeatherApiManager.shared,
+                                                                             persistanceManager: PersistanceManager.shared) // TODO: Create a specific viewModel
 
     // MARK: - Private Enums
     private enum Constants {

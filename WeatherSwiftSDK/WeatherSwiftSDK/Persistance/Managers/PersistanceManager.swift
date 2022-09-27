@@ -40,15 +40,27 @@ extension PersistanceManager: PersistanceManagerProtocol {
         return cityModels
     }
 
-    public func updateCity(city: CityWeatherModel?, completion: (Bool) -> Void) {
+    public func updateCity(city: CityWeatherModel?) {
         guard let cityName = city?.name,
               !cityName.isEmpty,
-              self.isCityRegistered(cityName: cityName) else {
-            completion(false)
+              self.isCityRegistered(cityName: cityName),
+        let objectContext = contextView else {
             return
         }
 
-        // TODO: update selected city object
+        guard let cityToUpdate: City = cities.first(where: { $0.name == city?.name }) else {
+            return
+        }
+
+        cityToUpdate.setValue(city?.name, forKey: "name")
+        cityToUpdate.setValue(city?.imageName, forKey: "imageName")
+        cityToUpdate.setValue(city?.temperature, forKey: "temperature")
+        cityToUpdate.setValue(city?.weatherDescription, forKey: "weatherDescription")
+        do {
+            try objectContext.save()
+        } catch {
+            print("Unable to update \(city?.name) city in database")
+        }
     }
 
     public func addOrRemoveCity(city: CityWeatherModel?, completion: (Bool) -> Void) {

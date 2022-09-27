@@ -25,7 +25,8 @@ final class CurrentWeatherViewController: UIViewController {
             nameCityLabel.text = cityName
         }
     }
-    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel(apiManager: WeatherApiManager.shared)
+    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel(apiManager: WeatherApiManager.shared,
+                                                                             persistanceManager: PersistanceManager.shared)
     private weak var coordinator: CurrentWeatherCoordinator?
 
     // MARK: - Private Enums

@@ -17,10 +17,12 @@ final class CurrentWeatherViewModel {
 
     // MARK: - Private Properties
     private let apiManager: ApiManagerProtocol
+    private let persistanceManager: PersistanceManagerProtocol
 
     // MARK: - Init
-    init(apiManager: ApiManagerProtocol) {
+    init(apiManager: ApiManagerProtocol, persistanceManager: PersistanceManagerProtocol) {
         self.apiManager = apiManager
+        self.persistanceManager = persistanceManager
     }
 }
 
@@ -54,7 +56,7 @@ extension CurrentWeatherViewModel {
                     return
                 }
                 UserDefaults.standard.set(model.name, forKey: UserDefaultKeys.lastSearchedCity.rawValue)
-
+                self.persistanceManager.updateCity(city: model)
                 self.weatherErrorObs.value = .none
                 self.weatherModelObs.value = model
                 self.updateDate()
@@ -90,6 +92,7 @@ extension CurrentWeatherViewModel {
                     return
                 }
 
+                self.persistanceManager.updateCity(city: model)
                 self.weatherErrorObs.value = .none
                 self.weatherModelObs.value = model
             }

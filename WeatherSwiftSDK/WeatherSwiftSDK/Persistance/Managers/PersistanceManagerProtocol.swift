@@ -30,7 +30,7 @@ public protocol PersistanceManagerProtocol {
     /// - Parameters:
     ///     - city: the targetted coredata city object
     ///     - completion: operation result as bool
-    func updateCity(city: CityWeatherModel?, completion: (Bool) -> Void)
+    func updateCity(city: CityWeatherModel?)
 
     /// Checks if a city is registered into the DB.
     ///

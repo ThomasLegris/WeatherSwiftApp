@@ -58,7 +58,7 @@ private extension WeatherDetailsViewController {
     @IBAction func favoriteButtonTouchedUpInside(_ sender: Any) {
         guard let model = currentWeatherModel else { return }
         viewModel.addOrRemoveCity(with: model) {
-                self.updateFavoriteButton()
+            self.updateFavoriteButton()
         }
     }
 }

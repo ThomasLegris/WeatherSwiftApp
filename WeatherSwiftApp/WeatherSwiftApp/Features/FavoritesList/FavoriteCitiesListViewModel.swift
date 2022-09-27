@@ -30,10 +30,10 @@ final class FavoriteCitiesListViewModel {
 private extension FavoriteCitiesListViewModel {
     /// Add observer on cities database.
     func observeCities() {
-        notificationCenter.addObserver(self,
-                                       selector: #selector(updateDatas),
-                                       name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                       object: persistanceManager.context)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateDatas),
+                                               name: .favoriteCitiesHasChanged,
+                                               object: nil)
         updateDatas()
     }
 

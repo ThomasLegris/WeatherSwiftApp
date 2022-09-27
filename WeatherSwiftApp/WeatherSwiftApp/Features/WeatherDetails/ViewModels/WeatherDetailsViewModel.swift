@@ -30,6 +30,7 @@ extension WeatherDetailsViewModel {
 
         persistanceManager.addOrRemoveCity(city: cityModel) { isSuccess in
             if isSuccess {
+                NotificationCenter.default.post(name: .favoriteCitiesHasChanged, object: nil)
                 completion()
             }
         }
