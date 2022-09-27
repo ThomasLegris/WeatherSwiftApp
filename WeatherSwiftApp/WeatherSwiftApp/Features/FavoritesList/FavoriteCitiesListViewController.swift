@@ -96,6 +96,11 @@ extension FavoriteCitiesListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension FavoriteCitiesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.displayDetails(with: dataSource[indexPath.item])
+        if viewModel.isNetworkReachable {
+            coordinator?.displayDetails(with: dataSource[indexPath.item])
+        } else {
+            showAlert(withTitle: L10n.commonError,
+                      message: L10n.errorNoInternetDetails)
+        }
     }
 }

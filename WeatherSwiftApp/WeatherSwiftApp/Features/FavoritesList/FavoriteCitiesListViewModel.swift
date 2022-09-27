@@ -9,6 +9,10 @@ import Foundation
 final class FavoriteCitiesListViewModel {
     // MARK: - Internal Properties
     var favoriteCitiesObs: Observable<[CityWeatherModel]> = Observable(value: [])
+    /// Returns true if connected to internet, false otherwise.
+    var isNetworkReachable: Bool {
+        return Reachability.isConnectedToNetwork()
+    }
 
     // MARK: - Private Properties
     private let notificationCenter: NotificationCenter = NotificationCenter.default

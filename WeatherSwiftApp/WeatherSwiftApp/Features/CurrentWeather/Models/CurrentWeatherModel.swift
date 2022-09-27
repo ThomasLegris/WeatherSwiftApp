@@ -85,7 +85,12 @@ enum WeatherError {
 
     /// Error's title.
     var title: String {
-        return L10n.commonError
+        switch self {
+        case .noInternet:
+            return L10n.commonWarning
+        default:
+            return L10n.commonError
+        }
     }
 
     /// Error's message.

@@ -14,6 +14,10 @@ final class CurrentWeatherViewModel {
                                                                                            temperature: 0.0))
     var weatherErrorObs: Observable<WeatherError> = Observable(value: .none)
     var updatedDateObs: Observable<String> = Observable(value: "")
+    /// Returns true if connected to internet, false otherwise.
+    var isNetworkReachable: Bool {
+        return Reachability.isConnectedToNetwork()
+    }
 
     // MARK: - Private Properties
     private let apiManager: ApiManagerProtocol
@@ -102,11 +106,6 @@ extension CurrentWeatherViewModel {
 
 // MARK: - Private Funcs
 private extension CurrentWeatherViewModel {
-    /// Returns true if connected to internet, false otherwise.
-    var isNetworkReachable: Bool {
-        return Reachability.isConnectedToNetwork()
-    }
-
     /// Update weather last updated time in hour.
     func updateDate() {
         let currentDateTime = Date()

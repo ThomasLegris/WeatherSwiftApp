@@ -14,6 +14,8 @@ internal enum L10n {
   internal static let commonError = L10n.tr("Localizable", "commonError", fallback: "Error")
   /// Ok
   internal static let commonOk = L10n.tr("Localizable", "commonOk", fallback: "Ok")
+  /// Warning
+  internal static let commonWarning = L10n.tr("Localizable", "commonWarning", fallback: "Warning")
   /// Daily
   internal static let dailyDetails = L10n.tr("Localizable", "dailyDetails", fallback: "Daily")
   /// *
@@ -21,8 +23,10 @@ internal enum L10n {
   internal static let dash = L10n.tr("Localizable", "dash", fallback: "-")
   /// Can't update weather info
   internal static let errorNoInfo = L10n.tr("Localizable", "errorNoInfo", fallback: "Can't update weather info")
-  /// No Internet
-  internal static let errorNoInternet = L10n.tr("Localizable", "errorNoInternet", fallback: "No Internet")
+  /// No Internet connection
+  internal static let errorNoInternet = L10n.tr("Localizable", "errorNoInternet", fallback: "No Internet connection")
+  /// Internet connection is needed for weather details
+  internal static let errorNoInternetDetails = L10n.tr("Localizable", "errorNoInternetDetails", fallback: "Internet connection is needed for weather details")
   /// Unknown city
   internal static let errorUnknownCity = L10n.tr("Localizable", "errorUnknownCity", fallback: "Unknown city")
   /// Unknown location

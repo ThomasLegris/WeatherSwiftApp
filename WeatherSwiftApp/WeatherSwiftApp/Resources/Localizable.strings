@@ -6,9 +6,11 @@
 "dash" = "-";
 "commonOk" = "Ok";
 "commonError" = "Error";
+"commonWarning" = "Warning";
 "errorUnknownLocation" = "Unknown location";
 "errorUnknownCity" = "Unknown city";
-"errorNoInternet" = "No Internet";
+"errorNoInternet" = "No Internet connection";
+"errorNoInternetDetails" = "Internet connection is needed for weather details";
 "errorNoInfo" = "Can't update weather info";
 "dailyDetails" = "Daily";
 "weeklyDetails" = "Weekly";

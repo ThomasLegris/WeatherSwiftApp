@@ -67,7 +67,12 @@ private extension CurrentWeatherViewController {
 
     @IBAction func seeMoreButtonTouchedUpInside(_ sender: Any) {
         seeMoreImageView.startRotate(repeatCount: 1.0)
-        coordinator?.displayDetails(with: viewModel.weatherModelObs.value)
+        if viewModel.isNetworkReachable {
+            coordinator?.displayDetails(with: viewModel.weatherModelObs.value)
+        } else {
+            showAlert(withTitle: L10n.commonError,
+                      message: L10n.errorNoInternetDetails)
+        }
     }
 }
 
