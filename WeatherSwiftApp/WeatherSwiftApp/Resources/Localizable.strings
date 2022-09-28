@@ -26,3 +26,4 @@
 "map" = "Map";
 "locationErrorTitle" = "Location Error";
 "locationErrorMessage" = "Can't find user location";
+"degreesUnit" = "°";

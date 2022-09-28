@@ -80,7 +80,6 @@ private extension MapAnnotationView {
         viewModel.requestWeather(with: annotation?.coordinate)
 
         viewModel.weatherModelObs.bind { [weak self] model in
-            guard self?.viewModel.weatherErrorObs.value == .none else { return }
             self?.updateView(with: model)
         }
         viewModel.weatherErrorObs.bind { [weak self] _ in
@@ -94,7 +93,7 @@ private extension MapAnnotationView {
     ///     - model: common weather model
     func updateView(with model: CityWeatherModel) {
         iconImageView.image = UIImage(named: model.imageName)
-        tempLabel.text = "\(Int(model.temperature))°"
+        tempLabel.text = model.temperature.tempDesccription
         delegate?.shouldShowWeatherCityInfos(cityName: model.name,
                                              weatherIconName: model.imageName,
                                              temperature: model.temperature)

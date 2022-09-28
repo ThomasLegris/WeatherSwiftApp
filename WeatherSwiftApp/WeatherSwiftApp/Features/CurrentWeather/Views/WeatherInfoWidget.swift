@@ -66,7 +66,7 @@ private extension WeatherInfoWidget {
             return
         }
 
-        temperatureLabel.text = "\(Int(model.temperature))°" // TODO: Add helper to show a temperature string from a float.
+        temperatureLabel.text = model.temperature.tempDesccription
         descriptionLabel.text = model.weatherDescription
         weatherImageView.image = UIImage(named: model.imageName)
     }

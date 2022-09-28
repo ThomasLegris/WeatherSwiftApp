@@ -21,6 +21,8 @@ internal enum L10n {
   /// *
   ///  * Localization.
   internal static let dash = L10n.tr("Localizable", "dash", fallback: "-")
+  /// °
+  internal static let degreesUnit = L10n.tr("Localizable", "degreesUnit", fallback: "°")
   /// Can't update weather info
   internal static let errorNoInfo = L10n.tr("Localizable", "errorNoInfo", fallback: "Can't update weather info")
   /// No Internet connection

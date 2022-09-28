@@ -54,7 +54,7 @@ final class MapCityInfosView: UIView {
     func fill(with model: CityWeatherModel) {
         self.model = model
         weatherImageView.image = UIImage(named: model.imageName)
-        tempLabel.text = "\(Int(model.temperature))°"
+        tempLabel.text = model.temperature.tempDesccription
         cityLabel.text = model.name
     }
 }

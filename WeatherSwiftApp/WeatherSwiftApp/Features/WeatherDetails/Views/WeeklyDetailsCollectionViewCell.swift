@@ -35,7 +35,7 @@ final class WeeklyDetailsCollectionViewCell: UICollectionViewCell {
                    icon: UIImage?,
                    temperature: Int) {
         weatherImageView.image = icon
-        tempLabel.text = "\(temperature)°"
+        tempLabel.text = temperature.tempDesccription
         let currentDate = Date(timeIntervalSince1970: TimeInterval(date))
 
         let formatter = DateFormatter()

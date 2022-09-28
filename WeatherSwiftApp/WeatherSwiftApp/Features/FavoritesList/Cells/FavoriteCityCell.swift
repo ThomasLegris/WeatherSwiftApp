@@ -75,7 +75,7 @@ private extension FavoriteCityCell {
     /// Update view according to weather request answer.
     func updateView() {
         let model = viewModel.weatherModelObs.value
-        temperatureLabel.text = "\(Int(model.temperature))°"
+        temperatureLabel.text = model.temperature.tempDesccription
         cityLabel.text = model.name
         weatherDescriptionLabel.text = model.weatherDescription
         weatherDescriptionIcon.image = UIImage(named: model.imageName)
