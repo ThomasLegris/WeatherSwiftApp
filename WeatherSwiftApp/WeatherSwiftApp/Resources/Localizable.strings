@@ -1,0 +1,33 @@
+
+/**
+ * Localization.
+*/
+
+"dash" = "-";
+"commonOk" = "Ok";
+"commonError" = "Error";
+"commonWarning" = "Warning";
+"commonWelcome" = "Welcome";
+"alertWelcomeMessage" = "To get weather information, please search for a city";
+"errorUnknownLocation" = "Unknown location";
+"errorUnknownCity" = "Unknown city";
+"errorNoInternet" = "No Internet connection";
+"errorNoInternetDetails" = "You can't see weather details. \n Internet connection is needed.";
+"errorNoCityDetails" = "You can't see weather details. \n Search a city first.";
+"errorNoInfo" = "Can't update weather info";
+"dailyDetails" = "Daily";
+"weeklyDetails" = "Weekly";
+"humidity" = "Humidity";
+"wind" = "Wind";
+"sunset" = "Sunset";
+"addFavoriteMessage" = "Start filing this list by searching a city on previous menu. \n\nWhen it's done, open the details view and click on top right button to add it";
+"sunrise" = "Sunrise";
+"speedUnit" = "km/h";
+"percentUnit" = "%%";
+"weatherDetails" = "Weather details";
+"home" = "Home";
+"favoriteList" = "Favorite cities";
+"map" = "Map";
+"locationErrorTitle" = "Location Error";
+"locationErrorMessage" = "Can't find user location";
+"degreesUnit" = "°";

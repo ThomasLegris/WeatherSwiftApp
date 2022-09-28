@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Iphone-wallpaper-minimalist-33.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Iphone-wallpaper-minimalist-34.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Iphone-wallpaper-minimalist-35.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

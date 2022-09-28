@@ -1,0 +1,7 @@
+# Avoid long line of code or doc.
+line_length: 150
+
+# limit on file length
+file_length:
+  warning: 600
+  error: 1000
