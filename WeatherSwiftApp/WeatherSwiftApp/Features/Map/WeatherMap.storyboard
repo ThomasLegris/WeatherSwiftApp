@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="om2-Bk-pxl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="om2-Bk-pxl">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,7 @@
         <!--Weather Map View Controller-->
         <scene sceneID="gAF-Wg-Bhz">
             <objects>
-                <viewController storyboardIdentifier="WeatherMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="om2-Bk-pxl" customClass="WeatherMapViewController" customModule="MyWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeatherMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="om2-Bk-pxl" customClass="WeatherMapViewController" customModule="WeatherSwiftApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wf3-fd-o0X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
                                     <action selector="locationButtonTouchedUpInside:" destination="om2-Bk-pxl" eventType="touchUpInside" id="gOa-ra-EKU"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZY-Jh-QgJ" customClass="MapCityInfosView" customModule="MyWeatherApp" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZY-Jh-QgJ" customClass="MapCityInfosView" customModule="WeatherSwiftApp" customModuleProvider="target">
                                 <rect key="frame" x="75" y="48" width="225" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="5J5-5i-RlX"/>
@@ -54,8 +54,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="detailsCityContainerView" destination="uZY-Jh-QgJ" id="6l0-Ke-QZI"/>
                         <outlet property="locationButton" destination="tMo-na-1lD" id="I3a-uQ-R57"/>
+                        <outlet property="mapCityInfosView" destination="uZY-Jh-QgJ" id="IIo-Ui-tp5"/>
                         <outlet property="mapView" destination="5fA-RR-QAY" id="Xtr-VA-EXc"/>
                     </connections>
                 </viewController>

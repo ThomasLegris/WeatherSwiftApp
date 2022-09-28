@@ -11,7 +11,7 @@ final class WeatherMapViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet private weak var mapView: MKMapView!
     @IBOutlet private weak var locationButton: UIButton!
-    @IBOutlet private weak var detailsCityContainerView: MapCityInfosView!
+    @IBOutlet private weak var mapCityInfosView: MapCityInfosView!
 
     // MARK: - Internal Properties
     weak var delegate: CommonViewControllerDelegate?
@@ -43,7 +43,7 @@ final class WeatherMapViewController: UIViewController {
         super.viewWillAppear(animated)
 
         mapView.removeAnnotations(mapView.annotations)
-        detailsCityContainerView.isHidden = true
+        mapCityInfosView.isHidden = true
     }
 }
 
@@ -108,13 +108,13 @@ private extension WeatherMapViewController {
 
     /// Shows map info view.
     func addWithAnimation() {
-        self.detailsCityContainerView.alpha = 0.0
-        self.detailsCityContainerView.isHidden = false
+        self.mapCityInfosView.alpha = 0.0
+        self.mapCityInfosView.isHidden = false
         UIView.animate(withDuration: 1.0,
                        delay: 0.0,
                        options: .curveEaseOut,
                        animations: {
-            self.detailsCityContainerView.alpha = 1.0
+            self.mapCityInfosView.alpha = 1.0
         })
     }
 }
@@ -132,11 +132,11 @@ extension WeatherMapViewController: MKMapViewDelegate {
 // MARK: - MapAnnotationDelegate
 extension WeatherMapViewController: MapAnnotationDelegate {
     func shouldShowWeatherCityInfos(cityName: String, weatherIconName: String, temperature: Float) {
-        detailsCityContainerView.fill(with: CityWeatherModel(name: cityName,
-                                                             imageName: weatherIconName,
-                                                             weatherDescription: "",
-                                                             temperature: temperature))
-        detailsCityContainerView.delegate = self
+        mapCityInfosView.fill(with: CityWeatherModel(name: cityName,
+                                                     imageName: weatherIconName,
+                                                     weatherDescription: "",
+                                                     temperature: temperature))
+        mapCityInfosView.delegate = self
         addWithAnimation()
     }
 }
