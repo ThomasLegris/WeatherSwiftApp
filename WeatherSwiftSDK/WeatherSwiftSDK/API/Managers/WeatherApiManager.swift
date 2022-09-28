@@ -76,7 +76,7 @@ extension WeatherApiManager: ApiManagerProtocol {
                     completion(nil, WeatherApiError.jsonParsingError)
                     return
                 }
-                
+
                 completion(jsonResponse, nil)
             } catch let decodeError {
                 print(decodeError)
@@ -90,7 +90,7 @@ extension WeatherApiManager: ApiManagerProtocol {
                                      Constants.longParam: longitude,
                                      Constants.unitsParam: Constants.tempUnit,
                                      Constants.keyParam: WeatherApiManager.shared.apiKey]
-        
+
         guard let request = urlRequest(weatherService: WeatherService.weatherByCoordinate,
                                        params: params) else {
             completion(nil, .badURL)

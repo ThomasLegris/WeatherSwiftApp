@@ -65,14 +65,12 @@ final class MapAnnotationView: MKAnnotationView {
 
 // MARK: - Private Funcs
 private extension MapAnnotationView {
-    /// Common init.
     func commonInit() {
         Bundle.main.loadNibNamed(Constants.nibName, owner: self)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         setupViewModel()
-
     }
 
     /// Launch request and observes callback.
@@ -87,10 +85,6 @@ private extension MapAnnotationView {
         }
     }
 
-    /// Updates the view.
-    ///
-    /// - Parameters:
-    ///     - model: common weather model
     func updateView(with model: CityWeatherModel) {
         iconImageView.image = UIImage(named: model.imageName)
         tempLabel.text = model.temperature.tempDesccription
@@ -99,10 +93,6 @@ private extension MapAnnotationView {
                                              temperature: model.temperature)
     }
 
-    /// Update error during a request.
-    ///
-    /// - Parameters:
-    ///     - error: the weather error
     func updateError() {
         iconImageView.image = nil
         tempLabel.text = ""

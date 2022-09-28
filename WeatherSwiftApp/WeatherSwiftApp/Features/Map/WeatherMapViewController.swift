@@ -67,7 +67,6 @@ private extension WeatherMapViewController {
 
 // MARK: - Private Funcs
 private extension WeatherMapViewController {
-    /// Inits the view.
     func initView() {
         mapView.register(MapAnnotationView.self, forAnnotationViewWithReuseIdentifier: Constants.identifier)
         locationButton.roundCorneredWith(backgroundColor: ColorName.black20.color,
@@ -92,7 +91,6 @@ private extension WeatherMapViewController {
         mapView.addAnnotation(annotation)
     }
 
-    /// Requests location access.
     func requestLocationAccess() {
         let status = CLLocationManager.authorizationStatus()
 
@@ -106,7 +104,7 @@ private extension WeatherMapViewController {
         }
     }
 
-    /// Shows map info view.
+    /// Shows map info view with a fade animation.
     func addWithAnimation() {
         self.mapCityInfosView.alpha = 0.0
         self.mapCityInfosView.isHidden = false

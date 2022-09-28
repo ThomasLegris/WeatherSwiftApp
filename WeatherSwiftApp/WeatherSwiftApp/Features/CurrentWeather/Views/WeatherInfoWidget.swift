@@ -43,7 +43,6 @@ final class WeatherInfoWidget: UIView {
 
 // MARK: - Private Funcs
 private extension WeatherInfoWidget {
-    /// Common init.
     func commonInitWeatherInfoWidget() {
         Bundle.main.loadNibNamed(Constants.nibName, owner: self)
         addSubview(contentView)
@@ -59,7 +58,6 @@ private extension WeatherInfoWidget {
         dateLabel.text = formatter.string(from: Date())
     }
 
-    /// Updates the view.
     func updateView() {
         guard let model = model else {
             resetView()
@@ -71,7 +69,6 @@ private extension WeatherInfoWidget {
         weatherImageView.image = UIImage(named: model.imageName)
     }
 
-    /// Resets the view.
     func resetView() {
         temperatureLabel.text = L10n.dash
         descriptionLabel.text = L10n.dash

@@ -70,7 +70,6 @@ final class WeeklyDetailsView: UIView {
 
 // MARK: - Private Funcs
 private extension WeeklyDetailsView {
-    /// Common init.
     func commonInitWeeklyDetailsView() {
         Bundle.main.loadNibNamed(Constants.nibName, owner: self)
         addSubview(contentView)

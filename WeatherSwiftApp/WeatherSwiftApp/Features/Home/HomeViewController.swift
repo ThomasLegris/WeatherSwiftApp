@@ -45,7 +45,6 @@ private extension HomeViewController {
 
 // MARK: - Private Funcs
 private extension HomeViewController {
-    /// Inits view.
     func initView() {
         weatherCoordinator.start()
         favCitiesCoordinator.start()
@@ -60,7 +59,6 @@ private extension HomeViewController {
                                 mapVC]
     }
 
-    /// Inits gesture recognizers.
     func initGestures() {
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))

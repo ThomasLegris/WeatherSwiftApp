@@ -83,7 +83,6 @@ enum WeatherError {
     case unknownCity
     case none
 
-    /// Error's title.
     var title: String {
         switch self {
         case .noInternet:
@@ -93,7 +92,6 @@ enum WeatherError {
         }
     }
 
-    /// Error's message.
     var message: String {
         switch self {
         case .noInternet:

@@ -70,7 +70,6 @@ private extension WeatherDetailsViewController {
 
 // MARK: - Private Funcs
 private extension WeatherDetailsViewController {
-    /// Inits the view.
     func initView() {
         detailsView.layer.cornerRadius = Constants.cornerRadius
         titleLabel.text = L10n.weatherDetails
@@ -79,7 +78,6 @@ private extension WeatherDetailsViewController {
         updateFavoriteButton()
     }
 
-    /// Updates favorite button.
     func updateFavoriteButton() {
         if PersistanceManager.shared.isCityRegistered(cityName: currentWeatherModel?.name) {
             favoriteButton.setImage(Asset.icFavoriteOn.image,

@@ -69,7 +69,6 @@ private extension MapCityInfosView {
 
 // MARK: - Private Funcs
 private extension MapCityInfosView {
-    /// Common init.
     func commonInitMapCityInfosView() {
         Bundle.main.loadNibNamed(Constants.nibName, owner: self)
         addSubview(contentView)

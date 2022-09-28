@@ -46,7 +46,6 @@ final class FavoriteCitiesListViewController: UIViewController {
 
 // MARK: - Private Funcs
 private extension FavoriteCitiesListViewController {
-    /// Inits the view.
     func initView() {
         titleLabel.text = L10n.favoriteList
         tableView.backgroundColor = .clear
@@ -56,7 +55,6 @@ private extension FavoriteCitiesListViewController {
         self.tableView.register(nib, forCellReuseIdentifier: "FavoriteCityCell")
     }
 
-    /// Setups the view model.
     func setupViewModel() {
         viewModel?.favoriteCitiesObs.bind { [weak self] _ in
             self?.updateView()
@@ -64,7 +62,6 @@ private extension FavoriteCitiesListViewController {
         updateView()
     }
 
-    /// Updates the view.
     func updateView() {
         guard let citiesList = viewModel?.favoriteCitiesObs.value else { return }
 

@@ -79,7 +79,6 @@ private extension CurrentWeatherViewController {
 
 // MARK: - Private Funcs
 private extension CurrentWeatherViewController {
-    /// Inits the view.
     func initView() {
         timeView.isHidden = cityName?.isEmpty != false
         timeLabel.textColor = ColorName.black60.color
@@ -102,7 +101,6 @@ private extension CurrentWeatherViewController {
         view.addGestureRecognizer(touchGesture)
     }
 
-    /// Inits the view model.
     func initViewModel() {
         // Observes weather request error.
         viewModel?.weatherErrorObs.bind { [weak self] error in
@@ -131,7 +129,7 @@ private extension CurrentWeatherViewController {
         timeLabel.text = "Last updated weather at \(date)"
     }
 
-    /// Update current city name.
+    /// Update current city name with api callback.
     ///
     /// - Parameters:
     ///     - city: new targetted city
@@ -171,7 +169,6 @@ private extension CurrentWeatherViewController {
         viewModel?.requestWeather(with: city)
     }
 
-    /// Dismiss the keyboard.
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }

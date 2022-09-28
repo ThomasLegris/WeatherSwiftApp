@@ -51,7 +51,6 @@ final class DailyDetailsView: UIView {
 
 // MARK: - Private Funcs
 private extension DailyDetailsView {
-    /// Common init.
     func commonInitDailyDetailsView() {
         Bundle.main.loadNibNamed(Constants.nibName, owner: self)
         addSubview(contentView)
@@ -68,7 +67,6 @@ private extension DailyDetailsView {
         setupViewModel()
     }
 
-    /// Sets up view model.
     func setupViewModel() {
         viewModel.dailyDetailsModelObs.bind { [weak self] model in
             DispatchQueue.main.async {

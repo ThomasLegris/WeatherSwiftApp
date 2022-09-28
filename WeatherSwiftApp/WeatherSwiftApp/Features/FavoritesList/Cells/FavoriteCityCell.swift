@@ -46,7 +46,6 @@ final class FavoriteCityCell: UITableViewCell {
 
 // MARK: - Private Funcs
 private extension FavoriteCityCell {
-    /// Inits the view.
     func initView() {
         resetView()
         bgView.cornerRadiusedWith(backgroundColor: ColorName.white20,
@@ -55,7 +54,6 @@ private extension FavoriteCityCell {
                                   borderWidth: Constants.borderWidth)
     }
 
-    /// Sets up the view model.
     func setupViewModel() {
         viewModel.requestWeather(with: cityModel?.name)
         viewModel.weatherModelObs.bind { [weak self] _ in
@@ -64,7 +62,6 @@ private extension FavoriteCityCell {
         updateView()
     }
 
-    /// Resets the view.
     func resetView() {
         temperatureLabel.text = L10n.dash
         cityLabel.text = L10n.dash

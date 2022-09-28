@@ -31,7 +31,7 @@ extension WeatherApiTests {
 
         // FIXME: No No API plist file error. See persistance manager about bundle research.
         // WHEN
-        manager.cityWeather(cityName: cityName) { res, error in
+        manager.cityWeather(cityName: cityName) { _, error in
             // THEN
             XCTAssertNotNil(error)
         }
