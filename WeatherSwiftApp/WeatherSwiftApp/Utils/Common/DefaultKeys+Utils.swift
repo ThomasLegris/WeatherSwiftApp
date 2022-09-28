@@ -6,4 +6,5 @@
 enum UserDefaultKeys: String {
     case lastSearchedCity = "key_lastSearchedCity"
     case lastUpdatedDate = "key_lastUpdatedDate"
+    case appLaunchCount = "key_appLaunchCount"
 }

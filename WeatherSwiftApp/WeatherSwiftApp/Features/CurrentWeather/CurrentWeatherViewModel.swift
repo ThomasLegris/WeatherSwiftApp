@@ -12,7 +12,7 @@ final class CurrentWeatherViewModel {
                                                                                            weatherDescription: L10n.dash,
                                                                                            temperature: 0.0))
     var weatherErrorObs: Observable<WeatherError> = Observable(value: .none)
-    var updatedDateObs: Observable<String> = Observable(value: "")
+    var updatedDateObs: Observable<String> = Observable(value: UserDefaults.standard.string(forKey: UserDefaultKeys.lastUpdatedDate.rawValue) ?? "")
     /// Returns true if connected to internet, false otherwise.
     var isNetworkReachable: Bool {
         return Reachability.isConnectedToNetwork()
@@ -114,8 +114,12 @@ private extension CurrentWeatherViewModel {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         formatter.dateStyle = .none
-
-        updatedDateObs.value = formatter.string(from: currentDateTime)
-        UserDefaults.standard.set(updatedDateObs.value, forKey: UserDefaultKeys.lastUpdatedDate.rawValue)
+        let time = formatter.string(from: currentDateTime)
+        if time.isEmpty {
+            updatedDateObs.value = UserDefaults.standard.string(forKey: UserDefaultKeys.lastUpdatedDate.rawValue) ?? ""
+        } else {
+            updatedDateObs.value = time
+            UserDefaults.standard.set(updatedDateObs.value, forKey: UserDefaultKeys.lastUpdatedDate.rawValue)
+        }
     }
 }

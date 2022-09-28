@@ -10,12 +10,16 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// To get the weather, please search for a city
+  internal static let alertWelcomeMessage = L10n.tr("Localizable", "alertWelcomeMessage", fallback: "To get the weather, please search for a city")
   /// Error
   internal static let commonError = L10n.tr("Localizable", "commonError", fallback: "Error")
   /// Ok
   internal static let commonOk = L10n.tr("Localizable", "commonOk", fallback: "Ok")
   /// Warning
   internal static let commonWarning = L10n.tr("Localizable", "commonWarning", fallback: "Warning")
+  /// Welcome here
+  internal static let commonWelcome = L10n.tr("Localizable", "commonWelcome", fallback: "Welcome here")
   /// Daily
   internal static let dailyDetails = L10n.tr("Localizable", "dailyDetails", fallback: "Daily")
   /// *
@@ -23,12 +27,16 @@ internal enum L10n {
   internal static let dash = L10n.tr("Localizable", "dash", fallback: "-")
   /// °
   internal static let degreesUnit = L10n.tr("Localizable", "degreesUnit", fallback: "°")
+  /// You can't see weather details. 
+  ///  Search a city first.
+  internal static let errorNoCityDetails = L10n.tr("Localizable", "errorNoCityDetails", fallback: "You can't see weather details. \n Search a city first.")
   /// Can't update weather info
   internal static let errorNoInfo = L10n.tr("Localizable", "errorNoInfo", fallback: "Can't update weather info")
   /// No Internet connection
   internal static let errorNoInternet = L10n.tr("Localizable", "errorNoInternet", fallback: "No Internet connection")
-  /// Internet connection is needed for weather details
-  internal static let errorNoInternetDetails = L10n.tr("Localizable", "errorNoInternetDetails", fallback: "Internet connection is needed for weather details")
+  /// You can't see weather details. 
+  ///  Internet connection is needed.
+  internal static let errorNoInternetDetails = L10n.tr("Localizable", "errorNoInternetDetails", fallback: "You can't see weather details. \n Internet connection is needed.")
   /// Unknown city
   internal static let errorUnknownCity = L10n.tr("Localizable", "errorUnknownCity", fallback: "Unknown city")
   /// Unknown location

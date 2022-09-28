@@ -7,10 +7,13 @@
 "commonOk" = "Ok";
 "commonError" = "Error";
 "commonWarning" = "Warning";
+"commonWelcome" = "Welcome";
+"alertWelcomeMessage" = "To get weather information, please search for a city";
 "errorUnknownLocation" = "Unknown location";
 "errorUnknownCity" = "Unknown city";
 "errorNoInternet" = "No Internet connection";
-"errorNoInternetDetails" = "Internet connection is needed for weather details";
+"errorNoInternetDetails" = "You can't see weather details. \n Internet connection is needed.";
+"errorNoCityDetails" = "You can't see weather details. \n Search a city first.";
 "errorNoInfo" = "Can't update weather info";
 "dailyDetails" = "Daily";
 "weeklyDetails" = "Weekly";

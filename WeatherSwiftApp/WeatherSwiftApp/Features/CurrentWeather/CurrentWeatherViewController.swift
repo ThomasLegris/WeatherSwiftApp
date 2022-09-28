@@ -68,11 +68,16 @@ private extension CurrentWeatherViewController {
 
     @IBAction func seeMoreButtonTouchedUpInside(_ sender: Any) {
         seeMoreImageView.startRotate(repeatCount: 1.0)
-        if viewModel?.isNetworkReachable == true, let model = viewModel?.weatherModelObs.value {
+        if viewModel?.isNetworkReachable == false {
+            self.showAlert(withTitle: L10n.commonError,
+                      message: L10n.errorNoInternetDetails)
+        } else if let model = viewModel?.weatherModelObs.value,
+                  model.name.isValidCityName {
             delegate?.didClickOnDetails(weatherModel: model)
         } else {
-            showAlert(withTitle: L10n.commonError,
-                      message: L10n.errorNoInternetDetails)
+            self.showAlert(withTitle: L10n.commonError,
+                      message: L10n.errorNoCityDetails)
+
         }
     }
 }
@@ -126,6 +131,7 @@ private extension CurrentWeatherViewController {
     /// - Parameters:
     ///     - date: string of the last updated date
     func updateDate(with date: String) {
+        timeView.isHidden = date.isEmpty
         timeLabel.text = "Last updated weather at \(date)"
     }
 
@@ -166,7 +172,14 @@ private extension CurrentWeatherViewController {
         ? viewModel?.defaultCity?.name ?? ""
         : cityTextField.text
 
-        viewModel?.requestWeather(with: city)
+        // Don't call API if there is no city written in textfield and never setted in default.
+        if city?.isEmpty == false {
+            viewModel?.requestWeather(with: city)
+        } else if UserDefaults.standard.integer(forKey: UserDefaultKeys.appLaunchCount.rawValue) < 2 {
+            // Show a welcome message at first launch.
+            self.showAlert(withTitle: L10n.commonWelcome,
+                           message: L10n.alertWelcomeMessage)
+        }
     }
 
     @objc func dismissKeyboard() {
