@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  WeatherSwiftApp
 //
-//  Created by Consultant on 23/09/2022.
+//  Created by Thomas Legris on 23/09/2022.
 //
 
 import UIKit

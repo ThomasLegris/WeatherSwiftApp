@@ -2,7 +2,7 @@
 //  WeatherApiManager.swift
 //  WeatherSwiftSDK
 //
-//  Created by Consultant on 23/09/2022.
+//  Created by Thomas Legris on 23/09/2022.
 //
 //
 
@@ -46,24 +46,24 @@ public final class WeatherApiManager {
 
 // MARK: - WeatherApi
 extension WeatherApiManager: ApiManagerProtocol {
-    public func cityWeather(cityName: String, completion: @escaping (LocalWeatherResponse?, Error?) -> Void) {
+    public func cityWeather(cityName: String, completion: @escaping (LocalWeatherResponse?, WeatherApiError?) -> Void) {
         let params = [Constants.cityParam: cityName,
                       Constants.unitsParam: Constants.tempUnit,
                       Constants.keyParam: apiKey]
         guard let request = urlRequest(weatherService: WeatherService.currentWeather,
                                        params: params) else {
-            completion(nil, WeatherApiError.badURL)
+            completion(nil, .badURL)
             return
         }
 
         URLSession.shared.dataTask(with: request) { data, _, error in
             guard error == nil else {
-                completion(nil, error)
+                completion(nil, .httpError)
                 return
             }
 
             guard let responseData = data else {
-                completion(nil, WeatherApiError.noData)
+                completion(nil, .noData)
                 return
             }
 
@@ -76,35 +76,35 @@ extension WeatherApiManager: ApiManagerProtocol {
                     completion(nil, WeatherApiError.jsonParsingError)
                     return
                 }
-
+                
                 completion(jsonResponse, nil)
             } catch let decodeError {
                 print(decodeError)
-                completion(nil, decodeError)
+                completion(nil, .jsonParsingError)
             }
         }.resume()
     }
 
-    public func locationWeather(latitude: Double, longitude: Double, completion: @escaping (LocalWeatherResponse?, Error?) -> Void) {
+    public func locationWeather(latitude: Double, longitude: Double, completion: @escaping (LocalWeatherResponse?, WeatherApiError?) -> Void) {
         let params: [String: Any] = [Constants.latParam: latitude,
                                      Constants.longParam: longitude,
                                      Constants.unitsParam: Constants.tempUnit,
                                      Constants.keyParam: WeatherApiManager.shared.apiKey]
-
+        
         guard let request = urlRequest(weatherService: WeatherService.weatherByCoordinate,
                                        params: params) else {
-            completion(nil, WeatherApiError.badURL)
+            completion(nil, .badURL)
             return
         }
 
         URLSession.shared.dataTask(with: request) { data, _, error in
             guard error == nil else {
-                completion(nil, error)
+                completion(nil, .httpError)
                 return
             }
 
             guard let responseData = data else {
-                completion(nil, WeatherApiError.noData)
+                completion(nil, .noData)
                 return
             }
 
@@ -116,29 +116,29 @@ extension WeatherApiManager: ApiManagerProtocol {
                 completion(jsonResponse, nil)
             } catch let decodeError {
                 print(decodeError)
-                completion(nil, decodeError)
+                completion(nil, .jsonParsingError)
             }
         }.resume()
     }
 
-    public func cityDetailsWeather(cityName: String, completion: @escaping (DailyDetailsResponse?, Error?) -> Void) {
+    public func cityDetailsWeather(cityName: String, completion: @escaping (DailyDetailsResponse?, WeatherApiError?) -> Void) {
         let params = [Constants.cityParam: cityName,
                       Constants.unitsParam: Constants.tempUnit,
                       Constants.keyParam: apiKey]
         guard let request = urlRequest(weatherService: WeatherService.currentWeather,
                                        params: params) else {
-            completion(nil, WeatherApiError.badURL)
+            completion(nil, .badURL)
             return
         }
 
         URLSession.shared.dataTask(with: request) { data, _, error in
             guard error == nil else {
-                completion(nil, error)
+                completion(nil, .httpError)
                 return
             }
 
             guard let responseData = data else {
-                completion(nil, WeatherApiError.noData)
+                completion(nil, .noData)
                 return
             }
 
@@ -149,29 +149,29 @@ extension WeatherApiManager: ApiManagerProtocol {
                 completion(jsonResponse, nil)
             } catch let decodeError {
                 print(decodeError)
-                completion(nil, decodeError)
+                completion(nil, .jsonParsingError)
             }
         }.resume()
     }
 
-    public func cityWeeklyWeather(cityName: String, completion: @escaping (WeeklyDetailsResponse?, Error?) -> Void) {
+    public func cityWeeklyWeather(cityName: String, completion: @escaping (WeeklyDetailsResponse?, WeatherApiError?) -> Void) {
         let params = [Constants.cityParam: cityName,
                       Constants.unitsParam: Constants.tempUnit,
                       Constants.keyParam: apiKey]
         guard let request = urlRequest(weatherService: WeatherService.weeklyWeather,
                                        params: params) else {
-            completion(nil, WeatherApiError.badURL)
+            completion(nil, .badURL)
             return
         }
 
         URLSession.shared.dataTask(with: request) { data, _, error in
             guard error == nil else {
-                completion(nil, error)
+                completion(nil, .httpError)
                 return
             }
 
             guard let responseData = data else {
-                completion(nil, WeatherApiError.noData)
+                completion(nil, .noData)
                 return
             }
 
@@ -183,7 +183,7 @@ extension WeatherApiManager: ApiManagerProtocol {
                 completion(jsonResponse, nil)
             } catch let decodeError {
                 print(decodeError)
-                completion(nil, decodeError)
+                completion(nil, .jsonParsingError)
             }
         }.resume()
     }

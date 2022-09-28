@@ -16,7 +16,7 @@ public protocol ApiManagerProtocol {
     /// - Parameters:
     ///     - cityName: name of targetted city
     /// - Returns: A single element sequence with local response.
-    func cityWeather(cityName: String, completion: @escaping (_ response: LocalWeatherResponse?, _ error: Error?) -> Void)
+    func cityWeather(cityName: String, completion: @escaping (_ response: LocalWeatherResponse?, _ error: WeatherApiError?) -> Void)
 
     /// Gets global weather by coordinates.
     ///
@@ -24,19 +24,19 @@ public protocol ApiManagerProtocol {
     ///     - latitude: latitude
     ///     - longitude: longitude
     /// - Returns: A single element sequence with local response.
-    func locationWeather(latitude: Double, longitude: Double, completion: @escaping (_ response: LocalWeatherResponse?, _ error: Error?) -> Void)
+    func locationWeather(latitude: Double, longitude: Double, completion: @escaping (_ response: LocalWeatherResponse?, _ error: WeatherApiError?) -> Void)
 
     /// Gets details weather.
     ///
     /// - Parameters:
     ///     - cityName: name of targetted city
     /// - Returns: A single element sequence with details response.
-    func cityDetailsWeather(cityName: String, completion: @escaping (_ response: DailyDetailsResponse?, _ error: Error?) -> Void)
+    func cityDetailsWeather(cityName: String, completion: @escaping (_ response: DailyDetailsResponse?, _ error: WeatherApiError?) -> Void)
 
     /// Gets next week weather.
     ///
     /// - Parameters:
     ///     - cityName: name of targetted city
     /// - Returns: A single element sequence with weekly weather response.
-    func cityWeeklyWeather(cityName: String, completion: @escaping (_ response: WeeklyDetailsResponse?, _ error: Error?) -> Void)
+    func cityWeeklyWeather(cityName: String, completion: @escaping (_ response: WeeklyDetailsResponse?, _ error: WeatherApiError?) -> Void)
 }
