@@ -6,6 +6,7 @@ import UIKit
 import WeatherSwiftSDK
 
 protocol WeatherDetailsViewControllerDelegate: AnyObject {
+    /// Called when user try to dismiss this screen.
     func didClickOnDismiss()
 }
 

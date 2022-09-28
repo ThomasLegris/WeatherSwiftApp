@@ -19,15 +19,16 @@ final class CurrentWeatherViewController: UIViewController {
     @IBOutlet private weak var seeMoreImageView: UIImageView!
     @IBOutlet private weak var timeView: UIView!
 
+    // MARK: - Internal Properties
+    weak var delegate: CommonViewControllerDelegate?
+
     // MARK: - Private Properties
     private var cityName: String? {
         didSet {
             nameCityLabel.text = cityName
         }
     }
-    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel(apiManager: WeatherApiManager.shared,
-                                                                             persistanceManager: PersistanceManager.shared)
-    private weak var coordinator: CurrentWeatherCoordinator?
+    private var viewModel: CurrentWeatherViewModel?
 
     // MARK: - Private Enums
     private enum Constants {
@@ -37,9 +38,9 @@ final class CurrentWeatherViewController: UIViewController {
     }
 
     // MARK: - Setup
-    static func instantiate(coordinator: CurrentWeatherCoordinator?) -> CurrentWeatherViewController {
+    static func instantiate(viewModel: CurrentWeatherViewModel) -> CurrentWeatherViewController {
         let viewController = StoryboardScene.CurrentWeather.initialScene.instantiate()
-        viewController.coordinator = coordinator
+        viewController.viewModel = viewModel
 
         return viewController
     }
@@ -67,8 +68,8 @@ private extension CurrentWeatherViewController {
 
     @IBAction func seeMoreButtonTouchedUpInside(_ sender: Any) {
         seeMoreImageView.startRotate(repeatCount: 1.0)
-        if viewModel.isNetworkReachable {
-            coordinator?.displayDetails(with: viewModel.weatherModelObs.value)
+        if viewModel?.isNetworkReachable == true, let model = viewModel?.weatherModelObs.value {
+            delegate?.didClickOnDetails(weatherModel: model)
         } else {
             showAlert(withTitle: L10n.commonError,
                       message: L10n.errorNoInternetDetails)
@@ -104,20 +105,20 @@ private extension CurrentWeatherViewController {
     /// Inits the view model.
     func initViewModel() {
         // Observes weather request error.
-        viewModel.weatherErrorObs.bind { [weak self] error in
+        viewModel?.weatherErrorObs.bind { [weak self] error in
             guard error != .none else { return }
 
             self?.updateError(with: error)
         }
 
         // Observes weather response.
-        viewModel.weatherModelObs.bind { [weak self] model in
+        viewModel?.weatherModelObs.bind { [weak self] model in
             self?.updateWidgetModel(with: model)
             self?.updateCityName(with: model.name)
         }
 
         // Observes last updated date in hours.
-        viewModel.updatedDateObs.bind { [weak self] date in
+        viewModel?.updatedDateObs.bind { [weak self] date in
             self?.updateDate(with: date)
         }
     }
@@ -164,10 +165,10 @@ private extension CurrentWeatherViewController {
     /// Call view model to perfom request.
     func requestWeather() {
         let city = cityTextField.text?.isEmpty == true
-        ? viewModel.defaultCity?.name ?? ""
+        ? viewModel?.defaultCity?.name ?? ""
         : cityTextField.text
 
-        viewModel.requestWeather(with: city)
+        viewModel?.requestWeather(with: city)
     }
 
     /// Dismiss the keyboard.

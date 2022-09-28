@@ -7,12 +7,15 @@ import WeatherSwiftSDK
 
 /// Coordinator which handles navigation for map.
 final class MapCoodinator: Coordinator {
+    // MARK: - Internal Properties
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController?
     var parentCoordinator: Coordinator?
 
+    // MARK: - Internal Funcs
     func start() {
-        let mapViewController = WeatherMapViewController.instantiate(coordinator: self)
+        let mapViewController = WeatherMapViewController.instantiate()
+        mapViewController.delegate = self
         mapViewController.setupTabBar(title: L10n.map,
                                       image: Asset.icMapItemOff.image,
                                       selectedImage: Asset.icMapItemOn.image)
@@ -21,13 +24,9 @@ final class MapCoodinator: Coordinator {
     }
 }
 
-// MARK: - Internal Funcs
-extension MapCoodinator {
-    /// Displays details screen.
-    ///
-    /// - Parameters:
-    ///     - cityName: name of the city
-    func displayDetails(with weatherModel: CityWeatherModel) {
+// MARK: - CommonViewControllerDelegate
+extension MapCoodinator: CommonViewControllerDelegate {
+    func didClickOnDetails(weatherModel: CityWeatherModel) {
         let detailsViewModel = WeatherDetailsViewModel(persistanceManager: PersistanceManager.shared)
         let viewController = WeatherDetailsViewController.instantiate(viewModel: detailsViewModel,
                                                                       weatherModel: weatherModel)

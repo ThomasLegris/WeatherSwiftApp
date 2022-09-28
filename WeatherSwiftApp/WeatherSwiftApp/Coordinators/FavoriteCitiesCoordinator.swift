@@ -7,27 +7,27 @@ import WeatherSwiftSDK
 
 /// Coordinator which handles navigation for favorite cities list.
 final class FavoriteCitiesCoordinator: Coordinator {
+    // MARK: - Internal Properties
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController?
     var parentCoordinator: Coordinator?
 
+    // MARK: - Internal Funcs
     func start() {
-        let favoriteCitiesViewController = FavoriteCitiesListViewController.instantiate(coordinator: self)
-        favoriteCitiesViewController.setupTabBar(title: L10n.favoriteList,
-                                                 image: Asset.icFavItemOff.image,
-                                                 selectedImage: Asset.icFavItemOn.image)
-        self.navigationController = UINavigationController(rootViewController: favoriteCitiesViewController)
+        let viewModel = FavoriteCitiesListViewModel(persistanceManager: PersistanceManager.shared)
+        let viewController = FavoriteCitiesListViewController.instantiate(viewModel: viewModel)
+        viewController.delegate = self
+        viewController.setupTabBar(title: L10n.favoriteList,
+                                   image: Asset.icFavItemOff.image,
+                                   selectedImage: Asset.icFavItemOn.image)
+        self.navigationController = UINavigationController(rootViewController: viewController)
         self.navigationController?.isNavigationBarHidden = true
     }
 }
 
-// MARK: - Internal Funcs
-extension FavoriteCitiesCoordinator {
-    /// Displays details screen.
-    ///
-    /// - Parameters:
-    ///     - cityName: name of the city
-    func displayDetails(with weatherModel: CityWeatherModel) {
+// MARK: - CommonViewControllerDelegate
+extension FavoriteCitiesCoordinator: CommonViewControllerDelegate {
+    func didClickOnDetails(weatherModel: CityWeatherModel) {
         let detailsViewModel = WeatherDetailsViewModel(persistanceManager: PersistanceManager.shared)
         let viewController = WeatherDetailsViewController.instantiate(viewModel: detailsViewModel,
                                                                       weatherModel: weatherModel)

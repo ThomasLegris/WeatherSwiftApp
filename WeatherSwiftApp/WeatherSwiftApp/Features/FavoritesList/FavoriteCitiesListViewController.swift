@@ -12,10 +12,10 @@ final class FavoriteCitiesListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Internal Properties
-    weak var coordinator: FavoriteCitiesCoordinator?
+    weak var delegate: CommonViewControllerDelegate?
 
     // MARK: - Private Properties
-    private let viewModel = FavoriteCitiesListViewModel(persistanceManager: PersistanceManager.shared)
+    private var viewModel: FavoriteCitiesListViewModel?
     private var dataSource: [CityWeatherModel] = [] {
         didSet {
             tableView.reloadData()
@@ -28,9 +28,9 @@ final class FavoriteCitiesListViewController: UIViewController {
     }
 
     // MARK: - Setup
-    static func instantiate(coordinator: FavoriteCitiesCoordinator?) -> FavoriteCitiesListViewController {
+    static func instantiate(viewModel: FavoriteCitiesListViewModel) -> FavoriteCitiesListViewController {
         let viewController = StoryboardScene.FavoritesCitiesList.initialScene.instantiate()
-        viewController.coordinator = coordinator
+        viewController.viewModel = viewModel
 
         return viewController
     }
@@ -58,7 +58,7 @@ private extension FavoriteCitiesListViewController {
 
     /// Setups the view model.
     func setupViewModel() {
-        viewModel.favoriteCitiesObs.bind { [weak self] _ in
+        viewModel?.favoriteCitiesObs.bind { [weak self] _ in
             self?.updateView()
         }
         updateView()
@@ -66,7 +66,9 @@ private extension FavoriteCitiesListViewController {
 
     /// Updates the view.
     func updateView() {
-        dataSource = viewModel.favoriteCitiesObs.value
+        guard let citiesList = viewModel?.favoriteCitiesObs.value else { return }
+
+        dataSource = citiesList
     }
 }
 
@@ -96,8 +98,8 @@ extension FavoriteCitiesListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension FavoriteCitiesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if viewModel.isNetworkReachable {
-            coordinator?.displayDetails(with: dataSource[indexPath.item])
+        if viewModel?.isNetworkReachable == true {
+            delegate?.didClickOnDetails(weatherModel: dataSource[indexPath.item])
         } else {
             showAlert(withTitle: L10n.commonError,
                       message: L10n.errorNoInternetDetails)

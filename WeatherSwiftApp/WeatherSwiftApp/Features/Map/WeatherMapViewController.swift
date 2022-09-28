@@ -14,7 +14,7 @@ final class WeatherMapViewController: UIViewController {
     @IBOutlet private weak var detailsCityContainerView: MapCityInfosView!
 
     // MARK: - Internal Properties
-    weak var coordinator: MapCoodinator?
+    weak var delegate: CommonViewControllerDelegate?
 
     // MARK: - Private Properties
     private let locationManager = CLLocationManager()
@@ -25,9 +25,8 @@ final class WeatherMapViewController: UIViewController {
     }
 
     // MARK: - Setup
-    static func instantiate(coordinator: MapCoodinator?) -> WeatherMapViewController {
+    static func instantiate() -> WeatherMapViewController {
         let viewController = StoryboardScene.WeatherMap.initialScene.instantiate()
-        viewController.coordinator = coordinator
 
         return viewController
     }
@@ -35,14 +34,14 @@ final class WeatherMapViewController: UIViewController {
     // MARK: - Override Funcs
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         initView()
         requestLocationAccess()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         mapView.removeAnnotations(mapView.annotations)
         detailsCityContainerView.isHidden = true
     }
@@ -145,6 +144,6 @@ extension WeatherMapViewController: MapAnnotationDelegate {
 // MARK: - MapCityInfosViewDelegate
 extension WeatherMapViewController: MapCityInfosViewDelegate {
     func didTouchOnDetails(weatherModel: CityWeatherModel) {
-        coordinator?.displayDetails(with: weatherModel)
+        delegate?.didClickOnDetails(weatherModel: weatherModel)
     }
 }

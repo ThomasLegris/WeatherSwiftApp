@@ -146,7 +146,6 @@ extension WeatherApiManager: ApiManagerProtocol {
 
             do {
                 let jsonResponse = try decoder.decode(DailyDetailsResponse.self, from: responseData)
-
                 completion(jsonResponse, nil)
             } catch let decodeError {
                 print(decodeError)
@@ -154,7 +153,7 @@ extension WeatherApiManager: ApiManagerProtocol {
             }
         }.resume()
     }
-    
+
     public func cityWeeklyWeather(cityName: String, completion: @escaping (WeeklyDetailsResponse?, Error?) -> Void) {
         let params = [Constants.cityParam: cityName,
                       Constants.unitsParam: Constants.tempUnit,
