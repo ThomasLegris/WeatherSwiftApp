@@ -23,8 +23,8 @@ public protocol ApiManagerProtocol {
     /// Gets global weather by coordinates.
     ///
     /// - Parameters:
-    ///     - latitude: latitude
-    ///     - longitude: longitude
+    ///     - latitude: latitude in degrees: [-90, 90]
+    ///     - longitude: longitude in degrees: [-180, 180]
     ///     - completion: completion called after request providing response and/or optionnal error
     /// - Returns: A single element sequence with local response.
     func locationWeather(latitude: Double,

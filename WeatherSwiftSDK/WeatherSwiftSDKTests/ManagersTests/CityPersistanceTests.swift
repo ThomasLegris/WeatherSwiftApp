@@ -25,23 +25,12 @@ final class PersistanceRegisterCityTests: XCTestCase {
 
 // MARK: - Register City
 extension PersistanceRegisterCityTests {
-    func testRegisterNilCityName() throws {
-        // Given
-        let cityName: String? = nil
-
-        // When
-        manager.updateCity(cityName: cityName) { isSuccess in
-            // Then
-            XCTAssertEqual(isSuccess, false)
-        }
-    }
-
     func testRegisterEmptyCityName() throws {
         // Given
-        let cityName: String? = ""
+        let city = CityWeatherModel(name: "", imageName: "", weatherDescription: "", temperature: 0)
 
         // When
-        manager.updateCity(cityName: cityName) { isSuccess in
+        manager.addOrRemoveCity(city: city) { isSuccess in
             // Then
             XCTAssertEqual(isSuccess, false)
         }
@@ -49,10 +38,10 @@ extension PersistanceRegisterCityTests {
 
     func testRegisterValidCityName() throws {
         // Given
-        let cityName: String? = "London"
+        let city = CityWeatherModel(name: "London", imageName: "", weatherDescription: "Clouds", temperature: 10.0)
 
         // When
-        manager.updateCity(cityName: cityName) { isSuccess in
+        manager.addOrRemoveCity(city: city) { isSuccess in
             // Then
             XCTAssertEqual(isSuccess, true)
         }
@@ -63,17 +52,17 @@ extension PersistanceRegisterCityTests {
 extension PersistanceRegisterCityTests {
     func testRemoveValidCityName() throws {
         // Given
-        let cityName: String? = "Paris"
+        let city = CityWeatherModel(name: "Paris", imageName: "", weatherDescription: "Sunny", temperature: 14.0)
 
         // When
-        manager.updateCity(cityName: cityName, completion: { registerSucceed in
+        manager.addOrRemoveCity(city: city) { registerSucceed in
             if registerSucceed {
-                manager.updateCity(cityName: cityName) { removeSucceed in
+                manager.addOrRemoveCity(city: city) { removeSucceed in
                     // Then
                     XCTAssertEqual(removeSucceed, true)
                 }
             }
-        })
+        }
     }
 }
 
