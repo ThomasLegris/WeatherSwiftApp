@@ -57,6 +57,14 @@ private extension HomeViewController {
         self.viewControllers = [weatherVC,
                                 favCityVC,
                                 mapVC]
+        /// Specific fix for iOS15 tab bar color issue.
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = ColorName.white80.color
+            tabBar.standardAppearance = appearance
+            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        }
     }
 
     func initGestures() {
