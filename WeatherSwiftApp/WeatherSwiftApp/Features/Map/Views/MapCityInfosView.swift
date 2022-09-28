@@ -75,7 +75,7 @@ private extension MapCityInfosView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        self.cornerRadiusedWith(backgroundColor: .white50,
+        self.cornerRadiusedWith(backgroundColor: .white80,
                                 borderColor: .white,
                                 radius: Constants.radius,
                                 borderWidth: Constants.borderWidth)
