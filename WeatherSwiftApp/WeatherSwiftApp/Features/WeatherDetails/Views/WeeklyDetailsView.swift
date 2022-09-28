@@ -25,34 +25,15 @@ final class WeeklyDetailsView: UIView {
     // MARK: - Private Properties
     private let viewModel: WeeklyDetailsViewModel = WeeklyDetailsViewModel(apiManager: WeatherApiManager.shared)
 
-    /// Returns filtered list with only daily value (hourly value are skipped).
-    private var filteredList: [DailyWeather] {
-        var filteredTab: [DailyWeather] = []
-        let list = viewModel.weeklyDetailsModelObs.value.list
-        list.forEach { element in
-            let formatter = DateFormatter()
-            formatter.dateFormat = Constants.format
-            guard let dateHour = Int(formatter.string(from: Date(timeIntervalSince1970: TimeInterval(element.date)))) else { return }
-
-            if Constants.afternoonTab.contains(dateHour) {
-                filteredTab.append(element)
-            }
-        }
-
-        return filteredTab
-    }
-
     /// Returns item number.
     private var itemNumber: Int {
-        return filteredList.count
+        return viewModel.filteredList.count
     }
 
     // MARK: - Private Enums
     private enum Constants {
         static let cellHeight: CGFloat = 90.0
         static let titleRadius: CGFloat = 9.0
-        static let format: String = "HH"
-        static let afternoonTab: [Int] = [13, 14, 15]
         static let nibName: String = "WeeklyDetailsView"
     }
 
@@ -75,7 +56,6 @@ private extension WeeklyDetailsView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        setupViewModel()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
@@ -86,9 +66,9 @@ private extension WeeklyDetailsView {
         weeklyTitleLabel.text = L10n.weeklyDetails
         weeklyTitleView.cornerRadiusedWith(backgroundColor: .white20,
                                            radius: Constants.titleRadius)
+        setupViewModel()
     }
 
-    /// Sets up observer for weekly view model.
     func setupViewModel() {
         viewModel.weeklyDetailsModelObs.bind { [weak self] _ in
             self?.collectionView.reloadData()
@@ -108,7 +88,7 @@ extension WeeklyDetailsView: UICollectionViewDataSource {
                                                       for: indexPath)
 
         if let weeklyCell = cell as? WeeklyDetailsCollectionViewCell {
-            let weatherDay = filteredList[indexPath.row]
+            let weatherDay = viewModel.filteredList[indexPath.row]
             weeklyCell.setupCell(date: weatherDay.date,
                                  icon: UIImage(named: weatherDay.weather[0].icon),
                                  temperature: Int(weatherDay.main.temp))

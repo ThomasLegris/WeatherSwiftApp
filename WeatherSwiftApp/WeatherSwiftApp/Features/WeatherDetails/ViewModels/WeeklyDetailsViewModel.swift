@@ -9,8 +9,32 @@ final class WeeklyDetailsViewModel {
     // MARK: - Internal Properties
     var weeklyDetailsModelObs: Observable<WeeklyDetailsModel> = Observable(value: WeeklyDetailsModel(list: []))
 
+    /// Returns filtered list with only daily value (hourly value are skipped).
+    var filteredList: [DailyWeather] {
+        var filteredTab: [DailyWeather] = []
+        let list = self.weeklyDetailsModelObs.value.list
+        list.forEach { element in
+            let formatter = DateFormatter()
+            formatter.dateFormat = Constants.format
+            guard let dateHour = Int(formatter.string(from: Date(timeIntervalSince1970: TimeInterval(element.date)))) else { return }
+
+            if Constants.afternoonTab.contains(dateHour) {
+                filteredTab.append(element)
+            }
+        }
+
+        return filteredTab
+    }
+
     // MARK: - Private Properties
     private let apiManager: ApiManagerProtocol
+
+    // MARK: - Private Enums
+    // MARK: - Private Enums
+    private enum Constants {
+        static let format: String = "HH"
+        static let afternoonTab: [Int] = [13, 14, 15]
+    }
 
     // MARK: - Init
     init(apiManager: ApiManagerProtocol) {
