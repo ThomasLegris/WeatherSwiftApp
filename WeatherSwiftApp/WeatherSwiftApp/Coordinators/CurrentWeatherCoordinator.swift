@@ -29,7 +29,17 @@ extension CurrentWeatherCoordinator {
     /// - Parameters:
     ///     - cityName: name of the city
     func displayDetails(with weatherModel: CityWeatherModel) {
-        let viewController = WeatherDetailsViewController.instantiate(coordinator: self, weatherModel: weatherModel)
+        let detailsViewModel = WeatherDetailsViewModel(persistanceManager: PersistanceManager.shared)
+        let viewController = WeatherDetailsViewController.instantiate(viewModel: detailsViewModel,
+                                                                      weatherModel: weatherModel)
+        viewController.delegate = self
         present(viewController)
+    }
+}
+
+// MARK: - WeatherDetailsViewControllerDelegate
+extension CurrentWeatherCoordinator: WeatherDetailsViewControllerDelegate {
+    func didClickOnDismiss() {
+        self.dismiss()
     }
 }

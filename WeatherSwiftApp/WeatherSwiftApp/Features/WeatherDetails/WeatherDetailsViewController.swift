@@ -5,6 +5,10 @@
 import UIKit
 import WeatherSwiftSDK
 
+protocol WeatherDetailsViewControllerDelegate: AnyObject {
+    func didClickOnDismiss()
+}
+
 /// Screen which display details about a city weather.
 final class WeatherDetailsViewController: UIViewController {
     // MARK: - Outlets
@@ -15,7 +19,7 @@ final class WeatherDetailsViewController: UIViewController {
     @IBOutlet private weak var favoriteButton: UIButton!
 
     // MARK: - Internal Properties
-    weak var coordinator: Coordinator?
+    weak var delegate: WeatherDetailsViewControllerDelegate?
 
     // MARK: - Private Enums
     enum Constants {
@@ -24,14 +28,14 @@ final class WeatherDetailsViewController: UIViewController {
 
     // MARK: - Private Properties
     private var currentWeatherModel: CityWeatherModel?
-    private let viewModel = WeatherDetailsViewModel(persistanceManager: PersistanceManager.shared)
+    private var viewModel: WeatherDetailsViewModel?
 
     // MARK: - Setup
-    static func instantiate(coordinator: Coordinator?,
+    static func instantiate(viewModel: WeatherDetailsViewModel,
                             weatherModel: CityWeatherModel?) -> WeatherDetailsViewController {
         let viewController = StoryboardScene.WeatherDetails.initialScene.instantiate()
+        viewController.viewModel = viewModel
         viewController.currentWeatherModel = weatherModel
-        viewController.coordinator = coordinator
         viewController.modalPresentationStyle = .overFullScreen
 
         return viewController
@@ -48,16 +52,16 @@ final class WeatherDetailsViewController: UIViewController {
 // MARK: - Actions
 private extension WeatherDetailsViewController {
     @IBAction func backgroundButtonTouchedUpInside(_ sender: Any) {
-        coordinator?.dismiss()
+        delegate?.didClickOnDismiss()
     }
 
     @IBAction func closeButtonTouchedUpInside(_ sender: Any) {
-        coordinator?.dismiss()
+        delegate?.didClickOnDismiss()
     }
 
     @IBAction func favoriteButtonTouchedUpInside(_ sender: Any) {
         guard let model = currentWeatherModel else { return }
-        viewModel.addOrRemoveCity(with: model) {
+        viewModel?.addOrRemoveCity(with: model) {
             self.updateFavoriteButton()
         }
     }
