@@ -2,7 +2,6 @@
 //  Copyright (C) 2020 Thomas LEGRIS.
 //
 
-import MapKit
 import WeatherSwiftSDK
 
 /// View Model which handle business logic of the current weather screen.
@@ -103,41 +102,6 @@ extension CurrentWeatherViewModel {
             UserDefaults.standard.set(data, forKey: UserDefaultKeys.lastSearchedCity.rawValue)
         } catch {
             print("Unable to encode data for city: \(model.name)")
-        }
-    }
-
-    /// Call the manager in order to get weather information from coordinate.
-    ///
-    /// - Parameters:
-    ///     - coordinate: map pointer location
-    func requestWeather(with coordinate: CLLocationCoordinate2D?) {
-        guard isNetworkReachable else {
-            self.weatherErrorObs.value = .noInternet
-            return
-        }
-
-        guard let coordinate = coordinate else {
-            self.weatherErrorObs.value = .noInfo
-            return
-        }
-
-        apiManager.locationWeather(latitude: coordinate.latitude, longitude: coordinate.longitude) { [weak self] res, error in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                guard error == nil else {
-                    self.weatherErrorObs.value = .noInfo
-                    return
-                }
-
-                guard let model = res?.cityWeatherModel else {
-                    self.weatherErrorObs.value = .unknownCity
-                    return
-                }
-
-                self.persistanceManager.updateCity(city: model)
-                self.weatherErrorObs.value = .none
-                self.weatherModelObs.value = model
-            }
         }
     }
 }

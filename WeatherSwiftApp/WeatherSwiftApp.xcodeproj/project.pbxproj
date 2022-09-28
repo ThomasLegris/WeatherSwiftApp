@@ -59,6 +59,8 @@
 		0231778128DEF1EB006C39CD /* WeeklyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231774228DE0B35006C39CD /* WeeklyDetailsViewModel.swift */; };
 		0262969528E3552A00F53B9D /* Notification+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262969428E3552A00F53B9D /* Notification+Utils.swift */; };
 		0262969828E4311800F53B9D /* CommonViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262969728E4311800F53B9D /* CommonViewControllerDelegate.swift */; };
+		0262969B28E4379200F53B9D /* MapAnnotationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262969A28E4379200F53B9D /* MapAnnotationViewModel.swift */; };
+		0262969D28E43D4600F53B9D /* Float+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262969C28E43D4600F53B9D /* Float+Utils.swift */; };
 		027EBB9C28DDF8F500D5980D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027EBB9B28DDF8F500D5980D /* AppDelegate.swift */; };
 		027EBB9E28DDF8F500D5980D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027EBB9D28DDF8F500D5980D /* SceneDelegate.swift */; };
 		027EBBB328DDF8F700D5980D /* WeatherSwiftAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027EBBB228DDF8F700D5980D /* WeatherSwiftAppTests.swift */; };
@@ -154,6 +156,8 @@
 		0231776D28DE0F25006C39CD /* Date+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		0262969428E3552A00F53B9D /* Notification+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Utils.swift"; sourceTree = "<group>"; };
 		0262969728E4311800F53B9D /* CommonViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewControllerDelegate.swift; sourceTree = "<group>"; };
+		0262969A28E4379200F53B9D /* MapAnnotationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationViewModel.swift; sourceTree = "<group>"; };
+		0262969C28E43D4600F53B9D /* Float+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Utils.swift"; sourceTree = "<group>"; };
 		027EBB9828DDF8F500D5980D /* WeatherSwiftApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherSwiftApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		027EBB9B28DDF8F500D5980D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		027EBB9D28DDF8F500D5980D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 		0231770028DE0A19006C39CD /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				0262969928E4375100F53B9D /* ViewModels */,
 				0231772628DE0AFE006C39CD /* Views */,
 				0231772228DE0AFA006C39CD /* WeatherMap.storyboard */,
 				0231772328DE0AFA006C39CD /* WeatherMapViewController.swift */,
@@ -327,6 +332,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		0262969928E4375100F53B9D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0262969A28E4379200F53B9D /* MapAnnotationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		027EBB8F28DDF8F400D5980D = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +441,7 @@
 				0231776B28DE0F25006C39CD /* UIView+Utils.swift */,
 				0231776A28DE0F25006C39CD /* UIViewController+Utils.swift */,
 				0262969428E3552A00F53B9D /* Notification+Utils.swift */,
+				0262969C28E43D4600F53B9D /* Float+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -642,6 +656,8 @@
 				0231777128DE0F26006C39CD /* UIView+Utils.swift in Sources */,
 				0231770E28DE0A73006C39CD /* CurrentWeatherModel.swift in Sources */,
 				0231773128DE0B17006C39CD /* WeatherDetailsViewController.swift in Sources */,
+				0262969D28E43D4600F53B9D /* Float+Utils.swift in Sources */,
+				0262969B28E4379200F53B9D /* MapAnnotationViewModel.swift in Sources */,
 				0231773D28DE0B26006C39CD /* WeeklyDetailsView.swift in Sources */,
 				02D0063328E315E500EF89DE /* FavoriteCityCellViewModel.swift in Sources */,
 				023176F128DE06F0006C39CD /* Storyboards.swift in Sources */,

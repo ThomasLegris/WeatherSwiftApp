@@ -41,11 +41,8 @@ final class MapAnnotationView: MKAnnotationView {
 
     // MARK: - Internal Properties
     weak var delegate: MapAnnotationDelegate?
-
-    // MARK: - Private Properties
-    private let viewModel: CurrentWeatherViewModel = CurrentWeatherViewModel(apiManager: WeatherApiManager.shared,
-                                                                             persistanceManager: PersistanceManager.shared)
-    // TODO: Create a specific viewModel
+    var viewModel: MapAnnotationViewModel = MapAnnotationViewModel(apiManager: WeatherApiManager.shared,
+                                                                   persistanceManager: PersistanceManager.shared)
 
     // MARK: - Private Enums
     private enum Constants {
@@ -74,9 +71,20 @@ private extension MapAnnotationView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        setupViewModel()
+
+    }
+
+    /// Launch request and observes callback.
+    func setupViewModel() {
         viewModel.requestWeather(with: annotation?.coordinate)
+
         viewModel.weatherModelObs.bind { [weak self] model in
+            guard self?.viewModel.weatherErrorObs.value == .none else { return }
             self?.updateView(with: model)
+        }
+        viewModel.weatherErrorObs.bind { [weak self] _ in
+            self?.updateError()
         }
     }
 
@@ -90,5 +98,14 @@ private extension MapAnnotationView {
         delegate?.shouldShowWeatherCityInfos(cityName: model.name,
                                              weatherIconName: model.imageName,
                                              temperature: model.temperature)
+    }
+
+    /// Update error during a request.
+    ///
+    /// - Parameters:
+    ///     - error: the weather error
+    func updateError() {
+        iconImageView.image = nil
+        tempLabel.text = ""
     }
 }
