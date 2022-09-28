@@ -173,7 +173,7 @@ private extension CurrentWeatherViewController {
         : cityTextField.text
 
         // Don't call API if there is no city written in textfield and never setted in default.
-        if city?.isEmpty == false {
+        if city?.isNotEmpty == true {
             viewModel?.requestWeather(with: city)
         } else if UserDefaults.standard.integer(forKey: UserDefaultKeys.appLaunchCount.rawValue) < 2 {
             // Show a welcome message at first launch.

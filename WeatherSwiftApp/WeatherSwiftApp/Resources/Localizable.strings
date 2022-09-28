@@ -20,6 +20,7 @@
 "humidity" = "Humidity";
 "wind" = "Wind";
 "sunset" = "Sunset";
+"addFavoriteMessage" = "Start filing this list by searching a city on previous menu. \n\nWhen it's done, open the details view and click on top right button to add it";
 "sunrise" = "Sunrise";
 "speedUnit" = "km/h";
 "percentUnit" = "%%";

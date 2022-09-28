@@ -9,7 +9,9 @@ import WeatherSwiftSDK
 final class FavoriteCitiesListViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var emptyListView: UIStackView!
 
     // MARK: - Internal Properties
     weak var delegate: CommonViewControllerDelegate?
@@ -51,6 +53,8 @@ private extension FavoriteCitiesListViewController {
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
+        descriptionLabel.text = L10n.addFavoriteMessage
+        descriptionLabel.textColor = ColorName.black80.color
         let nib = UINib(nibName: "FavoriteCityCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "FavoriteCityCell")
     }
@@ -66,6 +70,7 @@ private extension FavoriteCitiesListViewController {
         guard let citiesList = viewModel?.favoriteCitiesObs.value else { return }
 
         dataSource = citiesList
+        emptyListView.isHidden = !dataSource.isEmpty
     }
 }
 

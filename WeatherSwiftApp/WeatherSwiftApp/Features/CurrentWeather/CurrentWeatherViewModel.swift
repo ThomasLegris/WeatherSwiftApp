@@ -65,7 +65,7 @@ extension CurrentWeatherViewModel {
         }
 
         guard let cityName = city,
-              city?.isEmpty == false else {
+              cityName.isNotEmpty else {
             self.weatherErrorObs.value = .unknownCity
             if let defaultCity = defaultCity {
                 weatherModelObs.value = defaultCity

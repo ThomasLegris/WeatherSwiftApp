@@ -29,6 +29,7 @@ internal enum Asset {
   internal static let bgList = ImageAsset(name: "bgList")
   internal static let icApp = ImageAsset(name: "icApp")
   internal static let icClose = ImageAsset(name: "icClose")
+  internal static let icHelp = ImageAsset(name: "icHelp")
   internal static let icLocation = ImageAsset(name: "icLocation")
   internal static let icMenu = ImageAsset(name: "icMenu")
   internal static let icNext = ImageAsset(name: "icNext")

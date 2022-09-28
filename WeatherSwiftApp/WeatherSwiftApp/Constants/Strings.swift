@@ -10,16 +10,19 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
-  /// To get the weather, please search for a city
-  internal static let alertWelcomeMessage = L10n.tr("Localizable", "alertWelcomeMessage", fallback: "To get the weather, please search for a city")
+  /// Start filing this list by searching a city on previous menu. 
+  /// When it's done, open the details view and click on top right button to add it
+  internal static let addFavoriteMessage = L10n.tr("Localizable", "addFavoriteMessage", fallback: "Start filing this list by searching a city on previous menu. \nWhen it's done, open the details view and click on top right button to add it")
+  /// To get weather information, please search for a city
+  internal static let alertWelcomeMessage = L10n.tr("Localizable", "alertWelcomeMessage", fallback: "To get weather information, please search for a city")
   /// Error
   internal static let commonError = L10n.tr("Localizable", "commonError", fallback: "Error")
   /// Ok
   internal static let commonOk = L10n.tr("Localizable", "commonOk", fallback: "Ok")
   /// Warning
   internal static let commonWarning = L10n.tr("Localizable", "commonWarning", fallback: "Warning")
-  /// Welcome here
-  internal static let commonWelcome = L10n.tr("Localizable", "commonWelcome", fallback: "Welcome here")
+  /// Welcome
+  internal static let commonWelcome = L10n.tr("Localizable", "commonWelcome", fallback: "Welcome")
   /// Daily
   internal static let dailyDetails = L10n.tr("Localizable", "dailyDetails", fallback: "Daily")
   /// *

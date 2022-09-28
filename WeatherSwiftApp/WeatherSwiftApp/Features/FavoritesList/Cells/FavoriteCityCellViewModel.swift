@@ -45,7 +45,7 @@ extension FavoriteCityCellViewModel {
     ///     - city: city name requested by user
     func requestWeather(with city: String?) {
         guard let cityName = city,
-              city?.isEmpty == false else {
+              cityName.isNotEmpty else {
             return
         }
 
