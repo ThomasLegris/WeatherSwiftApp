@@ -5,7 +5,7 @@
 import UIKit
 import WeatherSwiftSDK
 
-/// View which displays a resume of the weather.e
+/// View which displays a resume of the weather.
 final class WeatherInfoWidget: UIView {
     // MARK: - Outlets
     @IBOutlet private var contentView: UIView!

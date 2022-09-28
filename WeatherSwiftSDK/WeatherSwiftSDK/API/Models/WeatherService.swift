@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Public Enums
-/// Moya service for weather API.
+/// Stores each OpenWeatherMap services used in this app.
 enum WeatherService {
     /// Gets current weather with city name.
     case currentWeather
@@ -26,6 +26,7 @@ extension WeatherService {
     }
 
     // MARK: - Internal Properties
+    /// Returns full url for each service, as a string.
     var url: String {
         var path: String = ""
         switch self {

@@ -7,11 +7,11 @@
 import Foundation
 import CoreData
 
-/// Represents a city as Core data object.
+/// Core data object of city.
 /// The extension file is auto generated.
 public class City: NSManagedObject {
     // MARK: - Helpers
-    /// Returns an entity model
+    /// Returns an entity `CityWeatherModel`
     /// Used to avoid working with CoreData object.
     public var model: CityWeatherModel {
         return CityWeatherModel(name: self.name ?? "",

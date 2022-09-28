@@ -24,6 +24,7 @@ final class FavoriteCitiesListViewModel {
         observeCities()
     }
 
+    // MARK: - Deinit
     deinit {
         // For safety, remove observers which has been init here.
         notificationCenter.removeObserver(self)

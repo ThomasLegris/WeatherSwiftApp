@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Stores different weather request error.
+/// Stores different weather error after API call. Used for UI updates.
 enum WeatherError {
     case noInternet
     case noInfo

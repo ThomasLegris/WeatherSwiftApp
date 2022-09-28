@@ -8,7 +8,9 @@
 import Foundation
 import WeatherSwiftSDK
 
+/// UI extension of SDK's parser `LocalWeatherResponse`.
 extension LocalWeatherResponse {
+    // MARK: - Internal Funcs
     /// Get weather group according to id.
     ///
     /// - Parameters:

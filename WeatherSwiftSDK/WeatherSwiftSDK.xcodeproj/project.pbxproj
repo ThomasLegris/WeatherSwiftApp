@@ -96,9 +96,9 @@
 		0231777A28DE1226006C39CD /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
+				020A76D028E4485400C8046D /* DailyDetailsResponse.swift */,
 				0231777B28DE123C006C39CD /* LocalWeatherResponse.swift */,
 				0231777D28DE1280006C39CD /* WeeklyDetailsResponse.swift */,
-				020A76D028E4485400C8046D /* DailyDetailsResponse.swift */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -134,8 +134,8 @@
 		0262969128E3427500F53B9D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				02763EC828E1A593003A6065 /* Observable.swift */,
 				02D0063428E31F9E00EF89DE /* CityWeatherModel.swift */,
+				02763EC828E1A593003A6065 /* Observable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";

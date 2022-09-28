@@ -7,11 +7,11 @@
 import Foundation
 import CoreData
 
-/// Manager which handle whole core stack (Persistent container: context, managed object)
+/// Manager which handle whole core stack (Persistent container, context, managed object).
 public final class CoreDataStack {
     // MARK: - Private Properties
     private lazy var persistentContainer: NSPersistentContainer = {
-        // Notes: Check bundle url because CoreDataModel is not in main one (aka `WeatherSwiftApp`)
+        // Notes: We need to check bundle url because CoreDataModel is not in main one (`WeatherSwiftApp`).
         guard let modelURL = Bundle(for: type(of: self)).url(forResource: Constants.dataModelName,
                                                              withExtension: Constants.fileExtension) else {
             fatalError("Error loading model from bundle")

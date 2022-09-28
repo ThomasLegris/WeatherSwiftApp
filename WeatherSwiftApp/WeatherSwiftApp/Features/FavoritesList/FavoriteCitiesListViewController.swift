@@ -5,7 +5,7 @@
 import UIKit
 import WeatherSwiftSDK
 
-/// List all favorite cities.
+/// List all favorite cities registered by user.
 final class FavoriteCitiesListViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet private weak var titleLabel: UILabel!

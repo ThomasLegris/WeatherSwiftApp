@@ -16,6 +16,7 @@ final class WeeklyDetailsCollectionViewCell: UICollectionViewCell {
         static let format: String = "E d"
     }
 
+    // MARK: - Override Funcs
     override func prepareForReuse() {
         super.prepareForReuse()
 

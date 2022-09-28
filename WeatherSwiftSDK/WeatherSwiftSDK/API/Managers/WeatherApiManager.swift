@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Weather Api manager which uses Moya framework.
+/// Manager which handles call with OpenWeatherMap API.
 public final class WeatherApiManager {
     // MARK: - Public Properties
     public static let shared: WeatherApiManager = WeatherApiManager()

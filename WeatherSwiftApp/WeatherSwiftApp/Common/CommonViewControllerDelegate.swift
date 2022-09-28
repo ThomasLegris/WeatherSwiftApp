@@ -9,8 +9,8 @@ import Foundation
 import WeatherSwiftSDK
 
 // MARK: - Protocols
-/// A protocol which can be common for each view controller. Used to present details for example.
-/// Can be inherited if needed..
+/// A protocol which can be common for each view controller.
+/// Can be inherited if needed.
 protocol CommonViewControllerDelegate: AnyObject {
     /// Displays details screen.
     ///
